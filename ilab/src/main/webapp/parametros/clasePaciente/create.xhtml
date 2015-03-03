@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{clasePacienteBean.id}'/>
+		<f:event type="preRenderView" listener='#{clasePacienteBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Clase Paciente"/>
+
+	<ui:define name="header">
+		Clase Paciente
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty clasePacienteBean.id}'>
+				Edit existing Clase Paciente
+			</c:when>
+			<c:otherwise>
+				Create a new Clase Paciente
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="clasePacienteBeanClasePacienteIdClasePaciente" value="Id Clase Paciente:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteIdClasePaciente" required="true" value="#{clasePacienteBean.clasePaciente.idClasePaciente}"/>
+					<h:message for="clasePacienteBeanClasePacienteIdClasePaciente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteNombre" maxLength="50" required="true" value="#{clasePacienteBean.clasePaciente.nombre}"/>
+					<h:message for="clasePacienteBeanClasePacienteNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteFechaReg" maxLength="29" value="#{clasePacienteBean.clasePaciente.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clasePacienteBeanClasePacienteFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteUsuarioReg" maxLength="30" value="#{clasePacienteBean.clasePaciente.usuarioReg}"/>
+					<h:message for="clasePacienteBeanClasePacienteUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteFechaMod" maxLength="29" value="#{clasePacienteBean.clasePaciente.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clasePacienteBeanClasePacienteFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteUsuarioMod" maxLength="30" value="#{clasePacienteBean.clasePaciente.usuarioMod}"/>
+					<h:message for="clasePacienteBeanClasePacienteUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteFechaBorrado" maxLength="29" value="#{clasePacienteBean.clasePaciente.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="clasePacienteBeanClasePacienteFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clasePacienteBeanClasePacienteUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="clasePacienteBeanClasePacienteUsuarioBorrado" maxLength="30" value="#{clasePacienteBean.clasePaciente.usuarioBorrado}"/>
+					<h:message for="clasePacienteBeanClasePacienteUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="clasePacienteBeanClasePacientePersonas" value="Personas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{clasePacienteBean.clasePaciente.personas}"/>
+					<h:dataTable id="clasePacienteBeanClasePacientePersonas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Persona"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemIdPersona" value="#{_item.idPersona}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddIdPersona" value="#{personaBean.add.idPersona}"/>
+								<h:message for="personaBeanAddIdPersona" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nombre"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddNombre" maxLength="50" value="#{personaBean.add.nombre}"/>
+								<h:message for="personaBeanAddNombre" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Apellido Paterno"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemApellidoPaterno" value="#{_item.apellidoPaterno}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddApellidoPaterno" maxLength="50" value="#{personaBean.add.apellidoPaterno}"/>
+								<h:message for="personaBeanAddApellidoPaterno" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Apellido Materno"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemApellidoMaterno" value="#{_item.apellidoMaterno}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddApellidoMaterno" maxLength="50" value="#{personaBean.add.apellidoMaterno}"/>
+								<h:message for="personaBeanAddApellidoMaterno" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Documento Identidad"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemDocumentoIdentidad" value="#{_item.documentoIdentidad}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddDocumentoIdentidad" value="#{personaBean.add.documentoIdentidad}"/>
+								<h:message for="personaBeanAddDocumentoIdentidad" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(personaBean.added)}" id="clasePacienteBeanClasePacientePersonasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{personaBean.add.clasePaciente}" value="#{clasePacienteBean.clasePaciente}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{clasePacienteBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty clasePacienteBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{clasePacienteBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{clasePacienteBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

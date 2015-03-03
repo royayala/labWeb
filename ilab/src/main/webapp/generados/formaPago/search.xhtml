@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{formaPagoBean.page}'/>
+		<f:event type="preRenderView" listener='#{formaPagoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Forma Pago "/>
+
+	<ui:define name="header">
+		Forma Pago
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Forma Pago 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="formaPagoBeanExampleIdFormaPago" value="Id Forma Pago:"/>
+						<h:panelGroup>
+							<h:inputText id="formaPagoBeanExampleIdFormaPago" value="#{formaPagoBean.example.idFormaPago}"/>
+							<h:message for="formaPagoBeanExampleIdFormaPago" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="formaPagoBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="formaPagoBeanExampleNombre" maxLength="50" value="#{formaPagoBean.example.nombre}"/>
+							<h:message for="formaPagoBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="formaPagoBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="formaPagoBeanExampleUsuarioReg" maxLength="30" value="#{formaPagoBean.example.usuarioReg}"/>
+							<h:message for="formaPagoBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="formaPagoBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="formaPagoBeanExampleUsuarioMod" maxLength="30" value="#{formaPagoBean.example.usuarioMod}"/>
+							<h:message for="formaPagoBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="formaPagoBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
+						<h:panelGroup>
+							<h:inputText id="formaPagoBeanExampleUsuarioBorrado" maxLength="30" value="#{formaPagoBean.example.usuarioBorrado}"/>
+							<h:message for="formaPagoBeanExampleUsuarioBorrado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{formaPagoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{formaPagoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="formaPagoBeanPageItems" styleClass="data-table" value="#{formaPagoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Forma Pago"/>
+					</f:facet>
+					<h:link outcome="/parametros/formaPago/view">
+						<f:param name="id" value="#{_item.idFormaPago}"/>
+						<h:outputText id="itemIdFormaPago" value="#{_item.idFormaPago}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/formaPago/view">
+						<f:param name="id" value="#{_item.idFormaPago}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{formaPagoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

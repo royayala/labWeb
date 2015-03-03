@@ -1397,25 +1397,25 @@ select:focus:required:invalid:focus {
           border-radius: 14px;
 }
 
-.form-search input,
+.form-Buscar input,
 .form-inline input,
 .form-horizontal input,
-.form-search textarea,
+.form-Buscar textarea,
 .form-inline textarea,
 .form-horizontal textarea,
-.form-search select,
+.form-Buscar select,
 .form-inline select,
 .form-horizontal select,
-.form-search .help-inline,
+.form-Buscar .help-inline,
 .form-inline .help-inline,
 .form-horizontal .help-inline,
-.form-search .uneditable-input,
+.form-Buscar .uneditable-input,
 .form-inline .uneditable-input,
 .form-horizontal .uneditable-input,
-.form-search .input-prepend,
+.form-Buscar .input-prepend,
 .form-inline .input-prepend,
 .form-horizontal .input-prepend,
-.form-search .input-append,
+.form-Buscar .input-append,
 .form-inline .input-append,
 .form-horizontal .input-append {
   display: inline-block;
@@ -1424,26 +1424,26 @@ select:focus:required:invalid:focus {
   *zoom: 1;
 }
 
-.form-search .hide,
+.form-Buscar .hide,
 .form-inline .hide,
 .form-horizontal .hide {
   display: none;
 }
 
-.form-search label,
+.form-Buscar label,
 .form-inline label {
   display: inline-block;
 }
 
-.form-search .input-append,
+.form-Buscar .input-append,
 .form-inline .input-append,
-.form-search .input-prepend,
+.form-Buscar .input-prepend,
 .form-inline .input-prepend {
   margin-bottom: 0;
 }
 
-.form-search .radio,
-.form-search .checkbox,
+.form-Buscar .radio,
+.form-Buscar .checkbox,
 .form-inline .radio,
 .form-inline .checkbox {
   padding-left: 0;
@@ -1451,8 +1451,8 @@ select:focus:required:invalid:focus {
   vertical-align: middle;
 }
 
-.form-search .radio input[type="radio"],
-.form-search .checkbox input[type="checkbox"],
+.form-Buscar .radio input[type="radio"],
+.form-Buscar .checkbox input[type="checkbox"],
 .form-inline .radio input[type="radio"],
 .form-inline .checkbox input[type="checkbox"] {
   float: left;
@@ -1800,7 +1800,7 @@ table .span24 {
   background-position: -24px 0;
 }
 
-.icon-search {
+.icon-Buscar {
   background-position: -48px 0;
 }
 
@@ -3690,14 +3690,14 @@ input[type="submit"].btn.btn-mini {
   margin-top: 0;
 }
 
-.navbar-search {
+.navbar-Buscar {
   position: relative;
   float: left;
   margin-top: 6px;
   margin-bottom: 0;
 }
 
-.navbar-search .search-query {
+.navbar-Buscar .search-query {
   padding: 4px 9px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
@@ -3716,20 +3716,20 @@ input[type="submit"].btn.btn-mini {
           transition: none;
 }
 
-.navbar-search .search-query:-moz-placeholder {
+.navbar-Buscar .search-query:-moz-placeholder {
   color: #cccccc;
 }
 
-.navbar-search .search-query:-ms-input-placeholder {
+.navbar-Buscar .search-query:-ms-input-placeholder {
   color: #cccccc;
 }
 
-.navbar-search .search-query::-webkit-input-placeholder {
+.navbar-Buscar .search-query::-webkit-input-placeholder {
   color: #cccccc;
 }
 
-.navbar-search .search-query:focus,
-.navbar-search .search-query.focused {
+.navbar-Buscar .search-query:focus,
+.navbar-Buscar .search-query.focused {
   padding: 5px 10px;
   color: #333333;
   text-shadow: 0 1px 0 #ffffff;

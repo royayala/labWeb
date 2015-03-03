@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{cargoBean.page}'/>
+		<f:event type="preRenderView" listener='#{cargoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Cargo "/>
+
+	<ui:define name="header">
+		Cargo
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Cargo 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="cargoBeanExampleIdCargo" value="Id Cargo:"/>
+						<h:panelGroup>
+							<h:inputText id="cargoBeanExampleIdCargo" value="#{cargoBean.example.idCargo}"/>
+							<h:message for="cargoBeanExampleIdCargo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cargoBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="cargoBeanExampleNombre" maxLength="50" value="#{cargoBean.example.nombre}"/>
+							<h:message for="cargoBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cargoBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="cargoBeanExampleUsuarioReg" maxLength="30" value="#{cargoBean.example.usuarioReg}"/>
+							<h:message for="cargoBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cargoBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="cargoBeanExampleUsuarioMod" maxLength="30" value="#{cargoBean.example.usuarioMod}"/>
+							<h:message for="cargoBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cargoBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
+						<h:panelGroup>
+							<h:inputText id="cargoBeanExampleUsuarioBorrado" maxLength="30" value="#{cargoBean.example.usuarioBorrado}"/>
+							<h:message for="cargoBeanExampleUsuarioBorrado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{cargoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{cargoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="cargoBeanPageItems" styleClass="data-table" value="#{cargoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Cargo"/>
+					</f:facet>
+					<h:link outcome="/parametros/cargo/view">
+						<f:param name="id" value="#{_item.idCargo}"/>
+						<h:outputText id="itemIdCargo" value="#{_item.idCargo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/cargo/view">
+						<f:param name="id" value="#{_item.idCargo}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{cargoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

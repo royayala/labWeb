@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{usuarioRolBean.id}'/>
+		<f:event type="preRenderView" listener='#{usuarioRolBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Usuario Rol"/>
+
+	<ui:define name="header">
+		Usuario Rol
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty usuarioRolBean.id}'>
+				Edit existing Usuario Rol
+			</c:when>
+			<c:otherwise>
+				Create a new Usuario Rol
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="usuarioRolBeanUsuarioRolCorrelativo" value="Correlativo:"/>
+				<h:panelGroup>
+					<h:inputText id="usuarioRolBeanUsuarioRolCorrelativo" required="true" value="#{usuarioRolBean.usuarioRol.correlativo}"/>
+					<h:message for="usuarioRolBeanUsuarioRolCorrelativo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="usuarioRolBeanUsuarioRolUsuario" value="Usuario:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{usuarioBean.converter}" id="usuarioRolBeanUsuarioRolUsuario" value="#{usuarioRolBean.usuarioRol.usuario}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{usuarioBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="usuarioRolBeanUsuarioRolUsuario" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="usuarioRolBeanUsuarioRolRolAsignado" value="Rol Asignado:"/>
+				<h:panelGroup>
+					<h:inputText id="usuarioRolBeanUsuarioRolRolAsignado" maxLength="10" value="#{usuarioRolBean.usuarioRol.rolAsignado}"/>
+					<h:message for="usuarioRolBeanUsuarioRolRolAsignado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="usuarioRolBeanUsuarioRolFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="usuarioRolBeanUsuarioRolFlagEstado" maxLength="2" value="#{usuarioRolBean.usuarioRol.flagEstado}"/>
+					<h:message for="usuarioRolBeanUsuarioRolFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="usuarioRolBeanUsuarioRolFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="usuarioRolBeanUsuarioRolFechaReg" maxLength="29" value="#{usuarioRolBean.usuarioRol.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="usuarioRolBeanUsuarioRolFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="usuarioRolBeanUsuarioRolUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="usuarioRolBeanUsuarioRolUsuarioReg" maxLength="30" value="#{usuarioRolBean.usuarioRol.usuarioReg}"/>
+					<h:message for="usuarioRolBeanUsuarioRolUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{usuarioRolBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty usuarioRolBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{usuarioRolBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{usuarioRolBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

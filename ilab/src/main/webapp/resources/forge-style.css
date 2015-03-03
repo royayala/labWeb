@@ -236,7 +236,7 @@ footer p {
 	padding-left:10px;
 }
 
-#content .search {
+#content .Buscar {
 	display: block;
 	background-image: url(#{request.contextPath}/resources/search.png);
 	background-position: 30px 3px;
@@ -245,7 +245,7 @@ footer p {
     padding-left: 70px;
 }
 
-#content .search .buttons {
+#content .Buscar .buttons {
 	text-align: left;
 	padding-left: 25%;
 }

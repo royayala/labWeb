@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{paisBean.id}'/>
+		<f:event type="preRenderView" listener='#{paisBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Pais"/>
+
+	<ui:define name="header">
+		Pais
+	</ui:define>
+
+	<ui:define name="subheader">
+		Ver Pais
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="paisBeanPaisIdPais" value="Id Pais:"/>
+			<h:outputText id="paisBeanPaisIdPais" value="#{paisBean.pais.idPais}"/>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisNombre" value="Nombre:"/>
+			<h:outputText id="paisBeanPaisNombre" value="#{paisBean.pais.nombre}"/>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="paisBeanPaisFechaReg" value="#{paisBean.pais.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="paisBeanPaisUsuarioReg" value="#{paisBean.pais.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="paisBeanPaisFechaMod" value="#{paisBean.pais.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="paisBeanPaisUsuarioMod" value="#{paisBean.pais.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="paisBeanPaisFechaBorrado" value="#{paisBean.pais.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="paisBeanPaisUsuarioBorrado" value="#{paisBean.pais.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="paisBeanPaisDepartamentos" value="Departamentos:"/>
+			<h:dataTable id="paisBeanPaisDepartamentos" styleClass="data-table" value="#{forgeview:asList(paisBean.pais.departamentos)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Departamento"/>
+					</f:facet>
+					<h:link outcome="/parametros/departamento/view">
+						<f:param name="id" value="#{_item.idDepartamento}"/>
+						<h:outputText id="itemIdDepartamento" value="#{_item.idDepartamento}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/departamento/view">
+						<f:param name="id" value="#{_item.idDepartamento}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{entregaBean.id}'/>
+		<f:event type="preRenderView" listener='#{entregaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Entrega"/>
+
+	<ui:define name="header">
+		Entrega
+	</ui:define>
+
+	<ui:define name="subheader">
+		Ver Entrega
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="entregaBeanEntregaIdEntrega" value="Id Entrega:"/>
+			<h:outputText id="entregaBeanEntregaIdEntrega" value="#{entregaBean.entrega.idEntrega}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaSolicitudDetalle" value="Solicitud Detalle:"/>
+			<h:link id="entregaBeanEntregaSolicitudDetalle" outcome="/solicitudDetalle/view" rendered="#{!empty entregaBean.entrega.solicitudDetalle}" value="#{entregaBean.entrega.solicitudDetalle}">
+				<f:param name="id" value="#{entregaBean.entrega.solicitudDetalle.idSolicitudDetalle}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaTrabajador" value="Trabajador:"/>
+			<h:link id="entregaBeanEntregaTrabajador" outcome="/trabajador/view" rendered="#{!empty entregaBean.entrega.trabajador}" value="#{entregaBean.entrega.trabajador}">
+				<f:param name="id" value="#{entregaBean.entrega.trabajador.idTrabajador}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaObservaciones" value="Observaciones:"/>
+			<h:outputText id="entregaBeanEntregaObservaciones" value="#{entregaBean.entrega.observaciones}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaFechaEntrega" value="Fecha Entrega:"/>
+			<h:outputText id="entregaBeanEntregaFechaEntrega" value="#{entregaBean.entrega.fechaEntrega}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaNombreCompleto" value="Nombre Completo:"/>
+			<h:outputText id="entregaBeanEntregaNombreCompleto" value="#{entregaBean.entrega.nombreCompleto}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaDocumentoIdentidad" value="Documento Identidad:"/>
+			<h:outputText id="entregaBeanEntregaDocumentoIdentidad" value="#{entregaBean.entrega.documentoIdentidad}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaTelefono" value="Telefono:"/>
+			<h:outputText id="entregaBeanEntregaTelefono" value="#{entregaBean.entrega.telefono}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="entregaBeanEntregaFlagEstado" value="#{entregaBean.entrega.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="entregaBeanEntregaUsuarioReg" value="#{entregaBean.entrega.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="entregaBeanEntregaFechaMod" value="#{entregaBean.entrega.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="entregaBeanEntregaUsuarioMod" value="#{entregaBean.entrega.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="entregaBeanEntregaFechaBorrado" value="#{entregaBean.entrega.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="entregaBeanEntregaUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="entregaBeanEntregaUsuarioBorrado" value="#{entregaBean.entrega.usuarioBorrado}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

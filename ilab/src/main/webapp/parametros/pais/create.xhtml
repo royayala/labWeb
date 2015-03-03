@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{paisBean.id}'/>
+		<f:event type="preRenderView" listener='#{paisBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Pais"/>
+
+	<ui:define name="header">
+		Pais
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty paisBean.id}'>
+				Edit existing Pais
+			</c:when>
+			<c:otherwise>
+				Create a new Pais
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="paisBeanPaisIdPais" value="Id Pais:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisIdPais" required="true" value="#{paisBean.pais.idPais}"/>
+					<h:message for="paisBeanPaisIdPais" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="paisBeanPaisNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisNombre" maxLength="50" required="true" value="#{paisBean.pais.nombre}"/>
+					<h:message for="paisBeanPaisNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="paisBeanPaisFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisFechaReg" maxLength="29" value="#{paisBean.pais.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="paisBeanPaisFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="paisBeanPaisUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisUsuarioReg" maxLength="30" value="#{paisBean.pais.usuarioReg}"/>
+					<h:message for="paisBeanPaisUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="paisBeanPaisFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisFechaMod" maxLength="29" value="#{paisBean.pais.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="paisBeanPaisFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="paisBeanPaisUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisUsuarioMod" maxLength="30" value="#{paisBean.pais.usuarioMod}"/>
+					<h:message for="paisBeanPaisUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="paisBeanPaisFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisFechaBorrado" maxLength="29" value="#{paisBean.pais.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="paisBeanPaisFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="paisBeanPaisUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="paisBeanPaisUsuarioBorrado" maxLength="30" value="#{paisBean.pais.usuarioBorrado}"/>
+					<h:message for="paisBeanPaisUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="paisBeanPaisDepartamentos" value="Departamentos:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{paisBean.pais.departamentos}"/>
+					<h:dataTable id="paisBeanPaisDepartamentos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Departamento"/>
+							</f:facet>
+							<h:link outcome="/parametros/departamento/view">
+								<f:param name="id" value="#{_item.idDepartamento}"/>
+								<h:outputText id="itemIdDepartamento" value="#{_item.idDepartamento}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="departamentoBeanAddIdDepartamento" value="#{departamentoBean.add.idDepartamento}"/>
+								<h:message for="departamentoBeanAddIdDepartamento" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nombre"/>
+							</f:facet>
+							<h:link outcome="/parametros/departamento/view">
+								<f:param name="id" value="#{_item.idDepartamento}"/>
+								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="departamentoBeanAddNombre" maxLength="50" value="#{departamentoBean.add.nombre}"/>
+								<h:message for="departamentoBeanAddNombre" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(departamentoBean.added)}" id="paisBeanPaisDepartamentosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{departamentoBean.add.pais}" value="#{paisBean.pais}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{paisBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty paisBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{paisBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{paisBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

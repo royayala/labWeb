@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{tipoExamenBean.id}'/>
+		<f:event type="preRenderView" listener='#{tipoExamenBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Tipo Examen"/>
+
+	<ui:define name="header">
+		Tipo Examen
+	</ui:define>
+
+	<ui:define name="subheader">
+		Ver Tipo Examen
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="tipoExamenBeanTipoExamenIdTipoExamen" value="Id Tipo Examen:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenIdTipoExamen" value="#{tipoExamenBean.tipoExamen.idTipoExamen}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenNombre" value="Nombre:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenNombre" value="#{tipoExamenBean.tipoExamen.nombre}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenDecripcion" value="Decripcion:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenDecripcion" value="#{tipoExamenBean.tipoExamen.decripcion}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenFlagEstado" value="#{tipoExamenBean.tipoExamen.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenFechaReg" value="#{tipoExamenBean.tipoExamen.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenUsuarioReg" value="#{tipoExamenBean.tipoExamen.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenFechaMod" value="#{tipoExamenBean.tipoExamen.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenUsuarioMod" value="#{tipoExamenBean.tipoExamen.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenFechaBorrado" value="#{tipoExamenBean.tipoExamen.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="tipoExamenBeanTipoExamenUsuarioBorrado" value="#{tipoExamenBean.tipoExamen.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="tipoExamenBeanTipoExamenSubTipoExamens" value="Sub Tipo Examens:"/>
+			<h:dataTable id="tipoExamenBeanTipoExamenSubTipoExamens" styleClass="data-table" value="#{forgeview:asList(tipoExamenBean.tipoExamen.subTipoExamens)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Sub Tipo Examen"/>
+					</f:facet>
+					<h:link outcome="/parametros/subTipoExamen/view">
+						<f:param name="id" value="#{_item.idSubTipoExamen}"/>
+						<h:outputText id="itemIdSubTipoExamen" value="#{_item.idSubTipoExamen}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/subTipoExamen/view">
+						<f:param name="id" value="#{_item.idSubTipoExamen}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Decripcion"/>
+					</f:facet>
+					<h:link outcome="/parametros/subTipoExamen/view">
+						<f:param name="id" value="#{_item.idSubTipoExamen}"/>
+						<h:outputText id="itemDecripcion" value="#{_item.decripcion}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

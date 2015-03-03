@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{examenComponenteBean.page}'/>
+		<f:event type="preRenderView" listener='#{examenComponenteBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Examen Componente "/>
+
+	<ui:define name="header">
+		Examen Componente
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Examen Componente 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="examenComponenteBeanExampleIdExamenComponente" value="Id Examen Componente:"/>
+						<h:panelGroup>
+							<h:inputText id="examenComponenteBeanExampleIdExamenComponente" value="#{examenComponenteBean.example.idExamenComponente}"/>
+							<h:message for="examenComponenteBeanExampleIdExamenComponente" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="examenComponenteBeanExampleComponente" value="Componente:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{componenteBean.converter}" id="examenComponenteBeanExampleComponente" value="#{examenComponenteBean.example.componente}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{componenteBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="examenComponenteBeanExampleComponente" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="examenComponenteBeanExampleExamen" value="Examen:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{examenBean.converter}" id="examenComponenteBeanExampleExamen" value="#{examenComponenteBean.example.examen}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{examenBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="examenComponenteBeanExampleExamen" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="examenComponenteBeanExampleValorRefVaronA" value="Valor Ref Varon A:"/>
+						<h:panelGroup>
+							<h:inputText id="examenComponenteBeanExampleValorRefVaronA" maxLength="200" value="#{examenComponenteBean.example.valorRefVaronA}"/>
+							<h:message for="examenComponenteBeanExampleValorRefVaronA" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="examenComponenteBeanExampleValorRefVaronB" value="Valor Ref Varon B:"/>
+						<h:panelGroup>
+							<h:inputText id="examenComponenteBeanExampleValorRefVaronB" maxLength="200" value="#{examenComponenteBean.example.valorRefVaronB}"/>
+							<h:message for="examenComponenteBeanExampleValorRefVaronB" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{examenComponenteBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{examenComponenteBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="examenComponenteBeanPageItems" styleClass="data-table" value="#{examenComponenteBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Examen Componente"/>
+					</f:facet>
+					<h:link outcome="/parametros/examenComponente/view">
+						<f:param name="id" value="#{_item.idExamenComponente}"/>
+						<h:outputText id="itemIdExamenComponente" value="#{_item.idExamenComponente}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Posicion"/>
+					</f:facet>
+					<h:link outcome="/parametros/examenComponente/view">
+						<f:param name="id" value="#{_item.idExamenComponente}"/>
+						<h:outputText id="itemPosicion" value="#{_item.posicion}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{examenComponenteBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

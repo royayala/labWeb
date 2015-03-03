@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{especialidadBean.page}'/>
+		<f:event type="preRenderView" listener='#{especialidadBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Especialidad "/>
+
+	<ui:define name="header">
+		Especialidad
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Especialidad 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="especialidadBeanExampleIdEspecialidad" value="Id Especialidad:"/>
+						<h:panelGroup>
+							<h:inputText id="especialidadBeanExampleIdEspecialidad" value="#{especialidadBean.example.idEspecialidad}"/>
+							<h:message for="especialidadBeanExampleIdEspecialidad" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="especialidadBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="especialidadBeanExampleNombre" maxLength="50" value="#{especialidadBean.example.nombre}"/>
+							<h:message for="especialidadBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="especialidadBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="especialidadBeanExampleUsuarioReg" maxLength="30" value="#{especialidadBean.example.usuarioReg}"/>
+							<h:message for="especialidadBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="especialidadBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="especialidadBeanExampleUsuarioMod" maxLength="30" value="#{especialidadBean.example.usuarioMod}"/>
+							<h:message for="especialidadBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="especialidadBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
+						<h:panelGroup>
+							<h:inputText id="especialidadBeanExampleUsuarioBorrado" maxLength="30" value="#{especialidadBean.example.usuarioBorrado}"/>
+							<h:message for="especialidadBeanExampleUsuarioBorrado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{especialidadBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{especialidadBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="especialidadBeanPageItems" styleClass="data-table" value="#{especialidadBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Especialidad"/>
+					</f:facet>
+					<h:link outcome="/parametros/especialidad/view">
+						<f:param name="id" value="#{_item.idEspecialidad}"/>
+						<h:outputText id="itemIdEspecialidad" value="#{_item.idEspecialidad}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/especialidad/view">
+						<f:param name="id" value="#{_item.idEspecialidad}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{especialidadBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{ciudadBean.id}'/>
+		<f:event type="preRenderView" listener='#{ciudadBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Ciudad"/>
+
+	<ui:define name="header">
+		Ciudad
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty ciudadBean.id}'>
+				Edit existing Ciudad
+			</c:when>
+			<c:otherwise>
+				Create a new Ciudad
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="ciudadBeanCiudadIdCiudad" value="Id Ciudad:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadIdCiudad" required="true" value="#{ciudadBean.ciudad.idCiudad}"/>
+					<h:message for="ciudadBeanCiudadIdCiudad" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="ciudadBeanCiudadDepartamento" value="Departamento:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{departamentoBean.converter}" id="ciudadBeanCiudadDepartamento" value="#{ciudadBean.ciudad.departamento}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{departamentoBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="ciudadBeanCiudadDepartamento" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadNombre" maxLength="50" required="true" value="#{ciudadBean.ciudad.nombre}"/>
+					<h:message for="ciudadBeanCiudadNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="ciudadBeanCiudadFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadFechaReg" maxLength="29" value="#{ciudadBean.ciudad.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="ciudadBeanCiudadFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadUsuarioReg" maxLength="30" value="#{ciudadBean.ciudad.usuarioReg}"/>
+					<h:message for="ciudadBeanCiudadUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadFechaMod" maxLength="29" value="#{ciudadBean.ciudad.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="ciudadBeanCiudadFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadUsuarioMod" maxLength="30" value="#{ciudadBean.ciudad.usuarioMod}"/>
+					<h:message for="ciudadBeanCiudadUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadFechaBorrado" maxLength="29" value="#{ciudadBean.ciudad.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="ciudadBeanCiudadFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="ciudadBeanCiudadUsuarioBorrado" maxLength="30" value="#{ciudadBean.ciudad.usuarioBorrado}"/>
+					<h:message for="ciudadBeanCiudadUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="ciudadBeanCiudadPersonas" value="Personas:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{ciudadBean.ciudad.personas}"/>
+					<h:dataTable id="ciudadBeanCiudadPersonas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Persona"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemIdPersona" value="#{_item.idPersona}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddIdPersona" value="#{personaBean.add.idPersona}"/>
+								<h:message for="personaBeanAddIdPersona" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nombre"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddNombre" maxLength="50" value="#{personaBean.add.nombre}"/>
+								<h:message for="personaBeanAddNombre" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Apellido Paterno"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemApellidoPaterno" value="#{_item.apellidoPaterno}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddApellidoPaterno" maxLength="50" value="#{personaBean.add.apellidoPaterno}"/>
+								<h:message for="personaBeanAddApellidoPaterno" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Apellido Materno"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemApellidoMaterno" value="#{_item.apellidoMaterno}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddApellidoMaterno" maxLength="50" value="#{personaBean.add.apellidoMaterno}"/>
+								<h:message for="personaBeanAddApellidoMaterno" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Documento Identidad"/>
+							</f:facet>
+							<h:link outcome="/parametros/persona/view">
+								<f:param name="id" value="#{_item.idPersona}"/>
+								<h:outputText id="itemDocumentoIdentidad" value="#{_item.documentoIdentidad}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="personaBeanAddDocumentoIdentidad" value="#{personaBean.add.documentoIdentidad}"/>
+								<h:message for="personaBeanAddDocumentoIdentidad" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(personaBean.added)}" id="ciudadBeanCiudadPersonasAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{personaBean.add.ciudad}" value="#{ciudadBean.ciudad}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{ciudadBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty ciudadBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{ciudadBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{ciudadBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

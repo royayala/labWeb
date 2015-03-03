@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{examenBean.id}'/>
+		<f:event type="preRenderView" listener='#{examenBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Examen"/>
+
+	<ui:define name="header">
+		Examen
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty examenBean.id}'>
+				Edit existing Examen
+			</c:when>
+			<c:otherwise>
+				Create a new Examen
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="examenBeanExamenIdExamen" value="Id Examen:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenIdExamen" required="true" value="#{examenBean.examen.idExamen}"/>
+					<h:message for="examenBeanExamenIdExamen" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="examenBeanExamenSubTipoExamen" value="Sub Tipo Examen:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{subTipoExamenBean.converter}" id="examenBeanExamenSubTipoExamen" value="#{examenBean.examen.subTipoExamen}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{subTipoExamenBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="examenBeanExamenSubTipoExamen" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenNombre" maxLength="50" required="true" value="#{examenBean.examen.nombre}"/>
+					<h:message for="examenBeanExamenNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="examenBeanExamenDecripcion" value="Decripcion:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenDecripcion" maxLength="200" required="true" value="#{examenBean.examen.decripcion}"/>
+					<h:message for="examenBeanExamenDecripcion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="examenBeanExamenPrecio" value="Precio:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenPrecio" value="#{examenBean.examen.precio}"/>
+					<h:message for="examenBeanExamenPrecio" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenFlagEstado" maxLength="2" value="#{examenBean.examen.flagEstado}"/>
+					<h:message for="examenBeanExamenFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenFechaReg" maxLength="29" value="#{examenBean.examen.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="examenBeanExamenFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenUsuarioReg" maxLength="30" value="#{examenBean.examen.usuarioReg}"/>
+					<h:message for="examenBeanExamenUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenFechaMod" maxLength="29" value="#{examenBean.examen.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="examenBeanExamenFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenUsuarioMod" maxLength="30" value="#{examenBean.examen.usuarioMod}"/>
+					<h:message for="examenBeanExamenUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenFechaBorrado" maxLength="29" value="#{examenBean.examen.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="examenBeanExamenFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="examenBeanExamenUsuarioBorrado" maxLength="30" value="#{examenBean.examen.usuarioBorrado}"/>
+					<h:message for="examenBeanExamenUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenListaPrecios" value="Lista Precios:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{examenBean.examen.listaPrecios}"/>
+					<h:dataTable id="examenBeanExamenListaPrecios" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Lista Precio"/>
+							</f:facet>
+							<h:link outcome="/parametros/listaPrecio/view">
+								<f:param name="id" value="#{_item.idListaPrecio}"/>
+								<h:outputText id="itemIdListaPrecio" value="#{_item.idListaPrecio}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="listaPrecioBeanAddIdListaPrecio" value="#{listaPrecioBean.add.idListaPrecio}"/>
+								<h:message for="listaPrecioBeanAddIdListaPrecio" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha Inicio"/>
+							</f:facet>
+							<h:link outcome="/parametros/listaPrecio/view">
+								<f:param name="id" value="#{_item.idListaPrecio}"/>
+								<h:outputText id="itemFechaInicio" value="#{_item.fechaInicio}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="listaPrecioBeanAddFechaInicio" maxLength="29" value="#{listaPrecioBean.add.fechaInicio}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="listaPrecioBeanAddFechaInicio" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha Fin"/>
+							</f:facet>
+							<h:link outcome="/parametros/listaPrecio/view">
+								<f:param name="id" value="#{_item.idListaPrecio}"/>
+								<h:outputText id="itemFechaFin" value="#{_item.fechaFin}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:outputText>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="listaPrecioBeanAddFechaFin" maxLength="29" value="#{listaPrecioBean.add.fechaFin}">
+									<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+								</h:inputText>
+								<h:message for="listaPrecioBeanAddFechaFin" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Decripcion"/>
+							</f:facet>
+							<h:link outcome="/parametros/listaPrecio/view">
+								<f:param name="id" value="#{_item.idListaPrecio}"/>
+								<h:outputText id="itemDecripcion" value="#{_item.decripcion}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="listaPrecioBeanAddDecripcion" maxLength="200" value="#{listaPrecioBean.add.decripcion}"/>
+								<h:message for="listaPrecioBeanAddDecripcion" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(listaPrecioBean.added)}" id="examenBeanExamenListaPreciosAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{listaPrecioBean.add.examen}" value="#{examenBean.examen}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenExamenComponentes" value="Examen Componentes:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{examenBean.examen.examenComponentes}"/>
+					<h:dataTable id="examenBeanExamenExamenComponentes" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Examen Componente"/>
+							</f:facet>
+							<h:link outcome="/parametros/examenComponente/view">
+								<f:param name="id" value="#{_item.idExamenComponente}"/>
+								<h:outputText id="itemIdExamenComponente" value="#{_item.idExamenComponente}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="examenComponenteBeanAddIdExamenComponente" value="#{examenComponenteBean.add.idExamenComponente}"/>
+								<h:message for="examenComponenteBeanAddIdExamenComponente" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Posicion"/>
+							</f:facet>
+							<h:link outcome="/parametros/examenComponente/view">
+								<f:param name="id" value="#{_item.idExamenComponente}"/>
+								<h:outputText id="itemPosicion" value="#{_item.posicion}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="examenComponenteBeanAddPosicion" value="#{examenComponenteBean.add.posicion}"/>
+								<h:message for="examenComponenteBeanAddPosicion" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(examenComponenteBean.added)}" id="examenBeanExamenExamenComponentesAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{examenComponenteBean.add.examen}" value="#{examenBean.examen}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenBeanExamenSolicitudDetalles" value="Solicitud Detalles:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{examenBean.examen.solicitudDetalles}"/>
+					<h:dataTable id="examenBeanExamenSolicitudDetalles" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Solicitud Detalle"/>
+							</f:facet>
+							<h:link outcome="/parametros/solicitudDetalle/view">
+								<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+								<h:outputText id="itemIdSolicitudDetalle" value="#{_item.idSolicitudDetalle}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="solicitudDetalleBeanAddIdSolicitudDetalle" value="#{solicitudDetalleBean.add.idSolicitudDetalle}"/>
+								<h:message for="solicitudDetalleBeanAddIdSolicitudDetalle" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Precio Examen"/>
+							</f:facet>
+							<h:link outcome="/parametros/solicitudDetalle/view">
+								<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+								<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="solicitudDetalleBeanAddPrecioExamen" value="#{solicitudDetalleBean.add.precioExamen}"/>
+								<h:message for="solicitudDetalleBeanAddPrecioExamen" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(solicitudDetalleBean.added)}" id="examenBeanExamenSolicitudDetallesAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{solicitudDetalleBean.add.examen}" value="#{examenBean.examen}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{examenBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty examenBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{examenBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{examenBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

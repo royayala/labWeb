@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{examenComponenteBean.id}'/>
+		<f:event type="preRenderView" listener='#{examenComponenteBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Examen Componente"/>
+
+	<ui:define name="header">
+		Examen Componente
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty examenComponenteBean.id}'>
+				Edit existing Examen Componente
+			</c:when>
+			<c:otherwise>
+				Create a new Examen Componente
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="examenComponenteBeanExamenComponenteIdExamenComponente" value="Id Examen Componente:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteIdExamenComponente" required="true" value="#{examenComponenteBean.examenComponente.idExamenComponente}"/>
+					<h:message for="examenComponenteBeanExamenComponenteIdExamenComponente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteComponente" value="Componente:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{componenteBean.converter}" id="examenComponenteBeanExamenComponenteComponente" value="#{examenComponenteBean.examenComponente.componente}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{componenteBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="examenComponenteBeanExamenComponenteComponente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteExamen" value="Examen:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{examenBean.converter}" id="examenComponenteBeanExamenComponenteExamen" value="#{examenComponenteBean.examenComponente.examen}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{examenBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="examenComponenteBeanExamenComponenteExamen" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefVaronA" value="Valor Ref Varon A:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefVaronA" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefVaronA}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefVaronA" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefVaronB" value="Valor Ref Varon B:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefVaronB" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefVaronB}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefVaronB" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefVaronC" value="Valor Ref Varon C:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefVaronC" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefVaronC}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefVaronC" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefMujerA" value="Valor Ref Mujer A:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefMujerA" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefMujerA}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefMujerA" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefMujerB" value="Valor Ref Mujer B:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefMujerB" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefMujerB}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefMujerB" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefMujerC" value="Valor Ref Mujer C:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefMujerC" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefMujerC}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefMujerC" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefNinoA" value="Valor Ref Nino A:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefNinoA" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefNinoA}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefNinoA" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefNinoB" value="Valor Ref Nino B:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteValorRefNinoB" maxLength="200" value="#{examenComponenteBean.examenComponente.valorRefNinoB}"/>
+					<h:message for="examenComponenteBeanExamenComponenteValorRefNinoB" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteObservaciones" value="Observaciones:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteObservaciones" maxLength="200" value="#{examenComponenteBean.examenComponente.observaciones}"/>
+					<h:message for="examenComponenteBeanExamenComponenteObservaciones" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteFlagEstado" maxLength="2" value="#{examenComponenteBean.examenComponente.flagEstado}"/>
+					<h:message for="examenComponenteBeanExamenComponenteFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteFechaReg" maxLength="29" value="#{examenComponenteBean.examenComponente.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="examenComponenteBeanExamenComponenteFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteUsuarioReg" maxLength="30" value="#{examenComponenteBean.examenComponente.usuarioReg}"/>
+					<h:message for="examenComponenteBeanExamenComponenteUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteFechaMod" maxLength="29" value="#{examenComponenteBean.examenComponente.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="examenComponenteBeanExamenComponenteFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteUsuarioMod" maxLength="30" value="#{examenComponenteBean.examenComponente.usuarioMod}"/>
+					<h:message for="examenComponenteBeanExamenComponenteUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteFechaBorrado" maxLength="29" value="#{examenComponenteBean.examenComponente.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="examenComponenteBeanExamenComponenteFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponenteUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponenteUsuarioBorrado" maxLength="30" value="#{examenComponenteBean.examenComponente.usuarioBorrado}"/>
+					<h:message for="examenComponenteBeanExamenComponenteUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="examenComponenteBeanExamenComponentePosicion" value="Posicion:"/>
+				<h:panelGroup>
+					<h:inputText id="examenComponenteBeanExamenComponentePosicion" required="true" value="#{examenComponenteBean.examenComponente.posicion}"/>
+					<h:message for="examenComponenteBeanExamenComponentePosicion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{examenComponenteBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty examenComponenteBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{examenComponenteBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{examenComponenteBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

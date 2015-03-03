@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{examenComponenteBean.id}'/>
+		<f:event type="preRenderView" listener='#{examenComponenteBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Examen Componente"/>
+
+	<ui:define name="header">
+		Examen Componente
+	</ui:define>
+
+	<ui:define name="subheader">
+		Ver Examen Componente
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="examenComponenteBeanExamenComponenteIdExamenComponente" value="Id Examen Componente:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteIdExamenComponente" value="#{examenComponenteBean.examenComponente.idExamenComponente}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteComponente" value="Componente:"/>
+			<h:link id="examenComponenteBeanExamenComponenteComponente" outcome="/componente/view" rendered="#{!empty examenComponenteBean.examenComponente.componente}" value="#{examenComponenteBean.examenComponente.componente}">
+				<f:param name="id" value="#{examenComponenteBean.examenComponente.componente.idComponente}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteExamen" value="Examen:"/>
+			<h:link id="examenComponenteBeanExamenComponenteExamen" outcome="/examen/view" rendered="#{!empty examenComponenteBean.examenComponente.examen}" value="#{examenComponenteBean.examenComponente.examen}">
+				<f:param name="id" value="#{examenComponenteBean.examenComponente.examen.idExamen}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefVaronA" value="Valor Ref Varon A:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefVaronA" value="#{examenComponenteBean.examenComponente.valorRefVaronA}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefVaronB" value="Valor Ref Varon B:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefVaronB" value="#{examenComponenteBean.examenComponente.valorRefVaronB}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefVaronC" value="Valor Ref Varon C:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefVaronC" value="#{examenComponenteBean.examenComponente.valorRefVaronC}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefMujerA" value="Valor Ref Mujer A:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefMujerA" value="#{examenComponenteBean.examenComponente.valorRefMujerA}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefMujerB" value="Valor Ref Mujer B:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefMujerB" value="#{examenComponenteBean.examenComponente.valorRefMujerB}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefMujerC" value="Valor Ref Mujer C:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefMujerC" value="#{examenComponenteBean.examenComponente.valorRefMujerC}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefNinoA" value="Valor Ref Nino A:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefNinoA" value="#{examenComponenteBean.examenComponente.valorRefNinoA}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteValorRefNinoB" value="Valor Ref Nino B:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteValorRefNinoB" value="#{examenComponenteBean.examenComponente.valorRefNinoB}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteObservaciones" value="Observaciones:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteObservaciones" value="#{examenComponenteBean.examenComponente.observaciones}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteFlagEstado" value="#{examenComponenteBean.examenComponente.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteFechaReg" value="#{examenComponenteBean.examenComponente.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteUsuarioReg" value="#{examenComponenteBean.examenComponente.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteFechaMod" value="#{examenComponenteBean.examenComponente.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteUsuarioMod" value="#{examenComponenteBean.examenComponente.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteFechaBorrado" value="#{examenComponenteBean.examenComponente.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponenteUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="examenComponenteBeanExamenComponenteUsuarioBorrado" value="#{examenComponenteBean.examenComponente.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="examenComponenteBeanExamenComponentePosicion" value="Posicion:"/>
+			<h:outputText id="examenComponenteBeanExamenComponentePosicion" value="#{examenComponenteBean.examenComponente.posicion}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

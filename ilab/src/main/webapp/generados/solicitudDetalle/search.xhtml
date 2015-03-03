@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{solicitudDetalleBean.page}'/>
+		<f:event type="preRenderView" listener='#{solicitudDetalleBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Solicitud Detalle "/>
+
+	<ui:define name="header">
+		Solicitud Detalle
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Solicitud Detalle 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="solicitudDetalleBeanExampleIdSolicitudDetalle" value="Id Solicitud Detalle:"/>
+						<h:panelGroup>
+							<h:inputText id="solicitudDetalleBeanExampleIdSolicitudDetalle" value="#{solicitudDetalleBean.example.idSolicitudDetalle}"/>
+							<h:message for="solicitudDetalleBeanExampleIdSolicitudDetalle" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudDetalleBeanExampleExamen" value="Examen:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{examenBean.converter}" id="solicitudDetalleBeanExampleExamen" value="#{solicitudDetalleBean.example.examen}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{examenBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudDetalleBeanExampleExamen" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudDetalleBeanExampleListaPrecio" value="Lista Precio:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{listaPrecioBean.converter}" id="solicitudDetalleBeanExampleListaPrecio" value="#{solicitudDetalleBean.example.listaPrecio}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{listaPrecioBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudDetalleBeanExampleListaPrecio" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudDetalleBeanExampleSolicitud" value="Solicitud:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{solicitudBean.converter}" id="solicitudDetalleBeanExampleSolicitud" value="#{solicitudDetalleBean.example.solicitud}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudDetalleBeanExampleSolicitud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudDetalleBeanExampleDescripcion" value="Descripcion:"/>
+						<h:panelGroup>
+							<h:inputText id="solicitudDetalleBeanExampleDescripcion" maxLength="200" value="#{solicitudDetalleBean.example.descripcion}"/>
+							<h:message for="solicitudDetalleBeanExampleDescripcion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{solicitudDetalleBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{solicitudDetalleBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="solicitudDetalleBeanPageItems" styleClass="data-table" value="#{solicitudDetalleBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Solicitud Detalle"/>
+					</f:facet>
+					<h:link outcome="/parametros/solicitudDetalle/view">
+						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+						<h:outputText id="itemIdSolicitudDetalle" value="#{_item.idSolicitudDetalle}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Precio Examen"/>
+					</f:facet>
+					<h:link outcome="/parametros/solicitudDetalle/view">
+						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+						<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{solicitudDetalleBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{listaPrecioBean.id}'/>
+		<f:event type="preRenderView" listener='#{listaPrecioBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Lista Precio"/>
+
+	<ui:define name="header">
+		Lista Precio
+	</ui:define>
+
+	<ui:define name="subheader">
+		Ver Lista Precio
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="listaPrecioBeanListaPrecioIdListaPrecio" value="Id Lista Precio:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioIdListaPrecio" value="#{listaPrecioBean.listaPrecio.idListaPrecio}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioExamen" value="Examen:"/>
+			<h:link id="listaPrecioBeanListaPrecioExamen" outcome="/examen/view" rendered="#{!empty listaPrecioBean.listaPrecio.examen}" value="#{listaPrecioBean.listaPrecio.examen}">
+				<f:param name="id" value="#{listaPrecioBean.listaPrecio.examen.idExamen}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioTipoTarifa" value="Tipo Tarifa:"/>
+			<h:link id="listaPrecioBeanListaPrecioTipoTarifa" outcome="/tipoTarifa/view" rendered="#{!empty listaPrecioBean.listaPrecio.tipoTarifa}" value="#{listaPrecioBean.listaPrecio.tipoTarifa}">
+				<f:param name="id" value="#{listaPrecioBean.listaPrecio.tipoTarifa.idTipoTarifa}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioFechaInicio" value="Fecha Inicio:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioFechaInicio" value="#{listaPrecioBean.listaPrecio.fechaInicio}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioFechaFin" value="Fecha Fin:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioFechaFin" value="#{listaPrecioBean.listaPrecio.fechaFin}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioPrecioLista" value="Precio Lista:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioPrecioLista" value="#{listaPrecioBean.listaPrecio.precioLista}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioDecripcion" value="Decripcion:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioDecripcion" value="#{listaPrecioBean.listaPrecio.decripcion}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioFlagEstado" value="#{listaPrecioBean.listaPrecio.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioFechaReg" value="#{listaPrecioBean.listaPrecio.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioUsuarioReg" value="#{listaPrecioBean.listaPrecio.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioFechaMod" value="#{listaPrecioBean.listaPrecio.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioUsuarioMod" value="#{listaPrecioBean.listaPrecio.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioFechaBorrado" value="#{listaPrecioBean.listaPrecio.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="listaPrecioBeanListaPrecioUsuarioBorrado" value="#{listaPrecioBean.listaPrecio.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="listaPrecioBeanListaPrecioSolicitudDetalles" value="Solicitud Detalles:"/>
+			<h:dataTable id="listaPrecioBeanListaPrecioSolicitudDetalles" styleClass="data-table" value="#{forgeview:asList(listaPrecioBean.listaPrecio.solicitudDetalles)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Solicitud Detalle"/>
+					</f:facet>
+					<h:link outcome="/parametros/solicitudDetalle/view">
+						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+						<h:outputText id="itemIdSolicitudDetalle" value="#{_item.idSolicitudDetalle}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Precio Examen"/>
+					</f:facet>
+					<h:link outcome="/parametros/solicitudDetalle/view">
+						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+						<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

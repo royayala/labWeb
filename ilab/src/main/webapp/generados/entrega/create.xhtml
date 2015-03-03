@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{entregaBean.id}'/>
+		<f:event type="preRenderView" listener='#{entregaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Entrega"/>
+
+	<ui:define name="header">
+		Entrega
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty entregaBean.id}'>
+				Edit existing Entrega
+			</c:when>
+			<c:otherwise>
+				Create a new Entrega
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="entregaBeanEntregaIdEntrega" value="Id Entrega:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaIdEntrega" required="true" value="#{entregaBean.entrega.idEntrega}"/>
+					<h:message for="entregaBeanEntregaIdEntrega" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="entregaBeanEntregaSolicitudDetalle" value="Solicitud Detalle:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="entregaBeanEntregaSolicitudDetalle" value="#{entregaBean.entrega.solicitudDetalle}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="entregaBeanEntregaSolicitudDetalle" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaTrabajador" value="Trabajador:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{trabajadorBean.converter}" id="entregaBeanEntregaTrabajador" value="#{entregaBean.entrega.trabajador}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="entregaBeanEntregaTrabajador" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaObservaciones" value="Observaciones:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaObservaciones" maxLength="200" value="#{entregaBean.entrega.observaciones}"/>
+					<h:message for="entregaBeanEntregaObservaciones" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaFechaEntrega" value="Fecha Entrega:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaFechaEntrega" maxLength="29" value="#{entregaBean.entrega.fechaEntrega}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="entregaBeanEntregaFechaEntrega" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaNombreCompleto" value="Nombre Completo:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaNombreCompleto" maxLength="100" required="true" value="#{entregaBean.entrega.nombreCompleto}"/>
+					<h:message for="entregaBeanEntregaNombreCompleto" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="entregaBeanEntregaDocumentoIdentidad" value="Documento Identidad:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaDocumentoIdentidad" value="#{entregaBean.entrega.documentoIdentidad}"/>
+					<h:message for="entregaBeanEntregaDocumentoIdentidad" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaTelefono" value="Telefono:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaTelefono" maxLength="20" value="#{entregaBean.entrega.telefono}"/>
+					<h:message for="entregaBeanEntregaTelefono" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaFlagEstado" maxLength="2" value="#{entregaBean.entrega.flagEstado}"/>
+					<h:message for="entregaBeanEntregaFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaUsuarioReg" maxLength="30" value="#{entregaBean.entrega.usuarioReg}"/>
+					<h:message for="entregaBeanEntregaUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaFechaMod" maxLength="29" value="#{entregaBean.entrega.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="entregaBeanEntregaFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaUsuarioMod" maxLength="30" value="#{entregaBean.entrega.usuarioMod}"/>
+					<h:message for="entregaBeanEntregaUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaFechaBorrado" maxLength="29" value="#{entregaBean.entrega.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="entregaBeanEntregaFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="entregaBeanEntregaUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="entregaBeanEntregaUsuarioBorrado" maxLength="30" value="#{entregaBean.entrega.usuarioBorrado}"/>
+					<h:message for="entregaBeanEntregaUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{entregaBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty entregaBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{entregaBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{entregaBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

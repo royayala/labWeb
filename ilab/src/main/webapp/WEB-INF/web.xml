@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name>ilab</display-name>
+<display-name>ilab</display-name>
   <session-config>
-    <session-timeout>30</session-timeout>
+  <session-timeout>30</session-timeout>
   </session-config>
   <mime-mapping>
-    <extension>ico</extension>
+  <extension>ico</extension>
     <mime-type>image/x-icon</mime-type>
   </mime-mapping>
+  <context-param>
+  <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <security-constraint>
+  <display-name>Security Constraint</display-name>
+    <web-resource-collection>
+    <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/faces/param/*</url-pattern>
+      <url-pattern>/logoutServlet</url-pattern>
+      <url-pattern>/faces/index.xhtml</url-pattern>
+      <http-method>DELETE</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+    <role-name>SUPER</role-name>
+      <role-name>ADMIN</role-name>
+      <role-name>USUARIO1</role-name>
+      <role-name>USUARIO2</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+    <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <login-config>
+  <auth-method>FORM</auth-method>
+    <realm-name>validarUsuarioDB</realm-name>
+    <form-login-config>
+    <form-login-page>/faces/login.xhtml</form-login-page>
+      <form-error-page>/error.html</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+  <description>A user super Admin</description>
+    <role-name>SUPER</role-name>
+  </security-role>
+  <security-role>
+  <description>A user Admin</description>
+    <role-name>ADMIN</role-name>
+  </security-role>
+  <security-role>
+  <description>A user normal operaciones</description>
+    <role-name>USUARIO1</role-name>
+  </security-role>
+  <security-role>
+  <description>A user normal reportes y consultas</description>
+    <role-name>USUARIO2</role-name>
+  </security-role>
   <error-page>
     <error-code>404</error-code>
     <location>/faces/error.xhtml</location>
@@ -16,8 +66,4 @@
     <error-code>500</error-code>
     <location>/faces/error.xhtml</location>
   </error-page>
-  <context-param>
-    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
-    <param-value>true</param-value>
-  </context-param>
 </web-app>

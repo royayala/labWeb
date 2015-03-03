@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{listaPrecioBean.page}'/>
+		<f:event type="preRenderView" listener='#{listaPrecioBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Lista Precio "/>
+
+	<ui:define name="header">
+		Lista Precio
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Lista Precio 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="listaPrecioBeanExampleIdListaPrecio" value="Id Lista Precio:"/>
+						<h:panelGroup>
+							<h:inputText id="listaPrecioBeanExampleIdListaPrecio" value="#{listaPrecioBean.example.idListaPrecio}"/>
+							<h:message for="listaPrecioBeanExampleIdListaPrecio" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="listaPrecioBeanExampleExamen" value="Examen:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{examenBean.converter}" id="listaPrecioBeanExampleExamen" value="#{listaPrecioBean.example.examen}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{examenBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="listaPrecioBeanExampleExamen" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="listaPrecioBeanExampleTipoTarifa" value="Tipo Tarifa:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{tipoTarifaBean.converter}" id="listaPrecioBeanExampleTipoTarifa" value="#{listaPrecioBean.example.tipoTarifa}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoTarifaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="listaPrecioBeanExampleTipoTarifa" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="listaPrecioBeanExampleDecripcion" value="Decripcion:"/>
+						<h:panelGroup>
+							<h:inputText id="listaPrecioBeanExampleDecripcion" maxLength="200" value="#{listaPrecioBean.example.decripcion}"/>
+							<h:message for="listaPrecioBeanExampleDecripcion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="listaPrecioBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="listaPrecioBeanExampleFlagEstado" maxLength="2" value="#{listaPrecioBean.example.flagEstado}"/>
+							<h:message for="listaPrecioBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{listaPrecioBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{listaPrecioBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="listaPrecioBeanPageItems" styleClass="data-table" value="#{listaPrecioBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Lista Precio"/>
+					</f:facet>
+					<h:link outcome="/parametros/listaPrecio/view">
+						<f:param name="id" value="#{_item.idListaPrecio}"/>
+						<h:outputText id="itemIdListaPrecio" value="#{_item.idListaPrecio}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Fecha Inicio"/>
+					</f:facet>
+					<h:link outcome="/parametros/listaPrecio/view">
+						<f:param name="id" value="#{_item.idListaPrecio}"/>
+						<h:outputText id="itemFechaInicio" value="#{_item.fechaInicio}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Fecha Fin"/>
+					</f:facet>
+					<h:link outcome="/parametros/listaPrecio/view">
+						<f:param name="id" value="#{_item.idListaPrecio}"/>
+						<h:outputText id="itemFechaFin" value="#{_item.fechaFin}">
+							<f:convertDateTime type="both"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Decripcion"/>
+					</f:facet>
+					<h:link outcome="/parametros/listaPrecio/view">
+						<f:param name="id" value="#{_item.idListaPrecio}"/>
+						<h:outputText id="itemDecripcion" value="#{_item.decripcion}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{listaPrecioBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

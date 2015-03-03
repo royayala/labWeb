@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/resources/scaffold/TemplateBlanco.xhtml">
+
+	<ui:param name="pageTitle" value="Server error" />
+
+	<ui:define name="header">
+		Auntentificacion
+	</ui:define>
+
+	<ui:define name="main">
+	
+	<p>Inicio de Sesion :</p>
+
+ <form method='post' action='j_security_check'>
+
+  <h:messages layout='table' errorStyle='background: #AFEEEE;'
+
+   infoStyle='background: #AFEEEE;' globalOnly='true' />
+
+  <h:panelGrid columns='2'>
+
+   <h:outputLabel value='Usuario: ' />
+
+   <input type='text' id='j_username' name='j_username' />
+
+   <h:outputLabel value='Contrasena: ' />
+
+   <input type='password' id='j_password' name='j_password' />
+
+   <h:outputText value='' />
+
+   <h:panelGrid columns='1'>
+
+    <input type='submit' name='submit' value='Aceptar' />
+
+   </h:panelGrid>
+
+  </h:panelGrid>
+
+  <br />
+
+ </form>
+	
+	
+	
+	</ui:define>
+
+</ui:composition>
+
+

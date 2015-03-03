@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+ <datasource jndi-name="java:jboss/datasources/connLaboratorio" enabled="true" 
+     use-java-context="true" pool-name="connLaboratorio">
+  <connection-url>jdbc:postgresql://192.168.177.51:5444/laboratorioDB</connection-url>
+  <driver>postgresql-9.3-1102.jdbc4.jar</driver>
+  <pool></pool>
+  <security>
+   <user-name>laboratorio</user-name>
+   <password>laboratorio</password>
+  </security>
+ </datasource>
+</datasources>

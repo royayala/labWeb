@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{registroResultadoBean.id}'/>
+		<f:event type="preRenderView" listener='#{registroResultadoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Registro Resultado"/>
+
+	<ui:define name="header">
+		Registro Resultado
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty registroResultadoBean.id}'>
+				Edit existing Registro Resultado
+			</c:when>
+			<c:otherwise>
+				Create a new Registro Resultado
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoIdRegistroResultado" value="Id Registro Resultado:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoIdRegistroResultado" required="true" value="#{registroResultadoBean.registroResultado.idRegistroResultado}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoIdRegistroResultado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoSolicitudDetalle" value="Solicitud Detalle:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="registroResultadoBeanRegistroResultadoSolicitudDetalle" value="#{registroResultadoBean.registroResultado.solicitudDetalle}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="registroResultadoBeanRegistroResultadoSolicitudDetalle" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoTrabajador" value="Trabajador:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{trabajadorBean.converter}" id="registroResultadoBeanRegistroResultadoTrabajador" value="#{registroResultadoBean.registroResultado.trabajador}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="registroResultadoBeanRegistroResultadoTrabajador" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoRegistrosNormales" value="Registros Normales:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoRegistrosNormales" maxLength="200" value="#{registroResultadoBean.registroResultado.registrosNormales}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoRegistrosNormales" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoRegistrosAnormales" value="Registros Anormales:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoRegistrosAnormales" maxLength="200" value="#{registroResultadoBean.registroResultado.registrosAnormales}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoRegistrosAnormales" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoResultado" value="Resultado:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoResultado" maxLength="200" value="#{registroResultadoBean.registroResultado.resultado}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoResultado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoObservaciones" value="Observaciones:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoObservaciones" maxLength="200" value="#{registroResultadoBean.registroResultado.observaciones}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoObservaciones" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoFechaRegistroResultado" value="Fecha Registro Resultado:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoFechaRegistroResultado" maxLength="29" value="#{registroResultadoBean.registroResultado.fechaRegistroResultado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="registroResultadoBeanRegistroResultadoFechaRegistroResultado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoFechaReg" maxLength="29" value="#{registroResultadoBean.registroResultado.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="registroResultadoBeanRegistroResultadoFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoFlagAprobado" value="Flag Aprobado:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="registroResultadoBeanRegistroResultadoFlagAprobado" value="#{registroResultadoBean.registroResultado.flagAprobado}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="registroResultadoBeanRegistroResultadoFlagAprobado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoFlagEstado" maxLength="2" value="#{registroResultadoBean.registroResultado.flagEstado}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoUsuarioReg" maxLength="30" value="#{registroResultadoBean.registroResultado.usuarioReg}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoFechaMod" maxLength="29" value="#{registroResultadoBean.registroResultado.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="registroResultadoBeanRegistroResultadoFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoUsuarioMod" maxLength="30" value="#{registroResultadoBean.registroResultado.usuarioMod}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoFechaBorrado" maxLength="29" value="#{registroResultadoBean.registroResultado.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="registroResultadoBeanRegistroResultadoFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="registroResultadoBeanRegistroResultadoUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="registroResultadoBeanRegistroResultadoUsuarioBorrado" maxLength="30" value="#{registroResultadoBean.registroResultado.usuarioBorrado}"/>
+					<h:message for="registroResultadoBeanRegistroResultadoUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{registroResultadoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty registroResultadoBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{registroResultadoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{registroResultadoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

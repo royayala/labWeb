@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{entregaBean.page}'/>
+		<f:event type="preRenderView" listener='#{entregaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Entrega "/>
+
+	<ui:define name="header">
+		Entrega
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Entrega 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="entregaBeanExampleIdEntrega" value="Id Entrega:"/>
+						<h:panelGroup>
+							<h:inputText id="entregaBeanExampleIdEntrega" value="#{entregaBean.example.idEntrega}"/>
+							<h:message for="entregaBeanExampleIdEntrega" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="entregaBeanExampleSolicitudDetalle" value="Solicitud Detalle:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="entregaBeanExampleSolicitudDetalle" value="#{entregaBean.example.solicitudDetalle}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="entregaBeanExampleSolicitudDetalle" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="entregaBeanExampleTrabajador" value="Trabajador:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{trabajadorBean.converter}" id="entregaBeanExampleTrabajador" value="#{entregaBean.example.trabajador}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="entregaBeanExampleTrabajador" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="entregaBeanExampleObservaciones" value="Observaciones:"/>
+						<h:panelGroup>
+							<h:inputText id="entregaBeanExampleObservaciones" maxLength="200" value="#{entregaBean.example.observaciones}"/>
+							<h:message for="entregaBeanExampleObservaciones" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="entregaBeanExampleNombreCompleto" value="Nombre Completo:"/>
+						<h:panelGroup>
+							<h:inputText id="entregaBeanExampleNombreCompleto" maxLength="100" value="#{entregaBean.example.nombreCompleto}"/>
+							<h:message for="entregaBeanExampleNombreCompleto" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{entregaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{entregaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="entregaBeanPageItems" styleClass="data-table" value="#{entregaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Entrega"/>
+					</f:facet>
+					<h:link outcome="/parametros/entrega/view">
+						<f:param name="id" value="#{_item.idEntrega}"/>
+						<h:outputText id="itemIdEntrega" value="#{_item.idEntrega}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre Completo"/>
+					</f:facet>
+					<h:link outcome="/parametros/entrega/view">
+						<f:param name="id" value="#{_item.idEntrega}"/>
+						<h:outputText id="itemNombreCompleto" value="#{_item.nombreCompleto}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{entregaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
