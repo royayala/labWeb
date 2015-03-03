@@ -16,7 +16,7 @@
   <display-name>Security Constraint</display-name>
     <web-resource-collection>
     <web-resource-name>Protected Area</web-resource-name>
-      <url-pattern>/faces/param/*</url-pattern>
+      <url-pattern>/faces/parametros/*</url-pattern>
       <url-pattern>/logoutServlet</url-pattern>
       <url-pattern>/faces/index.xhtml</url-pattern>
       <http-method>DELETE</http-method>
@@ -66,4 +66,11 @@
     <error-code>500</error-code>
     <location>/faces/error.xhtml</location>
   </error-page>
+  
+  <!-- configuracion primefaces -->
+ 
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
 </web-app>

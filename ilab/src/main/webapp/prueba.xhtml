@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+<h:body>
+	<h1>Hello World PrimeFaces</h1>
+ 
+	<h:form>
+	   
+	   <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+        <p:messages id="messages" />
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="name" value="Standard Label:" />
+            <p:inputText id="name" required="true" />
+ 
+            <p:outputLabel for="extended" value="Extended Label:" />
+            <p:inputText id="extended" required="true" />
+ 
+            <p:outputLabel for="number" value="Number:" />
+            <p:spinner id="number" value="0"/>
+        </h:panelGrid>
+    </p:panel>
+ 
+    <p:commandButton value="Submit" update="panel"  />
+	</h:form>
+ 
+</h:body>
+</html>
+
