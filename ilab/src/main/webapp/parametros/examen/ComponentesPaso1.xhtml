@@ -32,10 +32,12 @@
 			<h:outputLabel for="componentePasoBeanExamenIdExamen" value="Id Examen:"/>
 			<h:outputText id="componentePasoBeanExamenIdExamen" value="#{componentePasoBean.examen.idExamen}"/>
 			<h:outputText/>
-			<h:outputLabel for="componentePasoBeanExamenSubTipoExamen" value="Sub Tipo Examen:"/>
-			<h:link id="componentePasoBeanExamenSubTipoExamen" outcome="/subTipoExamen/view" rendered="#{!empty componentePasoBean.examen.subTipoExamen}" value="#{componentePasoBean.examen.subTipoExamen}">
-				<f:param name="id" value="#{componentePasoBean.examen.subTipoExamen.idSubTipoExamen}"/>
-			</h:link>
+			<h:outputLabel for="componentePasoBeanTipoExamen" value="Tipo Examen"/>
+			<h:outputText id="componentePasoBeanTipoExamen" value="#{componentePasoBean.examen.subTipoExamen.tipoExamen.nombre}"/>
+			<h:outputText/>
+			<h:outputLabel for="componentePasoBeanSubTipoExamen" value="Sub Tipo Examen"/>
+			<h:outputText id="componentePasoBeanSubTipoExamen" value="#{componentePasoBean.examen.subTipoExamen.nombre}"/>
+						
 			<h:outputText/>
 			<h:outputLabel for="componentePasoBeanExamenNombre" value="Nombre:"/>
 			<h:outputText id="componentePasoBeanExamenNombre" value="#{componentePasoBean.examen.nombre}"/>
@@ -48,39 +50,7 @@
 			<h:outputText/>
 
 			
-			<h:outputLabel for="componentePasoBeanExamenExamenComponentes" value="Componentes:"/>
 			
-			<h:dataTable id="componentePasoBeanExamenExamenComponentes" styleClass="data-table" value="#{forgeview:asList(componentePasoBean.examen.examenComponentes)}" var="_item">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id Examen Componente"/>
-					</f:facet>
-					<h:link outcome="/parametros/examenComponente/view">
-						<f:param name="id" value="#{_item.idExamenComponente}"/>
-						<h:outputText id="itemIdExamenComponente" value="#{_item.idExamenComponente}"/>
-					</h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Nombre Componente"/>
-					</f:facet>
-					<h:link outcome="/parametros/examenComponente/view">
-						<f:param name="id" value="#{_item.idExamenComponente}"/>
-						<h:outputText id="itemIdExamenComponente2222" value="#{_item.componente.nombre}"/>
-					</h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Posicion"/>
-					</f:facet>
-					<h:link outcome="/parametros/examenComponente/view">
-						<f:param name="id" value="#{_item.idExamenComponente}"/>
-						<h:outputText id="itemPosicion" value="#{_item.posicion}"/>
-					</h:link>
-				</h:column>
-			</h:dataTable>
-			
-			<h:outputText/>
 			
 		</h:panelGrid>
 
@@ -97,20 +67,100 @@
        <p:ajax event="rowEdit" listener="#{componentePasoBean.onRowEdit}" update=":form:msgs" />
        <p:ajax event="rowEditCancel" listener="#{componentePasoBean.onRowCancel}" update=":form:msgs" />
  
+  	   <p:column headerText="ID" style="width:20%">
+  	   		<f:facet name="header">
+						<h:outputText value="ID"/>
+			</f:facet>
+			<h:outputText id="itemIdExamenComponente" value="#{item.idExamenComponente}"/>
+           
+       </p:column>
       
  
-       <p:column headerText="Year">
+       <p:column headerText="Nombre Componente" style="width:50%">
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{item.componente.nombre}" /></f:facet>
-               <f:facet name="input"><p:inputText value="#{item.componente.nombre}" style="width:100%" label="Year"/></f:facet>
+               <f:facet name="input"><p:inputText value="#{item.componente.nombre}" style="width:100%" label="Nombre Componente"/></f:facet>
            </p:cellEditor>
        </p:column>
  
+       <p:column headerText="Posicion" style="width:10%">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{item.posicion}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{item.posicion}" style="width:100%" label="Posicion"/></f:facet>
+           </p:cellEditor>
+       </p:column>
      
        <p:column style="width:32px">
            <p:rowEditor />
        </p:column>
+       
+       <p:column style="width:4%;text-align: center">
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{item}" target="#{componentePasoBean.selectedExaComponente}" />
+            </p:commandButton>
+        </p:column>
+        
+          <f:facet name="footer">
+            <p:commandButton process="cars1" update=":form:multiCarDetail" icon="ui-icon-search" value="Adicionar Componente" oncomplete="PF('multiCarDialog').show()" />
+        </f:facet>
+        
    </p:dataTable>
+   
+     <p:dialog header="Detalle del componente" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty componentePasoBean.selectedExaComponente}" columnClasses="label,value">
+ 
+                <h:outputText value="Posicion:" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.posicion}" />
+ 
+                <h:outputText value="Nombre:" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.componente.nombre}" style="color:#{dtSelectionView.selectedCar.color}"/>
+ 
+            </p:panelGrid>
+            
+            <p:panelGrid columns="6" rendered="#{not empty componentePasoBean.selectedExaComponente}" columnClasses="label,value">
+                <h:outputText value="Varon A" />
+                <h:inputText value="#{componentePasoBean.selectedExaComponente.valorRefVaronA}" />
+ 
+                <h:outputText value="Varon B:" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.valorRefVaronB}" />
+ 
+                <h:outputText value="Varon C" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.valorRefVaronC}"/>
+                
+                <h:outputText value="Mujer A" />
+                <h:inputText value="#{componentePasoBean.selectedExaComponente.valorRefMujerA}" />
+ 
+                <h:outputText value="Mujer B:" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.valorRefMujerB}" />
+ 
+                <h:outputText value="VMujer C" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.valorRefMujerC}"/>             
+                
+                <h:outputText value="Nino A" />
+                <h:inputText value="#{componentePasoBean.selectedExaComponente.valorRefNinoA}" />
+ 
+                <h:outputText value="Nino B:" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.valorRefNinoB}" />
+                
+               <h:outputText />
+               <h:outputText />
+                
+                  <h:outputText value="Observacion" />
+                <p:inputText value="#{componentePasoBean.selectedExaComponente.observaciones}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog> 
+    
+    
+     <p:dialog header="Selected Cars" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">
+        <p:outputPanel id="multiCarDetail" style="text-align:center;">
+            <ui:repeat value="#{componentePasoBean.selectedExaComponente}" var="_item">
+                <h:outputText value="#{_item.idExamenComponente} - #{_item.componente.nombre}" style="display:block"/>
+            </ui:repeat>
+        </p:outputPanel>
+    </p:dialog>
+    
    </h:form>
 		</h:panelGrid>
 		<div class="buttons">
@@ -119,5 +169,6 @@
 			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
 		</div>
 	</ui:define>
-
+  
+    
 </ui:composition>

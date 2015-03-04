@@ -90,6 +90,9 @@ public class ComponentePasoBean implements Serializable
    @PersistenceContext(unitName = "ilab-persistence-unit", type = PersistenceContextType.EXTENDED)
    private EntityManager entityManager;
 
+   private ExamenComponente selectedExaComponente;
+   private ExamenComponente nuevoExaComponente;
+   
    public String create()
    {
 
@@ -398,4 +401,21 @@ public class ComponentePasoBean implements Serializable
            FacesContext.getCurrentInstance().addMessage(null, msg);
        }
    }
+
+public ExamenComponente getSelectedExaComponente() {
+	return selectedExaComponente;
+}
+
+public void setSelectedExaComponente(
+		ExamenComponente selectedExaComponente) {
+	this.selectedExaComponente = selectedExaComponente;
+}
+
+public ExamenComponente getNuevoExaComponente() {
+	return nuevoExaComponente;
+}
+
+public void setNuevoExaComponente(ExamenComponente nuevoExaComponente) {
+	this.nuevoExaComponente = nuevoExaComponente;
+}
 }
