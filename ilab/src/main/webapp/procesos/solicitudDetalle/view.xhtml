@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{solicitudDetalleBean.id}'/>
+		<f:event type="preRenderView" listener='#{solicitudDetalleBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Solicitud Detalle"/>
+
+	<ui:define name="header">
+		Solicitud Detalle
+	</ui:define>
+
+	<ui:define name="subheader">
+		Ver Solicitud Detalle
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleIdSolicitudDetalle" value="Id Solicitud Detalle:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleIdSolicitudDetalle" value="#{solicitudDetalleBean.solicitudDetalle.idSolicitudDetalle}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleExamen" value="Examen:"/>
+			<h:link id="solicitudDetalleBeanSolicitudDetalleExamen" outcome="/examen/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.examen}" value="#{solicitudDetalleBean.solicitudDetalle.examen}">
+				<f:param name="id" value="#{solicitudDetalleBean.solicitudDetalle.examen.idExamen}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleListaPrecio" value="Lista Precio:"/>
+			<h:link id="solicitudDetalleBeanSolicitudDetalleListaPrecio" outcome="/listaPrecio/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.listaPrecio}" value="#{solicitudDetalleBean.solicitudDetalle.listaPrecio}">
+				<f:param name="id" value="#{solicitudDetalleBean.solicitudDetalle.listaPrecio.idListaPrecio}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleSolicitud" value="Solicitud:"/>
+			<h:link id="solicitudDetalleBeanSolicitudDetalleSolicitud" outcome="/solicitud/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.solicitud}" value="#{solicitudDetalleBean.solicitudDetalle.solicitud}">
+				<f:param name="id" value="#{solicitudDetalleBean.solicitudDetalle.solicitud.idSolicitud}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleDescripcion" value="Descripcion:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleDescripcion" value="#{solicitudDetalleBean.solicitudDetalle.descripcion}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaExamenSolicitud" value="Fecha Examen Solicitud:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaExamenSolicitud" value="#{solicitudDetalleBean.solicitudDetalle.fechaExamenSolicitud}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetallePrecioExamen" value="Precio Examen:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetallePrecioExamen" value="#{solicitudDetalleBean.solicitudDetalle.precioExamen}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFlagEstado" value="Flag Estado:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFlagEstado" value="#{solicitudDetalleBean.solicitudDetalle.flagEstado}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaReg" value="Fecha Reg:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaReg" value="#{solicitudDetalleBean.solicitudDetalle.fechaReg}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleUsuarioReg" value="Usuario Reg:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleUsuarioReg" value="#{solicitudDetalleBean.solicitudDetalle.usuarioReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaMod" value="Fecha Mod:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaMod" value="#{solicitudDetalleBean.solicitudDetalle.fechaMod}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleUsuarioMod" value="Usuario Mod:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleUsuarioMod" value="#{solicitudDetalleBean.solicitudDetalle.usuarioMod}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaBorrado" value="Fecha Borrado:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaBorrado" value="#{solicitudDetalleBean.solicitudDetalle.fechaBorrado}">
+				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleUsuarioBorrado" value="Usuario Borrado:"/>
+			<h:outputText id="solicitudDetalleBeanSolicitudDetalleUsuarioBorrado" value="#{solicitudDetalleBean.solicitudDetalle.usuarioBorrado}"/>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleRegistroResultados" value="Registro Resultados:"/>
+			<h:dataTable id="solicitudDetalleBeanSolicitudDetalleRegistroResultados" styleClass="data-table" value="#{forgeview:asList(solicitudDetalleBean.solicitudDetalle.registroResultados)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Registro Resultado"/>
+					</f:facet>
+					<h:link outcome="/parametros/registroResultado/view">
+						<f:param name="id" value="#{_item.idRegistroResultado}"/>
+						<h:outputText id="itemIdRegistroResultado" value="#{_item.idRegistroResultado}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleEntregas" value="Entregas:"/>
+			<h:dataTable id="solicitudDetalleBeanSolicitudDetalleEntregas" styleClass="data-table" value="#{forgeview:asList(solicitudDetalleBean.solicitudDetalle.entregas)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Entrega"/>
+					</f:facet>
+					<h:link outcome="/parametros/entrega/view">
+						<f:param name="id" value="#{_item.idEntrega}"/>
+						<h:outputText id="itemIdEntrega" value="#{_item.idEntrega}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre Completo"/>
+					</f:facet>
+					<h:link outcome="/parametros/entrega/view">
+						<f:param name="id" value="#{_item.idEntrega}"/>
+						<h:outputText id="itemNombreCompleto" value="#{_item.nombreCompleto}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleTomaMuestras" value="Toma Muestras:"/>
+			<h:dataTable id="solicitudDetalleBeanSolicitudDetalleTomaMuestras" styleClass="data-table" value="#{forgeview:asList(solicitudDetalleBean.solicitudDetalle.tomaMuestras)}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Toma Muestra"/>
+					</f:facet>
+					<h:link outcome="/parametros/tomaMuestra/view">
+						<f:param name="id" value="#{_item.idTomaMuestra}"/>
+						<h:outputText id="itemIdTomaMuestra" value="#{_item.idTomaMuestra}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

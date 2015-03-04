@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{componenteBean.page}'/>
+		<f:event type="preRenderView" listener='#{componenteBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Componente "/>
+
+	<ui:define name="header">
+		Componente
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Componente 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="componenteBeanExampleIdComponente" value="Id Componente:"/>
+						<h:panelGroup>
+							<h:inputText id="componenteBeanExampleIdComponente" value="#{componenteBean.example.idComponente}"/>
+							<h:message for="componenteBeanExampleIdComponente" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="componenteBeanExampleNombre" value="Nombre:"/>
+						<h:panelGroup>
+							<h:inputText id="componenteBeanExampleNombre" maxLength="50" value="#{componenteBean.example.nombre}"/>
+							<h:message for="componenteBeanExampleNombre" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="componenteBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="componenteBeanExampleFlagEstado" maxLength="2" value="#{componenteBean.example.flagEstado}"/>
+							<h:message for="componenteBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="componenteBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="componenteBeanExampleUsuarioReg" maxLength="30" value="#{componenteBean.example.usuarioReg}"/>
+							<h:message for="componenteBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="componenteBeanExampleUsuarioMod" value="Usuario Mod:"/>
+						<h:panelGroup>
+							<h:inputText id="componenteBeanExampleUsuarioMod" maxLength="30" value="#{componenteBean.example.usuarioMod}"/>
+							<h:message for="componenteBeanExampleUsuarioMod" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{componenteBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{componenteBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="componenteBeanPageItems" styleClass="data-table" value="#{componenteBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Componente"/>
+					</f:facet>
+					<h:link outcome="/parametros/componente/view">
+						<f:param name="id" value="#{_item.idComponente}"/>
+						<h:outputText id="itemIdComponente" value="#{_item.idComponente}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nombre"/>
+					</f:facet>
+					<h:link outcome="/parametros/componente/view">
+						<f:param name="id" value="#{_item.idComponente}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{componenteBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
