@@ -28,13 +28,7 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="tipoExamenBeanExampleIdTipoExamen" value="Id Tipo Examen:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoExamenBeanExampleIdTipoExamen" value="#{tipoExamenBean.example.idTipoExamen}"/>
-							<h:message for="tipoExamenBeanExampleIdTipoExamen" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">			
 						<h:outputLabel for="tipoExamenBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="tipoExamenBeanExampleNombre" maxLength="50" value="#{tipoExamenBean.example.nombre}"/>
@@ -46,19 +40,7 @@
 							<h:inputText id="tipoExamenBeanExampleDecripcion" maxLength="200" value="#{tipoExamenBean.example.decripcion}"/>
 							<h:message for="tipoExamenBeanExampleDecripcion" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoExamenBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoExamenBeanExampleFlagEstado" maxLength="2" value="#{tipoExamenBean.example.flagEstado}"/>
-							<h:message for="tipoExamenBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoExamenBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoExamenBeanExampleUsuarioReg" maxLength="30" value="#{tipoExamenBean.example.usuarioReg}"/>
-							<h:message for="tipoExamenBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>										
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{tipoExamenBean.search}' styleClass="btn btn-primary"/>

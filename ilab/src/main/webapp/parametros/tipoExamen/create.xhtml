@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="tipoExamenBeanTipoExamenIdTipoExamen" value="Id Tipo Examen:"/>
 				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenIdTipoExamen" required="true" value="#{tipoExamenBean.tipoExamen.idTipoExamen}"/>
+					<h:inputText id="tipoExamenBeanTipoExamenIdTipoExamen" required="true" value="#{tipoExamenBean.tipoExamen.idTipoExamen}" disabled="true"/>
 					<h:message for="tipoExamenBeanTipoExamenIdTipoExamen" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -51,112 +51,10 @@
 				<h:outputText value="*"/>
 				<h:outputLabel for="tipoExamenBeanTipoExamenDecripcion" value="Decripcion:"/>
 				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenDecripcion" maxLength="200" required="true" value="#{tipoExamenBean.tipoExamen.decripcion}"/>
+					<h:inputText id="tipoExamenBeanTipoExamenDecripcion" maxLength="200" required="true" value="#{tipoExamenBean.tipoExamen.decripcion}" style=" height : 61px;"/>
 					<h:message for="tipoExamenBeanTipoExamenDecripcion" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenFlagEstado" value="Flag Estado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenFlagEstado" maxLength="2" value="#{tipoExamenBean.tipoExamen.flagEstado}"/>
-					<h:message for="tipoExamenBeanTipoExamenFlagEstado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenFechaReg" maxLength="29" value="#{tipoExamenBean.tipoExamen.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoExamenBeanTipoExamenFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenUsuarioReg" maxLength="30" value="#{tipoExamenBean.tipoExamen.usuarioReg}"/>
-					<h:message for="tipoExamenBeanTipoExamenUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenFechaMod" maxLength="29" value="#{tipoExamenBean.tipoExamen.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoExamenBeanTipoExamenFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenUsuarioMod" maxLength="30" value="#{tipoExamenBean.tipoExamen.usuarioMod}"/>
-					<h:message for="tipoExamenBeanTipoExamenUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenFechaBorrado" maxLength="29" value="#{tipoExamenBean.tipoExamen.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoExamenBeanTipoExamenFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoExamenBeanTipoExamenUsuarioBorrado" maxLength="30" value="#{tipoExamenBean.tipoExamen.usuarioBorrado}"/>
-					<h:message for="tipoExamenBeanTipoExamenUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoExamenBeanTipoExamenSubTipoExamens" value="Sub Tipo Examens:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{tipoExamenBean.tipoExamen.subTipoExamens}"/>
-					<h:dataTable id="tipoExamenBeanTipoExamenSubTipoExamens" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Sub Tipo Examen"/>
-							</f:facet>
-							<h:link outcome="/parametros/subTipoExamen/view">
-								<f:param name="id" value="#{_item.idSubTipoExamen}"/>
-								<h:outputText id="itemIdSubTipoExamen" value="#{_item.idSubTipoExamen}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="subTipoExamenBeanAddIdSubTipoExamen" value="#{subTipoExamenBean.add.idSubTipoExamen}"/>
-								<h:message for="subTipoExamenBeanAddIdSubTipoExamen" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Nombre"/>
-							</f:facet>
-							<h:link outcome="/parametros/subTipoExamen/view">
-								<f:param name="id" value="#{_item.idSubTipoExamen}"/>
-								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="subTipoExamenBeanAddNombre" maxLength="50" value="#{subTipoExamenBean.add.nombre}"/>
-								<h:message for="subTipoExamenBeanAddNombre" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Decripcion"/>
-							</f:facet>
-							<h:link outcome="/parametros/subTipoExamen/view">
-								<f:param name="id" value="#{_item.idSubTipoExamen}"/>
-								<h:outputText id="itemDecripcion" value="#{_item.decripcion}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="subTipoExamenBeanAddDecripcion" maxLength="200" value="#{subTipoExamenBean.add.decripcion}"/>
-								<h:message for="subTipoExamenBeanAddDecripcion" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(subTipoExamenBean.added)}" id="tipoExamenBeanTipoExamenSubTipoExamensAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{subTipoExamenBean.add.tipoExamen}" value="#{tipoExamenBean.tipoExamen}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
 			</h:panelGrid>
 
 			<div class="buttons">

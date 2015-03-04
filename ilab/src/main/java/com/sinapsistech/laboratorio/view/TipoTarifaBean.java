@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,10 +25,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
+import com.sinapsistech.laboratorio.model.TipoExamen;
 import com.sinapsistech.laboratorio.model.TipoTarifa;
 import com.sinapsistech.laboratorio.model.ListaPrecio;
 import com.sinapsistech.laboratorio.model.Solicitud;
+
 import java.util.Iterator;
 
 /**
@@ -46,6 +51,9 @@ public class TipoTarifaBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving TipoTarifa entities
@@ -125,17 +133,28 @@ public class TipoTarifaBean implements Serializable
 
    public String update()
    {
+	  System.out.println("Agarrando el contexto.");
+	  String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	System.out.println("Entro por tipo tarifa nueva");
+        	 
+        	this.tipoTarifa.setFechaReg(new Date());
+        	this.tipoTarifa.setUsuarioReg(nombre);
+        	this.tipoTarifa.setFlagEstado("AC");
             this.entityManager.persist(this.tipoTarifa);
             return "search?faces-redirect=true";
          }
          else
          {
+         	System.out.println("Entro por tipo tarifa nueva");
+         	
+         	this.tipoTarifa.setFechaMod(new Date());
+         	this.tipoTarifa.setUsuarioMod(nombre);
             this.entityManager.merge(this.tipoTarifa);
             return "view?faces-redirect=true&id=" + this.tipoTarifa.getIdTipoTarifa();
          }
@@ -153,6 +172,7 @@ public class TipoTarifaBean implements Serializable
 
       try
       {
+    	  /*
          TipoTarifa deletableEntity = findById(getId());
          Iterator<Solicitud> iterSolicituds = deletableEntity.getSolicituds().iterator();
          for (; iterSolicituds.hasNext();)
@@ -171,6 +191,12 @@ public class TipoTarifaBean implements Serializable
             this.entityManager.merge(nextInListaPrecios);
          }
          this.entityManager.remove(deletableEntity);
+         */
+    	  String nombre = request.getUserPrincipal().getName();
+          TipoTarifa deletableEntity = findById(getId());
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
+    	  deletableEntity.setFlagEstado("IN");
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }

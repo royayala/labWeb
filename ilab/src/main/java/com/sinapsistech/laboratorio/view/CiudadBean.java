@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,10 +25,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import com.sinapsistech.laboratorio.model.Ciudad;
 import com.sinapsistech.laboratorio.model.Departamento;
 import com.sinapsistech.laboratorio.model.Persona;
+
 import java.util.Iterator;
 
 /**
@@ -46,6 +50,9 @@ public class CiudadBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Ciudad entities
@@ -125,17 +132,28 @@ public class CiudadBean implements Serializable
 
    public String update()
    {
+	  System.out.println("Agarrando el contexto.");
+      String nombre = request.getUserPrincipal().getName();
+       
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	System.out.println("Entro por ciudad nueva");
+        	
+            this.ciudad.setFechaReg(new Date());
+            this.ciudad.setUsuarioReg(nombre);
             this.entityManager.persist(this.ciudad);
             return "search?faces-redirect=true";
          }
          else
          {
+        	System.out.println("Entro por ciudad modificada");
+        	
+        	this.ciudad.setFechaMod(new Date());
+        	this.ciudad.setUsuarioMod(nombre);
             this.entityManager.merge(this.ciudad);
             return "view?faces-redirect=true&id=" + this.ciudad.getIdCiudad();
          }
@@ -153,6 +171,7 @@ public class CiudadBean implements Serializable
 
       try
       {
+    	 /*
          Ciudad deletableEntity = findById(getId());
          Departamento departamento = deletableEntity.getDepartamento();
          departamento.getCiudads().remove(deletableEntity);
@@ -169,6 +188,13 @@ public class CiudadBean implements Serializable
          this.entityManager.remove(deletableEntity);
          this.entityManager.flush();
          return "search?faces-redirect=true";
+         */
+    	  String nombre = request.getUserPrincipal().getName();
+    	  Ciudad deletableEntity = findById(getId());
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
+    	  this.entityManager.flush();
+          return "search?faces-redirect=true";
       }
       catch (Exception e)
       {

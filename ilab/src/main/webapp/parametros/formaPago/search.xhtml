@@ -28,37 +28,13 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="formaPagoBeanExampleIdFormaPago" value="Id Forma Pago:"/>
-						<h:panelGroup>
-							<h:inputText id="formaPagoBeanExampleIdFormaPago" value="#{formaPagoBean.example.idFormaPago}"/>
-							<h:message for="formaPagoBeanExampleIdFormaPago" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">					
 						<h:outputLabel for="formaPagoBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="formaPagoBeanExampleNombre" maxLength="50" value="#{formaPagoBean.example.nombre}"/>
 							<h:message for="formaPagoBeanExampleNombre" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="formaPagoBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="formaPagoBeanExampleUsuarioReg" maxLength="30" value="#{formaPagoBean.example.usuarioReg}"/>
-							<h:message for="formaPagoBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="formaPagoBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="formaPagoBeanExampleUsuarioMod" maxLength="30" value="#{formaPagoBean.example.usuarioMod}"/>
-							<h:message for="formaPagoBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="formaPagoBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
-						<h:panelGroup>
-							<h:inputText id="formaPagoBeanExampleUsuarioBorrado" maxLength="30" value="#{formaPagoBean.example.usuarioBorrado}"/>
-							<h:message for="formaPagoBeanExampleUsuarioBorrado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>																	
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{formaPagoBean.search}' styleClass="btn btn-primary"/>

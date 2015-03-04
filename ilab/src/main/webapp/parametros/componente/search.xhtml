@@ -29,36 +29,13 @@
 				<h:panelGroup styleClass="search">
 
 					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="componenteBeanExampleIdComponente" value="Id Componente:"/>
-						<h:panelGroup>
-							<h:inputText id="componenteBeanExampleIdComponente" value="#{componenteBean.example.idComponente}"/>
-							<h:message for="componenteBeanExampleIdComponente" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						
 						<h:outputLabel for="componenteBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="componenteBeanExampleNombre" maxLength="50" value="#{componenteBean.example.nombre}"/>
 							<h:message for="componenteBeanExampleNombre" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="componenteBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="componenteBeanExampleFlagEstado" maxLength="2" value="#{componenteBean.example.flagEstado}"/>
-							<h:message for="componenteBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="componenteBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="componenteBeanExampleUsuarioReg" maxLength="30" value="#{componenteBean.example.usuarioReg}"/>
-							<h:message for="componenteBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="componenteBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="componenteBeanExampleUsuarioMod" maxLength="30" value="#{componenteBean.example.usuarioMod}"/>
-							<h:message for="componenteBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>																	
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{componenteBean.search}' styleClass="btn btn-primary"/>

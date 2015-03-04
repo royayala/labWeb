@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="paisBeanPaisIdPais" value="Id Pais:"/>
 				<h:panelGroup>
-					<h:inputText id="paisBeanPaisIdPais" required="true" value="#{paisBean.pais.idPais}"/>
+					<h:inputText id="paisBeanPaisIdPais" required="true" value="#{paisBean.pais.idPais}" disabled="true"/>
 					<h:message for="paisBeanPaisIdPais" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -49,89 +49,6 @@
 					<h:message for="paisBeanPaisNombre" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
-				<h:outputLabel for="paisBeanPaisFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="paisBeanPaisFechaReg" maxLength="29" value="#{paisBean.pais.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="paisBeanPaisFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="paisBeanPaisUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="paisBeanPaisUsuarioReg" maxLength="30" value="#{paisBean.pais.usuarioReg}"/>
-					<h:message for="paisBeanPaisUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="paisBeanPaisFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="paisBeanPaisFechaMod" maxLength="29" value="#{paisBean.pais.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="paisBeanPaisFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="paisBeanPaisUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="paisBeanPaisUsuarioMod" maxLength="30" value="#{paisBean.pais.usuarioMod}"/>
-					<h:message for="paisBeanPaisUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="paisBeanPaisFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="paisBeanPaisFechaBorrado" maxLength="29" value="#{paisBean.pais.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="paisBeanPaisFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="paisBeanPaisUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="paisBeanPaisUsuarioBorrado" maxLength="30" value="#{paisBean.pais.usuarioBorrado}"/>
-					<h:message for="paisBeanPaisUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="paisBeanPaisDepartamentos" value="Departamentos:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{paisBean.pais.departamentos}"/>
-					<h:dataTable id="paisBeanPaisDepartamentos" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Departamento"/>
-							</f:facet>
-							<h:link outcome="/parametros/departamento/view">
-								<f:param name="id" value="#{_item.idDepartamento}"/>
-								<h:outputText id="itemIdDepartamento" value="#{_item.idDepartamento}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="departamentoBeanAddIdDepartamento" value="#{departamentoBean.add.idDepartamento}"/>
-								<h:message for="departamentoBeanAddIdDepartamento" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Nombre"/>
-							</f:facet>
-							<h:link outcome="/parametros/departamento/view">
-								<f:param name="id" value="#{_item.idDepartamento}"/>
-								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="departamentoBeanAddNombre" maxLength="50" value="#{departamentoBean.add.nombre}"/>
-								<h:message for="departamentoBeanAddNombre" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(departamentoBean.added)}" id="paisBeanPaisDepartamentosAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{departamentoBean.add.pais}" value="#{paisBean.pais}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
 			</h:panelGrid>
 
 			<div class="buttons">

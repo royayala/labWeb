@@ -40,10 +40,10 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="personaBeanPersonaIdPersona" value="Id Persona:"/>
 				<h:panelGroup>
-					<h:inputText id="personaBeanPersonaIdPersona" required="true" value="#{personaBean.persona.idPersona}"/>
+					<h:inputText id="personaBeanPersonaIdPersona" required="true" value="#{personaBean.persona.idPersona}" disabled="true"/>
 					<h:message for="personaBeanPersonaIdPersona" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText value="*"/>
+				<h:outputText value="*"/>				
 				<h:outputLabel for="personaBeanPersonaCiudad" value="Ciudad:"/>
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{ciudadBean.converter}" id="personaBeanPersonaCiudad" value="#{personaBean.persona.ciudad}">
@@ -91,27 +91,28 @@
 				<h:outputText value="*"/>
 				<h:outputLabel for="personaBeanPersonaDocumentoIdentidad" value="Documento Identidad:"/>
 				<h:panelGroup>
-					<h:inputText id="personaBeanPersonaDocumentoIdentidad" required="true" value="#{personaBean.persona.documentoIdentidad}"/>
+					<h:inputText id="personaBeanPersonaDocumentoIdentidad" required="true" value="#{personaBean.persona.documentoIdentidad}" converterMessage="Solo permite NUMEROS."/>
+					
 					<h:message for="personaBeanPersonaDocumentoIdentidad" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
 				<h:outputLabel for="personaBeanPersonaTelefono1" value="Telefono 1:"/>
 				<h:panelGroup>
-					<h:inputText id="personaBeanPersonaTelefono1" required="true" value="#{personaBean.persona.telefono1}"/>
+					<h:inputText id="personaBeanPersonaTelefono1" required="true" value="#{personaBean.persona.telefono1}" converterMessage="Solo permite NUMEROS."/>
 					<h:message for="personaBeanPersonaTelefono1" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
 				<h:outputLabel for="personaBeanPersonaTelefono2" value="Telefono 2:"/>
 				<h:panelGroup>
-					<h:inputText id="personaBeanPersonaTelefono2" required="true" value="#{personaBean.persona.telefono2}"/>
+					<h:inputText id="personaBeanPersonaTelefono2" value="#{personaBean.persona.telefono2}" converterMessage="Solo permite NUMEROS."/>
 					<h:message for="personaBeanPersonaTelefono2" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText value="*"/>
+				<h:outputText/>
 				<h:outputLabel for="personaBeanPersonaSexo" value="Sexo:"/>
-				<h:panelGroup>
-					<h:inputText id="personaBeanPersonaSexo" maxLength="1" required="true" value="#{personaBean.persona.sexo}"/>
-					<h:message for="personaBeanPersonaSexo" styleClass="error"/>
-				</h:panelGroup>
+					<p:selectOneMenu id="personaBeanPersonaSexo" value="#{personaBean.persona.sexo}" style="width:150px">
+						<f:selectItem 	itemLabel="Masculino" itemValue="M" value="#{personaBean.persona.sexo}"/>
+                		<f:selectItem 	itemLabel="Femenino" itemValue="F" value="#{personaBean.persona.sexo}"/>
+					</p:selectOneMenu>
 				<h:outputText value="*"/>
 				<h:outputLabel for="personaBeanPersonaEmail" value="Email:"/>
 				<h:panelGroup>
@@ -127,11 +128,17 @@
 				
 				<h:outputText/>
 				<h:outputLabel for="personaBeanPersonaGrupoSanguineo" value="Grupo Sanguineo:"/>
-				<h:panelGroup>
-					<h:inputText id="personaBeanPersonaGrupoSanguineo" maxLength="5" value="#{personaBean.persona.grupoSanguineo}"/>
-					<h:message for="personaBeanPersonaGrupoSanguineo" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
+				 	<p:selectOneMenu id="personaBeanPersonaGrupoSanguineo" value="#{personaBean.persona.grupoSanguineo}" style="width:150px">
+                		<f:selectItem  	itemLabel="Selecione Grupo Sanguineo" itemValue="" noSelectionOption="true" />
+                		<f:selectItem 	itemLabel="O-" itemValue="O-" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="O+" itemValue="O+" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="A-" itemValue="A-" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="A+" itemValue="A+" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="B-" itemValue="B-" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="B+" itemValue="B+" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="AB-" itemValue="AB-" value="#{personaBean.persona.grupoSanguineo}"/>
+                		<f:selectItem 	itemLabel="AB+" itemValue="AB+" value="#{personaBean.persona.grupoSanguineo}"/>
+            		</p:selectOneMenu>
 			</h:panelGrid>
 
 			<div class="buttons">

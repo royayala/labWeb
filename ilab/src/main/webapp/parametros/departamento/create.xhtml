@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="departamentoBeanDepartamentoIdDepartamento" value="Id Departamento:"/>
 				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoIdDepartamento" required="true" value="#{departamentoBean.departamento.idDepartamento}"/>
+					<h:inputText id="departamentoBeanDepartamentoIdDepartamento" required="true" value="#{departamentoBean.departamento.idDepartamento}" disabled="true"/>
 					<h:message for="departamentoBeanDepartamentoIdDepartamento" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -47,7 +47,7 @@
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{paisBean.converter}" id="departamentoBeanDepartamentoPais" value="#{departamentoBean.departamento.pais}">
 						<f:selectItem/>
-						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{paisBean.all}" var="_item"/>
+						<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{paisBean.all}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="departamentoBeanDepartamentoPais" styleClass="error"/>
 				</h:panelGroup>
@@ -58,89 +58,6 @@
 					<h:message for="departamentoBeanDepartamentoNombre" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
-				<h:outputLabel for="departamentoBeanDepartamentoFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoFechaReg" maxLength="29" value="#{departamentoBean.departamento.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="departamentoBeanDepartamentoFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="departamentoBeanDepartamentoUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoUsuarioReg" maxLength="30" value="#{departamentoBean.departamento.usuarioReg}"/>
-					<h:message for="departamentoBeanDepartamentoUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="departamentoBeanDepartamentoFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoFechaMod" maxLength="29" value="#{departamentoBean.departamento.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="departamentoBeanDepartamentoFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="departamentoBeanDepartamentoUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoUsuarioMod" maxLength="30" value="#{departamentoBean.departamento.usuarioMod}"/>
-					<h:message for="departamentoBeanDepartamentoUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="departamentoBeanDepartamentoFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoFechaBorrado" maxLength="29" value="#{departamentoBean.departamento.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="departamentoBeanDepartamentoFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="departamentoBeanDepartamentoUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="departamentoBeanDepartamentoUsuarioBorrado" maxLength="30" value="#{departamentoBean.departamento.usuarioBorrado}"/>
-					<h:message for="departamentoBeanDepartamentoUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="departamentoBeanDepartamentoCiudads" value="Ciudads:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{departamentoBean.departamento.ciudads}"/>
-					<h:dataTable id="departamentoBeanDepartamentoCiudads" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Ciudad"/>
-							</f:facet>
-							<h:link outcome="/parametros/ciudad/view">
-								<f:param name="id" value="#{_item.idCiudad}"/>
-								<h:outputText id="itemIdCiudad" value="#{_item.idCiudad}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="ciudadBeanAddIdCiudad" value="#{ciudadBean.add.idCiudad}"/>
-								<h:message for="ciudadBeanAddIdCiudad" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Nombre"/>
-							</f:facet>
-							<h:link outcome="/parametros/ciudad/view">
-								<f:param name="id" value="#{_item.idCiudad}"/>
-								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="ciudadBeanAddNombre" maxLength="50" value="#{ciudadBean.add.nombre}"/>
-								<h:message for="ciudadBeanAddNombre" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(ciudadBean.added)}" id="departamentoBeanDepartamentoCiudadsAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{ciudadBean.add.departamento}" value="#{departamentoBean.departamento}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
 			</h:panelGrid>
 
 			<div class="buttons">

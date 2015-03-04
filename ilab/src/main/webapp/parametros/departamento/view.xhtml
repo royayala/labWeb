@@ -30,7 +30,7 @@
 			<h:outputText id="departamentoBeanDepartamentoIdDepartamento" value="#{departamentoBean.departamento.idDepartamento}"/>
 			<h:outputText/>
 			<h:outputLabel for="departamentoBeanDepartamentoPais" value="Pais:"/>
-			<h:link id="departamentoBeanDepartamentoPais" outcome="/pais/view" rendered="#{!empty departamentoBean.departamento.pais}" value="#{departamentoBean.departamento.pais}">
+			<h:link id="departamentoBeanDepartamentoPais" outcome="/parametros/pais/view" rendered="#{!empty departamentoBean.departamento.pais}" value="#{departamentoBean.departamento.pais.nombre}">
 				<f:param name="id" value="#{departamentoBean.departamento.pais.idPais}"/>
 			</h:link>
 			<h:outputText/>
@@ -61,7 +61,7 @@
 			<h:outputLabel for="departamentoBeanDepartamentoUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="departamentoBeanDepartamentoUsuarioBorrado" value="#{departamentoBean.departamento.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="departamentoBeanDepartamentoCiudads" value="Ciudads:"/>
+			<h:outputLabel for="departamentoBeanDepartamentoCiudads" value="Ciudades:"/>
 			<h:dataTable id="departamentoBeanDepartamentoCiudads" styleClass="data-table" value="#{forgeview:asList(departamentoBean.departamento.ciudads)}" var="_item">
 				<h:column>
 					<f:facet name="header">

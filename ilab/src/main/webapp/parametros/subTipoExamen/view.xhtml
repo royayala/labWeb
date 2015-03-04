@@ -30,7 +30,7 @@
 			<h:outputText id="subTipoExamenBeanSubTipoExamenIdSubTipoExamen" value="#{subTipoExamenBean.subTipoExamen.idSubTipoExamen}"/>
 			<h:outputText/>
 			<h:outputLabel for="subTipoExamenBeanSubTipoExamenTipoExamen" value="Tipo Examen:"/>
-			<h:link id="subTipoExamenBeanSubTipoExamenTipoExamen" outcome="/tipoExamen/view" rendered="#{!empty subTipoExamenBean.subTipoExamen.tipoExamen}" value="#{subTipoExamenBean.subTipoExamen.tipoExamen}">
+			<h:link id="subTipoExamenBeanSubTipoExamenTipoExamen" outcome="/parametros/tipoExamen/view" rendered="#{!empty subTipoExamenBean.subTipoExamen.tipoExamen}" value="#{subTipoExamenBean.subTipoExamen.tipoExamen.nombre}">
 				<f:param name="id" value="#{subTipoExamenBean.subTipoExamen.tipoExamen.idTipoExamen}"/>
 			</h:link>
 			<h:outputText/>
