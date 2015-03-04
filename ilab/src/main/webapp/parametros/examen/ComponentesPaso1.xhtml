@@ -23,7 +23,6 @@
 
 	<ui:define name="subheader">
 		Ver Examen
-		
 	</ui:define>
 
 	<ui:define name="footer"/>
@@ -101,10 +100,6 @@
             </p:commandButton>
         </p:column>
         
-          <f:facet name="footer">
-            <p:commandButton process="cars1" update=":form:multiCarDetail" icon="ui-icon-search" value="Adicionar Componente" oncomplete="PF('multiCarDialog').show()" />
-        </f:facet>
-        
    </p:dataTable>
    
      <p:dialog header="Detalle del componente" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
@@ -154,20 +149,49 @@
     </p:dialog> 
     
     
-     <p:dialog header="Selected Cars" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">
-        <p:outputPanel id="multiCarDetail" style="text-align:center;">
-            <ui:repeat value="#{componentePasoBean.selectedExaComponente}" var="_item">
-                <h:outputText value="#{_item.idExamenComponente} - #{_item.componente.nombre}" style="display:block"/>
-            </ui:repeat>
-        </p:outputPanel>
-    </p:dialog>
     
    </h:form>
+   
+   
 		</h:panelGrid>
+		
+		<!-- boton para adicionar un nuevo componente -->
+			<h:panelGrid columns="1" cellpadding="5">
+			    <p:commandButton value="Adicionar Componente" type="button" onclick="PF('dlg1').show();" />
+			</h:panelGrid>
+			 
+			<p:dialog header="Adicionar Componente" widgetVar="dlg1" minHeight="600">
+			    <h:outputText value="Adicionar componentes al Examen:" />
+			    <h:form>
+				    <h:panelGrid columns="3" cellpadding="5">
+				        <h:outputLabel for="componente" value="Componente:" />
+				        <p:selectCheckboxMenu id="componente" value="#{componentePasoBean.componenteSeleccionado}" label="Componente"
+				                              filter="true" filterMatchMode="startsWith" panelStyle="width:550px">
+				            <f:selectItems value="#{componentePasoBean.listaComponentes}" itemLabel="#{comp.nombre}" var="comp"/>
+				        </p:selectCheckboxMenu>
+				        <p:commandLink value="Seleccionar" update="display" />
+				    </h:panelGrid>
+				 
+				    <p:outputPanel id="display" style="width:250px;padding-left:5px;margin-top:10px">
+				        <p:dataList value="#{componentePasoBean.componenteSeleccionado}" var="var" emptyMessage="Ningun componente seleccionado">
+				            #{var}
+				        </p:dataList>
+				        
+				         <ui:repeat value="#{componentePasoBean.componenteSeleccionado}" var="var">
+			                <h:outputText value="#{var}" style="display:block"/>
+			            </ui:repeat>
+				    </p:outputPanel>
+				</h:form>
+			</p:dialog>
+			 
+		<!-- fin adicionar componente -->
+		
 		<div class="buttons">
 			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+			<!-- 
 			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
 			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+			-->
 		</div>
 	</ui:define>
   

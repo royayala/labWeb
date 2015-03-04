@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
@@ -30,6 +31,7 @@ import com.sinapsistech.laboratorio.model.ExamenComponente;
 import com.sinapsistech.laboratorio.model.ListaPrecio;
 import com.sinapsistech.laboratorio.model.SolicitudDetalle;
 import com.sinapsistech.laboratorio.model.SubTipoExamen;
+import com.sinapsistech.laboratorio.view.ComponenteBean;
 
 import java.util.Iterator;
 
@@ -87,11 +89,27 @@ public class ComponentePasoBean implements Serializable
    @Inject
    private Conversation conversation;
 
+   @Inject
+   private ComponenteBean componenteBean;
+   
    @PersistenceContext(unitName = "ilab-persistence-unit", type = PersistenceContextType.EXTENDED)
    private EntityManager entityManager;
 
    private ExamenComponente selectedExaComponente;
    private ExamenComponente nuevoExaComponente;
+   
+   
+   private String[] selectedComponente;
+   
+   private List<Componente> componenteSeleccionado;
+   
+   private List<Componente> listaComponentes;
+   
+   
+   @PostConstruct
+   public void init() {
+       listaComponentes = componenteBean.getAll();
+   }
    
    public String create()
    {
@@ -417,5 +435,47 @@ public ExamenComponente getNuevoExaComponente() {
 
 public void setNuevoExaComponente(ExamenComponente nuevoExaComponente) {
 	this.nuevoExaComponente = nuevoExaComponente;
+}
+
+/**
+ * @return the selectedComponente
+ */
+public String[] getSelectedComponente() {
+	return selectedComponente;
+}
+
+/**
+ * @param selectedComponente the selectedComponente to set
+ */
+public void setSelectedComponente(String[] selectedComponente) {
+	this.selectedComponente = selectedComponente;
+}
+
+/**
+ * @return the listaComponentes
+ */
+public List<Componente> getListaComponentes() {
+	return listaComponentes;
+}
+
+/**
+ * @param listaComponentes the listaComponentes to set
+ */
+public void setListaComponentes(List<Componente> listaComponentes) {
+	this.listaComponentes = listaComponentes;
+}
+
+/**
+ * @return the componenteSeleccionado
+ */
+public List<Componente> getComponenteSeleccionado() {
+	return componenteSeleccionado;
+}
+
+/**
+ * @param componenteSeleccionado the componenteSeleccionado to set
+ */
+public void setComponenteSeleccionado(List<Componente> componenteSeleccionado) {
+	this.componenteSeleccionado = componenteSeleccionado;
 }
 }

@@ -75,6 +75,15 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
+						<h:outputText value="Nombre Examen"/>
+					</f:facet>
+					<h:link outcome="/parametros/examenComponente/view">
+						<f:param name="id" value="#{_item.idExamenComponente}"/>
+						<h:outputText id="itemNombreExamen" value="#{_item.examen.nombre}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
 						<h:outputText value="Posicion"/>
 					</f:facet>
 					<h:link outcome="/parametros/examenComponente/view">
