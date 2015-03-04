@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{usuarioRolBean.page}'/>
+		<f:event type="preRenderView" listener='#{usuarioRolBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Usuario Rol "/>
+
+	<ui:define name="header">
+		Usuario Rol
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Usuario Rol 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="usuarioRolBeanExampleCorrelativo" value="Correlativo:"/>
+						<h:panelGroup>
+							<h:inputText id="usuarioRolBeanExampleCorrelativo" value="#{usuarioRolBean.example.correlativo}"/>
+							<h:message for="usuarioRolBeanExampleCorrelativo" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="usuarioRolBeanExampleUsuario" value="Usuario:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{usuarioBean.converter}" id="usuarioRolBeanExampleUsuario" value="#{usuarioRolBean.example.usuario}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{usuarioBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="usuarioRolBeanExampleUsuario" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="usuarioRolBeanExampleRolAsignado" value="Rol Asignado:"/>
+						<h:panelGroup>
+							<h:inputText id="usuarioRolBeanExampleRolAsignado" maxLength="10" value="#{usuarioRolBean.example.rolAsignado}"/>
+							<h:message for="usuarioRolBeanExampleRolAsignado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="usuarioRolBeanExampleFlagEstado" value="Flag Estado:"/>
+						<h:panelGroup>
+							<h:inputText id="usuarioRolBeanExampleFlagEstado" maxLength="2" value="#{usuarioRolBean.example.flagEstado}"/>
+							<h:message for="usuarioRolBeanExampleFlagEstado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="usuarioRolBeanExampleUsuarioReg" value="Usuario Reg:"/>
+						<h:panelGroup>
+							<h:inputText id="usuarioRolBeanExampleUsuarioReg" maxLength="30" value="#{usuarioRolBean.example.usuarioReg}"/>
+							<h:message for="usuarioRolBeanExampleUsuarioReg" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{usuarioRolBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{usuarioRolBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="usuarioRolBeanPageItems" styleClass="data-table" value="#{usuarioRolBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Correlativo"/>
+					</f:facet>
+					<h:link outcome="/parametros/usuarioRol/view">
+						<f:param name="id" value="#{_item.correlativo}"/>
+						<h:outputText id="itemCorrelativo" value="#{_item.correlativo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{usuarioRolBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
