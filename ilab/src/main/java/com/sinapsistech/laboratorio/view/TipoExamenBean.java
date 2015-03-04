@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
+import com.sinapsistech.laboratorio.model.SolicitudDetalle;
 import com.sinapsistech.laboratorio.model.TipoExamen;
 import com.sinapsistech.laboratorio.model.SubTipoExamen;
+
 import java.util.Iterator;
 
 /**
@@ -45,6 +50,9 @@ public class TipoExamenBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving TipoExamen entities
@@ -124,17 +132,28 @@ public class TipoExamenBean implements Serializable
 
    public String update()
    {
+	  System.out.println("Agarrando el contexto.");
+	  String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	System.out.println("Entro por tipo examen nuevo");
+        	
+        	this.tipoExamen.setFechaReg(new Date());
+        	this.tipoExamen.setUsuarioReg(nombre);
+        	this.tipoExamen.setFlagEstado("AC");
             this.entityManager.persist(this.tipoExamen);
             return "search?faces-redirect=true";
          }
          else
          {
+        	System.out.println("Entro por tipo examen modificado");
+        	
+        	this.tipoExamen.setFechaMod(new Date());
+        	this.tipoExamen.setUsuarioMod(nombre);
             this.entityManager.merge(this.tipoExamen);
             return "view?faces-redirect=true&id=" + this.tipoExamen.getIdTipoExamen();
          }
@@ -152,6 +171,7 @@ public class TipoExamenBean implements Serializable
 
       try
       {
+    	  /*
          TipoExamen deletableEntity = findById(getId());
          Iterator<SubTipoExamen> iterSubTipoExamens = deletableEntity.getSubTipoExamens().iterator();
          for (; iterSubTipoExamens.hasNext();)
@@ -162,6 +182,12 @@ public class TipoExamenBean implements Serializable
             this.entityManager.merge(nextInSubTipoExamens);
          }
          this.entityManager.remove(deletableEntity);
+         */
+    	  String nombre = request.getUserPrincipal().getName();
+          TipoExamen deletableEntity = findById(getId());
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
+    	  deletableEntity.setFlagEstado("IN");
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }

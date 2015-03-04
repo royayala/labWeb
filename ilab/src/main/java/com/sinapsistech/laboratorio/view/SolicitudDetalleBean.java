@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,6 +25,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import com.sinapsistech.laboratorio.model.SolicitudDetalle;
 import com.sinapsistech.laboratorio.model.Entrega;
@@ -31,6 +34,7 @@ import com.sinapsistech.laboratorio.model.ListaPrecio;
 import com.sinapsistech.laboratorio.model.RegistroResultado;
 import com.sinapsistech.laboratorio.model.Solicitud;
 import com.sinapsistech.laboratorio.model.TomaMuestra;
+
 import java.util.Iterator;
 
 /**
@@ -50,6 +54,9 @@ public class SolicitudDetalleBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving SolicitudDetalle entities
@@ -129,17 +136,28 @@ public class SolicitudDetalleBean implements Serializable
 
    public String update()
    {
+	  System.out.println("Agarrando el contexto.");
+	  String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	System.out.println("Entro por solicitud Detalle nueva");
+        	
+        	this.solicitudDetalle.setFechaReg(new Date());
+        	this.solicitudDetalle.setUsuarioReg(nombre);
+        	this.solicitudDetalle.setFlagEstado("AC");
             this.entityManager.persist(this.solicitudDetalle);
             return "search?faces-redirect=true";
          }
          else
          {
+        	System.out.println("Entro por solicitud Detalle modificada");
+        	
+        	this.solicitudDetalle.setFechaMod(new Date());
+        	this.solicitudDetalle.setUsuarioMod(nombre);
             this.entityManager.merge(this.solicitudDetalle);
             return "view?faces-redirect=true&id=" + this.solicitudDetalle.getIdSolicitudDetalle();
          }
@@ -157,6 +175,7 @@ public class SolicitudDetalleBean implements Serializable
 
       try
       {
+    	 /*
          SolicitudDetalle deletableEntity = findById(getId());
          Examen examen = deletableEntity.getExamen();
          examen.getSolicitudDetalles().remove(deletableEntity);
@@ -195,6 +214,13 @@ public class SolicitudDetalleBean implements Serializable
             this.entityManager.merge(nextInTomaMuestras);
          }
          this.entityManager.remove(deletableEntity);
+         */
+    	  
+    	  String nombre = request.getUserPrincipal().getName();
+          SolicitudDetalle deletableEntity = findById(getId());
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
+    	  deletableEntity.setFlagEstado("IN");
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }

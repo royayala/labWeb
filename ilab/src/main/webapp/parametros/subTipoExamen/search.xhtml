@@ -29,18 +29,12 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="subTipoExamenBeanExampleIdSubTipoExamen" value="Id Sub Tipo Examen:"/>
-						<h:panelGroup>
-							<h:inputText id="subTipoExamenBeanExampleIdSubTipoExamen" value="#{subTipoExamenBean.example.idSubTipoExamen}"/>
-							<h:message for="subTipoExamenBeanExampleIdSubTipoExamen" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">						
 						<h:outputLabel for="subTipoExamenBeanExampleTipoExamen" value="Tipo Examen:"/>
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{tipoExamenBean.converter}" id="subTipoExamenBeanExampleTipoExamen" value="#{subTipoExamenBean.example.tipoExamen}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoExamenBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{tipoExamenBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="subTipoExamenBeanExampleTipoExamen" styleClass="error"/>
 						</h:panelGroup>
@@ -56,13 +50,7 @@
 							<h:inputText id="subTipoExamenBeanExampleDecripcion" maxLength="200" value="#{subTipoExamenBean.example.decripcion}"/>
 							<h:message for="subTipoExamenBeanExampleDecripcion" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="subTipoExamenBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="subTipoExamenBeanExampleFlagEstado" maxLength="2" value="#{subTipoExamenBean.example.flagEstado}"/>
-							<h:message for="subTipoExamenBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>					
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{subTipoExamenBean.search}' styleClass="btn btn-primary"/>

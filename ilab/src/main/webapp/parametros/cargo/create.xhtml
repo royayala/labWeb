@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="cargoBeanCargoIdCargo" value="Id Cargo:"/>
 				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoIdCargo" required="true" value="#{cargoBean.cargo.idCargo}"/>
+					<h:inputText id="cargoBeanCargoIdCargo" required="true" value="#{cargoBean.cargo.idCargo}" disabled="true"/>
 					<h:message for="cargoBeanCargoIdCargo" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -48,76 +48,7 @@
 					<h:inputText id="cargoBeanCargoNombre" maxLength="50" required="true" value="#{cargoBean.cargo.nombre}"/>
 					<h:message for="cargoBeanCargoNombre" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText value="*"/>
-				<h:outputLabel for="cargoBeanCargoFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoFechaReg" maxLength="29" value="#{cargoBean.cargo.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="cargoBeanCargoFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="cargoBeanCargoUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoUsuarioReg" maxLength="30" value="#{cargoBean.cargo.usuarioReg}"/>
-					<h:message for="cargoBeanCargoUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="cargoBeanCargoFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoFechaMod" maxLength="29" value="#{cargoBean.cargo.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="cargoBeanCargoFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="cargoBeanCargoUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoUsuarioMod" maxLength="30" value="#{cargoBean.cargo.usuarioMod}"/>
-					<h:message for="cargoBeanCargoUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="cargoBeanCargoFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoFechaBorrado" maxLength="29" value="#{cargoBean.cargo.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="cargoBeanCargoFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="cargoBeanCargoUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="cargoBeanCargoUsuarioBorrado" maxLength="30" value="#{cargoBean.cargo.usuarioBorrado}"/>
-					<h:message for="cargoBeanCargoUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="cargoBeanCargoTrabajadors" value="Trabajadors:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{cargoBean.cargo.trabajadors}"/>
-					<h:dataTable id="cargoBeanCargoTrabajadors" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Trabajador"/>
-							</f:facet>
-							<h:link outcome="/parametros/trabajador/view">
-								<f:param name="id" value="#{_item.idTrabajador}"/>
-								<h:outputText id="itemIdTrabajador" value="#{_item.idTrabajador}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="trabajadorBeanAddIdTrabajador" value="#{trabajadorBean.add.idTrabajador}"/>
-								<h:message for="trabajadorBeanAddIdTrabajador" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(trabajadorBean.added)}" id="cargoBeanCargoTrabajadorsAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{trabajadorBean.add.cargo}" value="#{cargoBean.cargo}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
+				<h:outputText value="*"/>				
 				<h:outputText/>
 			</h:panelGrid>
 

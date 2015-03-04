@@ -30,17 +30,12 @@
 				<h:panelGroup styleClass="search">
 
 					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="departamentoBeanExampleIdDepartamento" value="Id Departamento:"/>
-						<h:panelGroup>
-							<h:inputText id="departamentoBeanExampleIdDepartamento" value="#{departamentoBean.example.idDepartamento}"/>
-							<h:message for="departamentoBeanExampleIdDepartamento" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						
 						<h:outputLabel for="departamentoBeanExamplePais" value="Pais:"/>
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{paisBean.converter}" id="departamentoBeanExamplePais" value="#{departamentoBean.example.pais}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{paisBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{paisBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="departamentoBeanExamplePais" styleClass="error"/>
 						</h:panelGroup>
@@ -50,19 +45,7 @@
 							<h:inputText id="departamentoBeanExampleNombre" maxLength="50" value="#{departamentoBean.example.nombre}"/>
 							<h:message for="departamentoBeanExampleNombre" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="departamentoBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="departamentoBeanExampleUsuarioReg" maxLength="30" value="#{departamentoBean.example.usuarioReg}"/>
-							<h:message for="departamentoBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="departamentoBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="departamentoBeanExampleUsuarioMod" maxLength="30" value="#{departamentoBean.example.usuarioMod}"/>
-							<h:message for="departamentoBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>												
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{departamentoBean.search}' styleClass="btn btn-primary"/>

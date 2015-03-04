@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,9 +25,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import com.sinapsistech.laboratorio.model.Cargo;
+import com.sinapsistech.laboratorio.model.Ciudad;
 import com.sinapsistech.laboratorio.model.Trabajador;
+
 import java.util.Iterator;
 
 /**
@@ -45,6 +50,9 @@ public class CargoBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Cargo entities
@@ -124,17 +132,28 @@ public class CargoBean implements Serializable
 
    public String update()
    {
+	  System.out.println("Agarrando el contexto.");
+	  String nombre = request.getUserPrincipal().getName();
+	  
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	System.out.println("Entro por cargo nuevo");
+        	
+        	this.cargo.setFechaReg(new Date());
+        	this.cargo.setUsuarioReg(nombre);        	 
             this.entityManager.persist(this.cargo);
             return "search?faces-redirect=true";
          }
          else
          {
+        	System.out.println("Entro por cargo modificado");
+        	
+        	this.cargo.setFechaMod(new Date());
+        	this.cargo.setUsuarioMod(nombre);
             this.entityManager.merge(this.cargo);
             return "view?faces-redirect=true&id=" + this.cargo.getIdCargo();
          }
@@ -152,6 +171,7 @@ public class CargoBean implements Serializable
 
       try
       {
+    	 /*
          Cargo deletableEntity = findById(getId());
          Iterator<Trabajador> iterTrabajadors = deletableEntity.getTrabajadors().iterator();
          for (; iterTrabajadors.hasNext();)
@@ -160,8 +180,11 @@ public class CargoBean implements Serializable
             nextInTrabajadors.setCargo(null);
             iterTrabajadors.remove();
             this.entityManager.merge(nextInTrabajadors);
-         }
-         this.entityManager.remove(deletableEntity);
+         }*/
+         String nombre = request.getUserPrincipal().getName();
+         Cargo deletableEntity = findById(getId());
+   	  	 deletableEntity.setUsuarioBorrado(nombre);
+   	  	 deletableEntity.setFechaBorrado(new Date());
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }

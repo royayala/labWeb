@@ -28,35 +28,11 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="paisBeanExampleIdPais" value="Id Pais:"/>
-						<h:panelGroup>
-							<h:inputText id="paisBeanExampleIdPais" value="#{paisBean.example.idPais}"/>
-							<h:message for="paisBeanExampleIdPais" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">						
 						<h:outputLabel for="paisBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="paisBeanExampleNombre" maxLength="50" value="#{paisBean.example.nombre}"/>
 							<h:message for="paisBeanExampleNombre" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="paisBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="paisBeanExampleUsuarioReg" maxLength="30" value="#{paisBean.example.usuarioReg}"/>
-							<h:message for="paisBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="paisBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="paisBeanExampleUsuarioMod" maxLength="30" value="#{paisBean.example.usuarioMod}"/>
-							<h:message for="paisBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="paisBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
-						<h:panelGroup>
-							<h:inputText id="paisBeanExampleUsuarioBorrado" maxLength="30" value="#{paisBean.example.usuarioBorrado}"/>
-							<h:message for="paisBeanExampleUsuarioBorrado" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
 					</h:panelGrid>

@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -23,13 +25,16 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
+import com.sinapsistech.laboratorio.model.Cargo;
 import com.sinapsistech.laboratorio.model.Solicitud;
 import com.sinapsistech.laboratorio.model.FormaPago;
 import com.sinapsistech.laboratorio.model.Persona;
 import com.sinapsistech.laboratorio.model.SolicitudDetalle;
 import com.sinapsistech.laboratorio.model.TipoTarifa;
 import com.sinapsistech.laboratorio.model.Trabajador;
+
 import java.util.Iterator;
 
 /**
@@ -49,6 +54,9 @@ public class SolicitudBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Solicitud entities
@@ -128,17 +136,28 @@ public class SolicitudBean implements Serializable
 
    public String update()
    {
+	  System.out.println("Agarrando el contexto.");
+	  String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
+        	System.out.println("Entro por solicitud nueva");
+        	
+        	this.solicitud.setFechaReg(new Date());
+        	this.solicitud.setUsuarioReg(nombre);
+        	this.solicitud.setFlagEstado("AC");
             this.entityManager.persist(this.solicitud);
             return "search?faces-redirect=true";
          }
          else
          {
+        	System.out.println("Entro por solicitud actualizada");
+        	
+        	this.solicitud.setFechaMod(new Date());
+        	this.solicitud.setUsuarioMod(nombre);
             this.entityManager.merge(this.solicitud);
             return "view?faces-redirect=true&id=" + this.solicitud.getIdSolicitud();
          }
@@ -156,6 +175,7 @@ public class SolicitudBean implements Serializable
 
       try
       {
+    	 /*
          Solicitud deletableEntity = findById(getId());
          FormaPago formaPago = deletableEntity.getFormaPago();
          formaPago.getSolicituds().remove(deletableEntity);
@@ -181,7 +201,12 @@ public class SolicitudBean implements Serializable
             iterSolicitudDetalles.remove();
             this.entityManager.merge(nextInSolicitudDetalles);
          }
-         this.entityManager.remove(deletableEntity);
+         this.entityManager.remove(deletableEntity);*/
+    	  String nombre = request.getUserPrincipal().getName();
+          Solicitud deletableEntity = findById(getId());
+    	  deletableEntity.setUsuarioBorrado(nombre);
+    	  deletableEntity.setFechaBorrado(new Date());
+    	  deletableEntity.setFlagEstado("IN");
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }
