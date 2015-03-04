@@ -163,17 +163,17 @@
 		<div id="content">
 			<h1>
 			<table style="width:100%">
-  <tr>
-    <td>
-    <ui:insert name="header" />
-    </td>
-    <td align="right">
-    <h:outputLink rendered="#{request.getUserPrincipal() != null}" value="#{request.contextPath}/logoutServlet" >
+  				<tr>
+    				<td>
+   					 <ui:insert name="header" />
+   					 </td>
+   					<td align="right">
+    					<h:outputLink rendered="#{request.getUserPrincipal() != null}" value="#{request.contextPath}/logoutServlet" >
                             <h:graphicImage  value="/resources/logout.png" width="80" height="80" />
                         </h:outputLink>
-    </td> 
-  </tr>
-</table>
+    				</td> 
+ 				</tr>
+			</table>
 				
 			</h1>
 			<h2>
