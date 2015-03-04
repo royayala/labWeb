@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{registroResultadoBean.page}'/>
+		<f:event type="preRenderView" listener='#{registroResultadoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Registro Resultado "/>
+
+	<ui:define name="header">
+		Registro Resultado
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Registro Resultado 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="registroResultadoBeanExampleIdRegistroResultado" value="Id Registro Resultado:"/>
+						<h:panelGroup>
+							<h:inputText id="registroResultadoBeanExampleIdRegistroResultado" value="#{registroResultadoBean.example.idRegistroResultado}"/>
+							<h:message for="registroResultadoBeanExampleIdRegistroResultado" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="registroResultadoBeanExampleSolicitudDetalle" value="Solicitud Detalle:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="registroResultadoBeanExampleSolicitudDetalle" value="#{registroResultadoBean.example.solicitudDetalle}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="registroResultadoBeanExampleSolicitudDetalle" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="registroResultadoBeanExampleTrabajador" value="Trabajador:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{trabajadorBean.converter}" id="registroResultadoBeanExampleTrabajador" value="#{registroResultadoBean.example.trabajador}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="registroResultadoBeanExampleTrabajador" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="registroResultadoBeanExampleRegistrosNormales" value="Registros Normales:"/>
+						<h:panelGroup>
+							<h:inputText id="registroResultadoBeanExampleRegistrosNormales" maxLength="200" value="#{registroResultadoBean.example.registrosNormales}"/>
+							<h:message for="registroResultadoBeanExampleRegistrosNormales" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="registroResultadoBeanExampleRegistrosAnormales" value="Registros Anormales:"/>
+						<h:panelGroup>
+							<h:inputText id="registroResultadoBeanExampleRegistrosAnormales" maxLength="200" value="#{registroResultadoBean.example.registrosAnormales}"/>
+							<h:message for="registroResultadoBeanExampleRegistrosAnormales" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{registroResultadoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{registroResultadoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="registroResultadoBeanPageItems" styleClass="data-table" value="#{registroResultadoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Registro Resultado"/>
+					</f:facet>
+					<h:link outcome="/parametros/registroResultado/view">
+						<f:param name="id" value="#{_item.idRegistroResultado}"/>
+						<h:outputText id="itemIdRegistroResultado" value="#{_item.idRegistroResultado}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{registroResultadoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{componenteBean.id}'/>
+		<f:event type="preRenderView" listener='#{componenteBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Componente"/>
+
+	<ui:define name="header">
+		Componente
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty componenteBean.id}'>
+				Edit existing Componente
+			</c:when>
+			<c:otherwise>
+				Create a new Componente
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="componenteBeanComponenteIdComponente" value="Id Componente:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteIdComponente" required="true" value="#{componenteBean.componente.idComponente}"/>
+					<h:message for="componenteBeanComponenteIdComponente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="componenteBeanComponenteNombre" value="Nombre:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteNombre" maxLength="50" required="true" value="#{componenteBean.componente.nombre}"/>
+					<h:message for="componenteBeanComponenteNombre" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="componenteBeanComponenteFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteFlagEstado" maxLength="2" value="#{componenteBean.componente.flagEstado}"/>
+					<h:message for="componenteBeanComponenteFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteFechaReg" maxLength="29" value="#{componenteBean.componente.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="componenteBeanComponenteFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteUsuarioReg" maxLength="30" value="#{componenteBean.componente.usuarioReg}"/>
+					<h:message for="componenteBeanComponenteUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteFechaMod" maxLength="29" value="#{componenteBean.componente.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="componenteBeanComponenteFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteUsuarioMod" maxLength="30" value="#{componenteBean.componente.usuarioMod}"/>
+					<h:message for="componenteBeanComponenteUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteFechaBorrado" maxLength="29" value="#{componenteBean.componente.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="componenteBeanComponenteFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="componenteBeanComponenteUsuarioBorrado" maxLength="30" value="#{componenteBean.componente.usuarioBorrado}"/>
+					<h:message for="componenteBeanComponenteUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteFlagAgrupacion" value="Flag Agrupacion:"/>
+				<h:panelGroup>
+					<h:selectOneMenu id="componenteBeanComponenteFlagAgrupacion" value="#{componenteBean.componente.flagAgrupacion}">
+						<f:selectItem/>
+						<f:selectItem itemLabel="Yes" itemValue="true"/>
+						<f:selectItem itemLabel="No" itemValue="false"/>
+					</h:selectOneMenu>
+					<h:message for="componenteBeanComponenteFlagAgrupacion" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="componenteBeanComponenteExamenComponentes" value="Examen Componentes:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{componenteBean.componente.examenComponentes}"/>
+					<h:dataTable id="componenteBeanComponenteExamenComponentes" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Examen Componente"/>
+							</f:facet>
+							<h:link outcome="/parametros/examenComponente/view">
+								<f:param name="id" value="#{_item.idExamenComponente}"/>
+								<h:outputText id="itemIdExamenComponente" value="#{_item.idExamenComponente}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="examenComponenteBeanAddIdExamenComponente" value="#{examenComponenteBean.add.idExamenComponente}"/>
+								<h:message for="examenComponenteBeanAddIdExamenComponente" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Posicion"/>
+							</f:facet>
+							<h:link outcome="/parametros/examenComponente/view">
+								<f:param name="id" value="#{_item.idExamenComponente}"/>
+								<h:outputText id="itemPosicion" value="#{_item.posicion}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="examenComponenteBeanAddPosicion" value="#{examenComponenteBean.add.posicion}"/>
+								<h:message for="examenComponenteBeanAddPosicion" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(examenComponenteBean.added)}" id="componenteBeanComponenteExamenComponentesAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{examenComponenteBean.add.componente}" value="#{componenteBean.componente}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{componenteBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty componenteBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{componenteBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{componenteBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

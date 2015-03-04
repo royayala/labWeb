@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{solicitudBean.id}'/>
+		<f:event type="preRenderView" listener='#{solicitudBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Solicitud"/>
+
+	<ui:define name="header">
+		Solicitud
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty solicitudBean.id}'>
+				Edit existing Solicitud
+			</c:when>
+			<c:otherwise>
+				Create a new Solicitud
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="solicitudBeanSolicitudIdSolicitud" value="Id Solicitud:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudIdSolicitud" required="true" value="#{solicitudBean.solicitud.idSolicitud}"/>
+					<h:message for="solicitudBeanSolicitudIdSolicitud" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="solicitudBeanSolicitudFormaPago" value="Forma Pago:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{formaPagoBean.converter}" id="solicitudBeanSolicitudFormaPago" value="#{solicitudBean.solicitud.formaPago}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{formaPagoBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="solicitudBeanSolicitudFormaPago" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudPersona" value="Persona:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{personaBean.converter}" id="solicitudBeanSolicitudPersona" value="#{solicitudBean.solicitud.persona}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{personaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="solicitudBeanSolicitudPersona" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudTipoTarifa" value="Tipo Tarifa:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{tipoTarifaBean.converter}" id="solicitudBeanSolicitudTipoTarifa" value="#{solicitudBean.solicitud.tipoTarifa}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoTarifaBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="solicitudBeanSolicitudTipoTarifa" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudTrabajador" value="Trabajador:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{trabajadorBean.converter}" id="solicitudBeanSolicitudTrabajador" value="#{solicitudBean.solicitud.trabajador}">
+						<f:selectItem/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+					</h:selectOneMenu>
+					<h:message for="solicitudBeanSolicitudTrabajador" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudFechaSolicitud" value="Fecha Solicitud:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudFechaSolicitud" maxLength="29" value="#{solicitudBean.solicitud.fechaSolicitud}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="solicitudBeanSolicitudFechaSolicitud" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudFechaReg" value="Fecha Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudFechaReg" maxLength="29" value="#{solicitudBean.solicitud.fechaReg}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="solicitudBeanSolicitudFechaReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudObservaciones" value="Observaciones:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudObservaciones" maxLength="200" value="#{solicitudBean.solicitud.observaciones}"/>
+					<h:message for="solicitudBeanSolicitudObservaciones" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudFlagEstado" value="Flag Estado:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudFlagEstado" maxLength="2" value="#{solicitudBean.solicitud.flagEstado}"/>
+					<h:message for="solicitudBeanSolicitudFlagEstado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudUsuarioReg" value="Usuario Reg:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudUsuarioReg" maxLength="30" value="#{solicitudBean.solicitud.usuarioReg}"/>
+					<h:message for="solicitudBeanSolicitudUsuarioReg" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudFechaMod" value="Fecha Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudFechaMod" maxLength="29" value="#{solicitudBean.solicitud.fechaMod}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="solicitudBeanSolicitudFechaMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudUsuarioMod" value="Usuario Mod:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudUsuarioMod" maxLength="30" value="#{solicitudBean.solicitud.usuarioMod}"/>
+					<h:message for="solicitudBeanSolicitudUsuarioMod" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudFechaBorrado" value="Fecha Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudFechaBorrado" maxLength="29" value="#{solicitudBean.solicitud.fechaBorrado}">
+						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
+					</h:inputText>
+					<h:message for="solicitudBeanSolicitudFechaBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudUsuarioBorrado" value="Usuario Borrado:"/>
+				<h:panelGroup>
+					<h:inputText id="solicitudBeanSolicitudUsuarioBorrado" maxLength="30" value="#{solicitudBean.solicitud.usuarioBorrado}"/>
+					<h:message for="solicitudBeanSolicitudUsuarioBorrado" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="solicitudBeanSolicitudSolicitudDetalles" value="Solicitud Detalles:"/>
+				<h:panelGroup>
+					<ui:param name="_collection" value="#{solicitudBean.solicitud.solicitudDetalles}"/>
+					<h:dataTable id="solicitudBeanSolicitudSolicitudDetalles" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id Solicitud Detalle"/>
+							</f:facet>
+							<h:link outcome="/parametros/solicitudDetalle/view">
+								<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+								<h:outputText id="itemIdSolicitudDetalle" value="#{_item.idSolicitudDetalle}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="solicitudDetalleBeanAddIdSolicitudDetalle" value="#{solicitudDetalleBean.add.idSolicitudDetalle}"/>
+								<h:message for="solicitudDetalleBeanAddIdSolicitudDetalle" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Precio Examen"/>
+							</f:facet>
+							<h:link outcome="/parametros/solicitudDetalle/view">
+								<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+								<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}"/>
+							</h:link>
+							<f:facet name="footer">
+								<h:inputText id="solicitudDetalleBeanAddPrecioExamen" value="#{solicitudDetalleBean.add.precioExamen}"/>
+								<h:message for="solicitudDetalleBeanAddPrecioExamen" styleClass="error"/>
+							</f:facet>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+							<f:facet name="footer">
+								<h:commandLink action="#{_collection.add(solicitudDetalleBean.added)}" id="solicitudBeanSolicitudSolicitudDetallesAdd" styleClass="add-button">
+									<f:setPropertyActionListener target="#{solicitudDetalleBean.add.solicitud}" value="#{solicitudBean.solicitud}"/>
+								</h:commandLink>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Grabar" action='#{solicitudBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty solicitudBean.id}'>
+						<h:link value="Cancelar y Volver" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{solicitudBean.id}'/>
+						</h:link>
+						<h:commandLink value="Borrar" action='#{solicitudBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancelar y Volver" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

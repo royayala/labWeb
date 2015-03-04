@@ -10,17 +10,12 @@
 	<ui:define name="header">
 		<table style="width:100%">
 		  <tr>
-		    <td>iLab - Laboratorios Clinicos</td>
+		    <td>iClinica</td>
 		    <td><h:outputText rendered="#{request.getUserPrincipal() == null}" value="  " />
                         <h:outputLink rendered="#{request.getUserPrincipal() == null}" value="#{request.contextPath}/faces/login.xhtml" >
-                            
-                            <h:graphicImage value="/resources/login.png" width="80" height="80"  />
+ 
                         </h:outputLink>
-			 <h:outputText value="  " />
-                        <h:outputLink rendered="#{request.getUserPrincipal() != null}" value="#{request.contextPath}/logoutServlet" >
-                            
-                            <h:graphicImage  value="/resources/logout.jpg" width="80" height="80" />
-                        </h:outputLink>
+			 <h:outputText value="  " />                       
               </td> 
 		  </tr>
 		
@@ -33,10 +28,8 @@
 			Gestionando su Laboratorios Clinicos
 		</h2>
 		
-			Bien venido al sistema de gestión Laboratorios Clinicos.
+			Bienvenido al sistema de informacion de registros clinicos.
 			
-			Con esta herramienta usted podrá tener un mejor control de su empresa, a su ves le mostrara datos preciso del estado de la misma, 
-			para posterior mente realizar los cambios o modificaciones correspondiente para un optimo desempeño 
 			<h:outputText value="#{request.userPrincipal.name}"/> <h:outputText value="#{request.isUserInRole('ADMIN')}"/>
 			<span/>
 			

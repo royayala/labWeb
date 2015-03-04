@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>#{empty pageTitle ? 'Page Title' : pageTitle}</title>
@@ -12,28 +13,61 @@
 
 <h:body>
 	<ui:debug rendered="#{facesContext.application.projectStage == 'Development'}" />
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<h:link id="brandLink" outcome="/index.xhtml" styleClass="brand">
-					<h:outputText value="Welcome to " rendered=" #{request.userPrincipal !=null} "/>
-                    Ilab
-                    <h:outputText value=",  #{request.userPrincipal.name}" rendered="#{request.userPrincipal !=null} "/>
-				</h:link>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li><a href="http://forge.jboss.org/docs/important_plugins/ui-scaffolding.html">How to Customize</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<div class="container forgecontainer">
 		<div id="navigation">
 			<h:link id="homeLink" outcome="/index.xhtml">
-				<img src='#{resource["forge-logo.png"]}' alt="Forge... get hammered" border="0" />
+				<img src='#{resource["iclinicaa.png"]}' alt="Forge... get hammered" border="0" style="width : 200px; height : 202px;"/>
 			</h:link>
+			
+			
+			<p:panelMenu style="width:300px">
+
+		<p:submenu label="Administracion" rendered="#{request.isUserInRole('SUPER')}">
+        	<p:menuitem value="Usuarios" outcome="/generados/usuario/search"/>
+        <p:separator />	
+        </p:submenu>
+        <p:submenu label="Parametros" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN')}">
+        	<p:menuitem value="Pais" outcome="/parametros/pais/search"/>
+        	<p:menuitem value="Departamento" outcome="/parametros/departamento/search"/>
+        	<p:menuitem value="Ciudad" outcome="/parametros/ciudad/search"/>
+        	<p:menuitem value="Cargo" outcome="/parametros/cargo/search"/>            
+            <p:menuitem value="Especialidad" outcome="/parametros/especialidad/search"/>
+            <p:menuitem value="Tipo Persona" outcome="/parametros/tipoPersona/search"/>
+            <p:menuitem value="Clase Paciente" outcome="/parametros/clasePaciente/search"/>
+            <p:menuitem value="Tipo Tarifa" outcome="/parametros/tipoTarifa/search"/>
+            <p:menuitem value="Formas de Pago" outcome="/parametros/formaPago/search"/>
+            <p:menuitem value="Componentes" outcome="/parametros/componente/search"/>
+            <p:menuitem value="Examen" outcome="/parametros/examen/search"/>
+            <p:menuitem value="Tipo de Examen" outcome="/parametros/tipoExamen/search"/>
+            <p:menuitem value="Sub Tipo de Examen" outcome="/parametros/subTipoExamen/search"/>
+        </p:submenu>
+		<p:separator />
+        <p:submenu label="Procesos" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO1')}">
+
+            <p:menuitem value="Persona" outcome="/procesos/persona/search"/>
+            <p:menuitem value="Registro Resultado" outcome="/procesos/registroResultado/search"/>         
+            <p:menuitem value="Solicitud" outcome="/procesos/solicitud/search"/>
+            <p:menuitem value="Toma de Muestra" outcome="/procesos/tomaMuestra/search"/>            
+        </p:submenu>
+        <p:separator />
+        <p:submenu label="Consultas" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
+           
+        </p:submenu>
+        <p:separator />
+        <p:submenu label="Reportes" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
+             
+        </p:submenu>
+        <p:separator />
+        <p:submenu label="Utilitarios" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN')}">
+            
+        </p:submenu>
+        <p:separator />
+    </p:panelMenu>
+			
+			
+<!--			
 			<ul>
 				<li>
 					<h:link outcome="/parametros/cargo/search" value="Cargo"/>
@@ -123,11 +157,15 @@
 					<h:link outcome="/parametros/usuarioRol/search" value="Usuario Rol"/>
 				</li>
 			</ul>
+-->			
 		</div>
 
 		<div id="content">
 			<h1>
 				<ui:insert name="header" />
+						<h:outputLink rendered="#{request.getUserPrincipal() != null}" value="#{request.contextPath}/logoutServlet" >
+                            <h:graphicImage  value="/resources/logout.png" width="80" height="80" />
+                        </h:outputLink>
 			</h1>
 			<h2>
 				<ui:insert name="subheader" />

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{solicitudBean.page}'/>
+		<f:event type="preRenderView" listener='#{solicitudBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Buscar Solicitud "/>
+
+	<ui:define name="header">
+		Solicitud
+	</ui:define>
+
+	<ui:define name="subheader">
+		Buscar Solicitud 
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="solicitudBeanExampleIdSolicitud" value="Id Solicitud:"/>
+						<h:panelGroup>
+							<h:inputText id="solicitudBeanExampleIdSolicitud" value="#{solicitudBean.example.idSolicitud}"/>
+							<h:message for="solicitudBeanExampleIdSolicitud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudBeanExampleFormaPago" value="Forma Pago:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{formaPagoBean.converter}" id="solicitudBeanExampleFormaPago" value="#{solicitudBean.example.formaPago}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{formaPagoBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudBeanExampleFormaPago" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudBeanExamplePersona" value="Persona:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{personaBean.converter}" id="solicitudBeanExamplePersona" value="#{solicitudBean.example.persona}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{personaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudBeanExamplePersona" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudBeanExampleTipoTarifa" value="Tipo Tarifa:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{tipoTarifaBean.converter}" id="solicitudBeanExampleTipoTarifa" value="#{solicitudBean.example.tipoTarifa}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoTarifaBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudBeanExampleTipoTarifa" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="solicitudBeanExampleTrabajador" value="Trabajador:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{trabajadorBean.converter}" id="solicitudBeanExampleTrabajador" value="#{solicitudBean.example.trabajador}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="solicitudBeanExampleTrabajador" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Buscar" action='#{solicitudBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Crear Nuevo" action='#{solicitudBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="solicitudBeanPageItems" styleClass="data-table" value="#{solicitudBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Solicitud"/>
+					</f:facet>
+					<h:link outcome="/parametros/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemIdSolicitud" value="#{_item.idSolicitud}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{solicitudBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
