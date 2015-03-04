@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:forgeview="http://jboss.org/forge/view"
 	template="/resources/scaffold/pageTemplate.xhtml">
 
@@ -34,22 +35,29 @@
 
 	<ui:define name="main">
 		<h:form id="create">
+		   <p:growl id="msgs" showDetail="true"/>
+		
 			<h:messages globalOnly="true" styleClass="error"/>
 
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="examenBeanExamenIdExamen" value="Id Examen:"/>
 				<h:panelGroup>
-					<h:inputText id="examenBeanExamenIdExamen" required="true" value="#{examenBean.examen.idExamen}"/>
+					<h:inputText id="examenBeanExamenIdExamen" required="true" value="#{examenBean.examen.idExamen}" disabled="true"/>
 					<h:message for="examenBeanExamenIdExamen" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
 				<h:outputLabel for="examenBeanExamenSubTipoExamen" value="Sub Tipo Examen:"/>
 				<h:panelGroup>
+
 					<h:selectOneMenu converter="#{subTipoExamenBean.converter}" id="examenBeanExamenSubTipoExamen" value="#{examenBean.examen.subTipoExamen}">
 						<f:selectItem/>
-						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{subTipoExamenBean.all}" var="_item"/>
+						<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{subTipoExamenBean.all}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="examenBeanExamenSubTipoExamen" styleClass="error"/>
+				
+				
+					
+					
 				</h:panelGroup>
 				<h:outputText/>
 				<h:outputLabel for="examenBeanExamenNombre" value="Nombre:"/>
@@ -66,58 +74,17 @@
 				<h:outputText value="*"/>
 				<h:outputLabel for="examenBeanExamenPrecio" value="Precio:"/>
 				<h:panelGroup>
-					<h:inputText id="examenBeanExamenPrecio" value="#{examenBean.examen.precio}"/>
+					<h:inputText id="examenBeanExamenPrecio" value="#{examenBean.examen.precio}" required="true"/>
 					<h:message for="examenBeanExamenPrecio" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText/>
+				<h:outputText value="*"/>
 				<h:outputLabel for="examenBeanExamenFlagEstado" value="Flag Estado:"/>
 				<h:panelGroup>
 					<h:inputText id="examenBeanExamenFlagEstado" maxLength="2" value="#{examenBean.examen.flagEstado}"/>
 					<h:message for="examenBeanExamenFlagEstado" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText/>
-				<h:outputLabel for="examenBeanExamenFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="examenBeanExamenFechaReg" maxLength="29" value="#{examenBean.examen.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="examenBeanExamenFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="examenBeanExamenUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="examenBeanExamenUsuarioReg" maxLength="30" value="#{examenBean.examen.usuarioReg}"/>
-					<h:message for="examenBeanExamenUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="examenBeanExamenFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="examenBeanExamenFechaMod" maxLength="29" value="#{examenBean.examen.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="examenBeanExamenFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="examenBeanExamenUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="examenBeanExamenUsuarioMod" maxLength="30" value="#{examenBean.examen.usuarioMod}"/>
-					<h:message for="examenBeanExamenUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="examenBeanExamenFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="examenBeanExamenFechaBorrado" maxLength="29" value="#{examenBean.examen.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="examenBeanExamenFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="examenBeanExamenUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="examenBeanExamenUsuarioBorrado" maxLength="30" value="#{examenBean.examen.usuarioBorrado}"/>
-					<h:message for="examenBeanExamenUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
+				
 				<h:outputLabel for="examenBeanExamenListaPrecios" value="Lista Precios:"/>
 				<h:panelGroup>
 					<ui:param name="_collection" value="#{examenBean.examen.listaPrecios}"/>

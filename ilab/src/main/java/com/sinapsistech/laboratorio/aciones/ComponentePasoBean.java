@@ -383,12 +383,12 @@ public class ComponentePasoBean implements Serializable
    }
    
    public void onRowEdit(RowEditEvent event) {
-       FacesMessage msg = new FacesMessage("Car Edited", ((ExamenComponente) event.getObject()).getIdExamenComponente()+"");
+       FacesMessage msg = new FacesMessage("Datos Editados", ((ExamenComponente) event.getObject()).getIdExamenComponente()+"");
        FacesContext.getCurrentInstance().addMessage(null, msg);
    }
     
    public void onRowCancel(RowEditEvent event) {
-       FacesMessage msg = new FacesMessage("Edit Cancelled", ((ExamenComponente) event.getObject()).getIdExamenComponente()+"");
+       FacesMessage msg = new FacesMessage("Cancelado", ((ExamenComponente) event.getObject()).getIdExamenComponente()+"");
        FacesContext.getCurrentInstance().addMessage(null, msg);
    }
     

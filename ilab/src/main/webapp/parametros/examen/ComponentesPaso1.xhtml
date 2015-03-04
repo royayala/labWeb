@@ -83,7 +83,7 @@
            </p:cellEditor>
        </p:column>
  
-       <p:column headerText="Posicion" style="width:10%">
+       <p:column headerText="Posicion" style="width:10%" sortBy="#{item.posicion}">
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{item.posicion}" /></f:facet>
                <f:facet name="input"><p:inputText value="#{item.posicion}" style="width:100%" label="Posicion"/></f:facet>
@@ -95,7 +95,7 @@
        </p:column>
        
        <p:column style="width:4%;text-align: center">
-             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="Ver Detalles">
                 <f:setPropertyActionListener value="#{item}" target="#{componentePasoBean.selectedExaComponente}" />
             </p:commandButton>
         </p:column>
@@ -106,7 +106,7 @@
         
    </p:dataTable>
    
-     <p:dialog header="Detalle del componente" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+     <p:dialog header="Detalle del componente" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
         <p:outputPanel id="carDetail" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty componentePasoBean.selectedExaComponente}" columnClasses="label,value">
  
@@ -118,7 +118,7 @@
  
             </p:panelGrid>
             
-            <p:panelGrid columns="6" rendered="#{not empty componentePasoBean.selectedExaComponente}" columnClasses="label,value">
+            <p:panelGrid columns="6" rendered="#{not empty componentePasoBean.selectedExaComponente}" columnClasses="label,value,label,value,label,value">
                 <h:outputText value="Varon A" />
                 <h:inputText value="#{componentePasoBean.selectedExaComponente.valorRefVaronA}" />
  

@@ -76,6 +76,7 @@ public class ExamenBean implements Serializable
    {
       this.examen = examen;
    }
+   
 
    @Inject
    private Conversation conversation;
@@ -83,6 +84,9 @@ public class ExamenBean implements Serializable
    @PersistenceContext(unitName = "ilab-persistence-unit", type = PersistenceContextType.EXTENDED)
    private EntityManager entityManager;
 
+   private int tipoExamen;
+   private List<SubTipoExamen> listaSubTipo;
+   
    public String create()
    {
 
@@ -371,4 +375,50 @@ public class ExamenBean implements Serializable
       this.add = new Examen();
       return added;
    }
+
+/**
+ * @return the tipoExamen
+ */
+public int getTipoExamen() {
+	return tipoExamen;
+}
+
+/**
+ * @param tipoExamen the tipoExamen to set
+ */
+public void setTipoExamen(int tipoExamen) {
+	this.tipoExamen = tipoExamen;
+}
+
+public void onTipoExamenChange() {
+	System.out.println("Entro a la consulta del subtipo "+this.tipoExamen);
+	FacesMessage msg = new FacesMessage("ejecutando la consulta del sub tipo", this.tipoExamen+"");
+    FacesContext.getCurrentInstance().addMessage(null, msg);
+	try {
+		 if(tipoExamen >0){
+		    	String consulta = "select sub from SubTipoExamen sub where sub.tipoExamen.idTipoExamen="+this.getTipoExamen();
+		        listaSubTipo = entityManager.createQuery(consulta).getResultList();
+		    }
+		   
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+   
+}
+
+/**
+ * @return the listaSubTipo
+ */
+public List<SubTipoExamen> getListaSubTipo() {
+	return listaSubTipo;
+}
+
+/**
+ * @param listaSubTipo the listaSubTipo to set
+ */
+public void setListaSubTipo(List<SubTipoExamen> listaSubTipo) {
+	this.listaSubTipo = listaSubTipo;
+}
+
 }
