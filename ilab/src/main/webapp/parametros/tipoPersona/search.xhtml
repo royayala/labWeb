@@ -28,35 +28,11 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="tipoPersonaBeanExampleIdTipoPersona" value="Id Tipo Persona:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoPersonaBeanExampleIdTipoPersona" value="#{tipoPersonaBean.example.idTipoPersona}"/>
-							<h:message for="tipoPersonaBeanExampleIdTipoPersona" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">						
 						<h:outputLabel for="tipoPersonaBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="tipoPersonaBeanExampleNombre" maxLength="50" value="#{tipoPersonaBean.example.nombre}"/>
 							<h:message for="tipoPersonaBeanExampleNombre" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoPersonaBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoPersonaBeanExampleUsuarioReg" maxLength="30" value="#{tipoPersonaBean.example.usuarioReg}"/>
-							<h:message for="tipoPersonaBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoPersonaBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoPersonaBeanExampleUsuarioMod" maxLength="30" value="#{tipoPersonaBean.example.usuarioMod}"/>
-							<h:message for="tipoPersonaBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tipoPersonaBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
-						<h:panelGroup>
-							<h:inputText id="tipoPersonaBeanExampleUsuarioBorrado" maxLength="30" value="#{tipoPersonaBean.example.usuarioBorrado}"/>
-							<h:message for="tipoPersonaBeanExampleUsuarioBorrado" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
 					</h:panelGrid>

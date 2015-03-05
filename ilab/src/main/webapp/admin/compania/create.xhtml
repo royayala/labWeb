@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="companiaBeanCompaniaIdCia" value="Id Cia:"/>
 				<h:panelGroup>
-					<h:inputText id="companiaBeanCompaniaIdCia" required="true" value="#{companiaBean.compania.idCia}"/>
+					<h:inputText id="companiaBeanCompaniaIdCia" required="true" value="#{companiaBean.compania.idCia}" disabled="true"/>
 					<h:message for="companiaBeanCompaniaIdCia" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -63,26 +63,9 @@
 					<h:message for="companiaBeanCompaniaFechaInicioOperaciones" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText/>
-				<h:outputLabel for="companiaBeanCompaniaFlagEstado" value="Flag Estado:"/>
-				<h:panelGroup>
-					<h:inputText id="companiaBeanCompaniaFlagEstado" maxLength="2" value="#{companiaBean.compania.flagEstado}"/>
-					<h:message for="companiaBeanCompaniaFlagEstado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="companiaBeanCompaniaFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="companiaBeanCompaniaFechaReg" maxLength="29" value="#{companiaBean.compania.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="companiaBeanCompaniaFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="companiaBeanCompaniaUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="companiaBeanCompaniaUsuarioReg" maxLength="30" value="#{companiaBean.compania.usuarioReg}"/>
-					<h:message for="companiaBeanCompaniaUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
+				
+				
+				
 				<h:outputLabel for="companiaBeanCompaniaLogo" value="Logo:"/>
 				<h:panelGroup>
 					<h:inputText id="companiaBeanCompaniaLogo" maxLength="100" value="#{companiaBean.compania.logo}"/>
@@ -120,74 +103,7 @@
 					<h:inputText id="companiaBeanCompaniaEmailResponsable" maxLength="100" value="#{companiaBean.compania.emailResponsable}"/>
 					<h:message for="companiaBeanCompaniaEmailResponsable" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="companiaBeanCompaniaUsuarios" value="Usuarios:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{companiaBean.compania.usuarios}"/>
-					<h:dataTable id="companiaBeanCompaniaUsuarios" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Usuario"/>
-							</f:facet>
-							<h:link outcome="/admin/usuario/view">
-								<f:param name="id" value="#{_item.idUsuario}"/>
-								<h:outputText id="itemIdUsuario" value="#{_item.idUsuario}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="usuarioBeanAddIdUsuario" value="#{usuarioBean.add.idUsuario}"/>
-								<h:message for="usuarioBeanAddIdUsuario" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Nombre Completo"/>
-							</f:facet>
-							<h:link outcome="/admin/usuario/view">
-								<f:param name="id" value="#{_item.idUsuario}"/>
-								<h:outputText id="itemNombreCompleto" value="#{_item.nombreCompleto}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="usuarioBeanAddNombreCompleto" maxLength="200" value="#{usuarioBean.add.nombreCompleto}"/>
-								<h:message for="usuarioBeanAddNombreCompleto" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Usuario Login"/>
-							</f:facet>
-							<h:link outcome="/admin/usuario/view">
-								<f:param name="id" value="#{_item.idUsuario}"/>
-								<h:outputText id="itemUsuarioLogin" value="#{_item.usuarioLogin}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="usuarioBeanAddUsuarioLogin" maxLength="30" value="#{usuarioBean.add.usuarioLogin}"/>
-								<h:message for="usuarioBeanAddUsuarioLogin" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Usuario Password"/>
-							</f:facet>
-							<h:link outcome="/admin/usuario/view">
-								<f:param name="id" value="#{_item.idUsuario}"/>
-								<h:outputText id="itemUsuarioPassword" value="#{_item.usuarioPassword}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="usuarioBeanAddUsuarioPassword" maxLength="100" value="#{usuarioBean.add.usuarioPassword}"/>
-								<h:message for="usuarioBeanAddUsuarioPassword" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(usuarioBean.added)}" id="companiaBeanCompaniaUsuariosAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{usuarioBean.add.compania}" value="#{companiaBean.compania}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
+				<h:outputText/>				
 			</h:panelGrid>
 
 			<div class="buttons">

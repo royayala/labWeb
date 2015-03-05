@@ -16,16 +16,16 @@
 	<ui:param name="pageTitle" value="Create Tipo Persona"/>
 
 	<ui:define name="header">
-		Tipo Persona
+		Tipo de Persona
 	</ui:define>
 
 	<ui:define name="subheader">
 		<c:choose>
 			<c:when test='#{!empty tipoPersonaBean.id}'>
-				Edit existing Tipo Persona
+				Editar Tipo de Persona
 			</c:when>
 			<c:otherwise>
-				Create a new Tipo Persona
+				Agregar nuevo Tipo de Persona
 			</c:otherwise>
 		</c:choose>
 	</ui:define>
@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="tipoPersonaBeanTipoPersonaIdTipoPersona" value="Id Tipo Persona:"/>
 				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaIdTipoPersona" required="true" value="#{tipoPersonaBean.tipoPersona.idTipoPersona}"/>
+					<h:inputText id="tipoPersonaBeanTipoPersonaIdTipoPersona" required="true" value="#{tipoPersonaBean.tipoPersona.idTipoPersona}" disabled="true"/>
 					<h:message for="tipoPersonaBeanTipoPersonaIdTipoPersona" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -48,129 +48,7 @@
 					<h:inputText id="tipoPersonaBeanTipoPersonaNombre" maxLength="50" required="true" value="#{tipoPersonaBean.tipoPersona.nombre}"/>
 					<h:message for="tipoPersonaBeanTipoPersonaNombre" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText value="*"/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaFechaReg" maxLength="29" value="#{tipoPersonaBean.tipoPersona.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoPersonaBeanTipoPersonaFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaUsuarioReg" maxLength="30" value="#{tipoPersonaBean.tipoPersona.usuarioReg}"/>
-					<h:message for="tipoPersonaBeanTipoPersonaUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaFechaMod" maxLength="29" value="#{tipoPersonaBean.tipoPersona.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoPersonaBeanTipoPersonaFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaUsuarioMod" maxLength="30" value="#{tipoPersonaBean.tipoPersona.usuarioMod}"/>
-					<h:message for="tipoPersonaBeanTipoPersonaUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaFechaBorrado" maxLength="29" value="#{tipoPersonaBean.tipoPersona.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tipoPersonaBeanTipoPersonaFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tipoPersonaBeanTipoPersonaUsuarioBorrado" maxLength="30" value="#{tipoPersonaBean.tipoPersona.usuarioBorrado}"/>
-					<h:message for="tipoPersonaBeanTipoPersonaUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tipoPersonaBeanTipoPersonaPersonas" value="Personas:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{tipoPersonaBean.tipoPersona.personas}"/>
-					<h:dataTable id="tipoPersonaBeanTipoPersonaPersonas" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Persona"/>
-							</f:facet>
-							<h:link outcome="/parametros/persona/view">
-								<f:param name="id" value="#{_item.idPersona}"/>
-								<h:outputText id="itemIdPersona" value="#{_item.idPersona}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="personaBeanAddIdPersona" value="#{personaBean.add.idPersona}"/>
-								<h:message for="personaBeanAddIdPersona" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Nombre"/>
-							</f:facet>
-							<h:link outcome="/parametros/persona/view">
-								<f:param name="id" value="#{_item.idPersona}"/>
-								<h:outputText id="itemNombre" value="#{_item.nombre}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="personaBeanAddNombre" maxLength="50" value="#{personaBean.add.nombre}"/>
-								<h:message for="personaBeanAddNombre" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Apellido Paterno"/>
-							</f:facet>
-							<h:link outcome="/parametros/persona/view">
-								<f:param name="id" value="#{_item.idPersona}"/>
-								<h:outputText id="itemApellidoPaterno" value="#{_item.apellidoPaterno}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="personaBeanAddApellidoPaterno" maxLength="50" value="#{personaBean.add.apellidoPaterno}"/>
-								<h:message for="personaBeanAddApellidoPaterno" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Apellido Materno"/>
-							</f:facet>
-							<h:link outcome="/parametros/persona/view">
-								<f:param name="id" value="#{_item.idPersona}"/>
-								<h:outputText id="itemApellidoMaterno" value="#{_item.apellidoMaterno}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="personaBeanAddApellidoMaterno" maxLength="50" value="#{personaBean.add.apellidoMaterno}"/>
-								<h:message for="personaBeanAddApellidoMaterno" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Documento Identidad"/>
-							</f:facet>
-							<h:link outcome="/parametros/persona/view">
-								<f:param name="id" value="#{_item.idPersona}"/>
-								<h:outputText id="itemDocumentoIdentidad" value="#{_item.documentoIdentidad}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="personaBeanAddDocumentoIdentidad" value="#{personaBean.add.documentoIdentidad}"/>
-								<h:message for="personaBeanAddDocumentoIdentidad" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(personaBean.added)}" id="tipoPersonaBeanTipoPersonaPersonasAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{personaBean.add.tipoPersona}" value="#{tipoPersonaBean.tipoPersona}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
+				<h:outputText value="*"/>				
 			</h:panelGrid>
 
 			<div class="buttons">
