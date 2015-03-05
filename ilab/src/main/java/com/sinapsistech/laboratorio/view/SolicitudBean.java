@@ -136,28 +136,28 @@ public class SolicitudBean implements Serializable
 
    public String update()
    {
-	  System.out.println("Agarrando el contexto.");
-	  String nombre = request.getUserPrincipal().getName();
+          System.out.println("Agarrando el contexto.");
+          String nombre = request.getUserPrincipal().getName();
       this.conversation.end();
 
       try
       {
          if (this.id == null)
          {
-        	System.out.println("Entro por solicitud nueva");
-        	
-        	this.solicitud.setFechaReg(new Date());
-        	this.solicitud.setUsuarioReg(nombre);
-        	this.solicitud.setFlagEstado("AC");
+                System.out.println("Entro por solicitud nueva");
+
+                this.solicitud.setFechaReg(new Date());
+                this.solicitud.setUsuarioReg(nombre);
+                this.solicitud.setFlagEstado("AC");
             this.entityManager.persist(this.solicitud);
             return "search?faces-redirect=true";
          }
          else
          {
-        	System.out.println("Entro por solicitud actualizada");
-        	
-        	this.solicitud.setFechaMod(new Date());
-        	this.solicitud.setUsuarioMod(nombre);
+                System.out.println("Entro por solicitud actualizada");
+
+                this.solicitud.setFechaMod(new Date());
+                this.solicitud.setUsuarioMod(nombre);
             this.entityManager.merge(this.solicitud);
             return "view?faces-redirect=true&id=" + this.solicitud.getIdSolicitud();
          }
@@ -175,7 +175,7 @@ public class SolicitudBean implements Serializable
 
       try
       {
-    	 /*
+         /*
          Solicitud deletableEntity = findById(getId());
          FormaPago formaPago = deletableEntity.getFormaPago();
          formaPago.getSolicituds().remove(deletableEntity);
@@ -202,11 +202,11 @@ public class SolicitudBean implements Serializable
             this.entityManager.merge(nextInSolicitudDetalles);
          }
          this.entityManager.remove(deletableEntity);*/
-    	  String nombre = request.getUserPrincipal().getName();
+          String nombre = request.getUserPrincipal().getName();
           Solicitud deletableEntity = findById(getId());
-    	  deletableEntity.setUsuarioBorrado(nombre);
-    	  deletableEntity.setFechaBorrado(new Date());
-    	  deletableEntity.setFlagEstado("IN");
+          deletableEntity.setUsuarioBorrado(nombre);
+          deletableEntity.setFechaBorrado(new Date());
+          deletableEntity.setFlagEstado("IN");
          this.entityManager.flush();
          return "search?faces-redirect=true";
       }
@@ -393,4 +393,27 @@ public class SolicitudBean implements Serializable
       this.add = new Solicitud();
       return added;
    }
+
+
+/**
+ * @param totalSolicitud the totalSolicitud to set
+ */
+
+private Double totalSolicitud;
+   
+
+/**
+* @return Saca el total de la solicitud basado en las lineas de Solicitud_Detalle
+*/
+public Double getTotalSolicitud() {
+	String consulta="select sum(s.solicitudDetalles.precioExamen) from Solicitud s where s.idSolicitud="+this.getId();
+	String consulta2 = "select sum(sd.precio_examen) from solicitud s, solicitud_detalle sd where s.id_solicitud = sd.id_solicitud and s.id_solicitud = "+this.getId();
+	double resultado = (double) entityManager.createNativeQuery(consulta2).getSingleResult();
+
+	//double resultado2 = entityManager.createQuery(consulta).executeUpdate()
+	
+	System.out.println("Resultado de traer los totales de la solicitud: "+this.getId()+" resultado "+resultado);
+	return resultado;
+}  
+   
 }
