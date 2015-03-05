@@ -29,7 +29,7 @@
 			<h:outputText id="usuarioRolBeanUsuarioRolCorrelativo" value="#{usuarioRolBean.usuarioRol.correlativo}"/>
 			<h:outputText/>
 			<h:outputLabel for="usuarioRolBeanUsuarioRolUsuario" value="Usuario:"/>
-			<h:link id="usuarioRolBeanUsuarioRolUsuario" outcome="/usuario/view" rendered="#{!empty usuarioRolBean.usuarioRol.usuario}" value="#{usuarioRolBean.usuarioRol.usuario}">
+			<h:link id="usuarioRolBeanUsuarioRolUsuario" outcome="/admin/usuario/view" rendered="#{!empty usuarioRolBean.usuarioRol.usuario}" value="#{usuarioRolBean.usuarioRol.usuario.nombreCompleto}">
 				<f:param name="id" value="#{usuarioRolBean.usuarioRol.usuario.idUsuario}"/>
 			</h:link>
 			<h:outputText/>

@@ -28,35 +28,11 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="clasePacienteBeanExampleIdClasePaciente" value="Id Clase Paciente:"/>
-						<h:panelGroup>
-							<h:inputText id="clasePacienteBeanExampleIdClasePaciente" value="#{clasePacienteBean.example.idClasePaciente}"/>
-							<h:message for="clasePacienteBeanExampleIdClasePaciente" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">						
 						<h:outputLabel for="clasePacienteBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="clasePacienteBeanExampleNombre" maxLength="50" value="#{clasePacienteBean.example.nombre}"/>
 							<h:message for="clasePacienteBeanExampleNombre" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="clasePacienteBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="clasePacienteBeanExampleUsuarioReg" maxLength="30" value="#{clasePacienteBean.example.usuarioReg}"/>
-							<h:message for="clasePacienteBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="clasePacienteBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="clasePacienteBeanExampleUsuarioMod" maxLength="30" value="#{clasePacienteBean.example.usuarioMod}"/>
-							<h:message for="clasePacienteBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="clasePacienteBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
-						<h:panelGroup>
-							<h:inputText id="clasePacienteBeanExampleUsuarioBorrado" maxLength="30" value="#{clasePacienteBean.example.usuarioBorrado}"/>
-							<h:message for="clasePacienteBeanExampleUsuarioBorrado" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
 					</h:panelGrid>
