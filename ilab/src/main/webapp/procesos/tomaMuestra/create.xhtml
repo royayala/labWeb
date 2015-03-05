@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="tomaMuestraBeanTomaMuestraIdTomaMuestra" value="Id Toma Muestra:"/>
 				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraIdTomaMuestra" required="true" value="#{tomaMuestraBean.tomaMuestra.idTomaMuestra}"/>
+					<h:inputText id="tomaMuestraBeanTomaMuestraIdTomaMuestra" required="true" value="#{tomaMuestraBean.tomaMuestra.idTomaMuestra}" disable="true"/>
 					<h:message for="tomaMuestraBeanTomaMuestraIdTomaMuestra" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -47,7 +47,7 @@
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="tomaMuestraBeanTomaMuestraSolicitudDetalle" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle}">
 						<f:selectItem/>
-						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
+						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.allSolicitudesNueva}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="tomaMuestraBeanTomaMuestraSolicitudDetalle" styleClass="error"/>
 				</h:panelGroup>

@@ -342,6 +342,21 @@ public class SolicitudDetalleBean implements Serializable
       return this.count;
    }
 
+   
+   /*
+    * Support listing and POSTing back SolicitudDetalle entities (e.g. from inside an
+    * HtmlSelectOneMenu)
+    */
+
+   public List<SolicitudDetalle> getAllSolicitudesNueva()
+   {
+
+      CriteriaQuery<SolicitudDetalle> criteria = this.entityManager
+            .getCriteriaBuilder().createQuery(SolicitudDetalle.class);
+      String consulta = "select sd from SolicitudDetalle sd where sd.flagEstado='AC'";
+      return this.entityManager.createQuery(consulta).getResultList();
+   }
+   
    /*
     * Support listing and POSTing back SolicitudDetalle entities (e.g. from inside an
     * HtmlSelectOneMenu)

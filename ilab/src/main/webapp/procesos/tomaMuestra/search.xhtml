@@ -84,6 +84,42 @@
 						<h:outputText id="itemIdTomaMuestra" value="#{_item.idTomaMuestra}"/>
 					</h:link>
 				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="fecha toma"/>
+					</f:facet>
+					<h:link outcome="/procesos/tomaMuestra/view">
+						<f:param name="id" value="#{_item.idTomaMuestra}"/>
+						<h:outputText id="itemIdTomaMuestraFecha" value="#{_item.fechaTomaMuestra}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cliente"/>
+					</f:facet>
+					<h:link outcome="/procesos/tomaMuestra/view">
+						<f:param name="id" value="#{_item.idTomaMuestra}"/>
+						<h:outputText id="itemIdTomaMuestraCliente" value="#{_item.solicitudDetalle.solicitud.persona.nombre} #{_item.solicitudDetalle.solicitud.persona.apellidoPaterno} #{_item.solicitudDetalle.solicitud.persona.apellidoMaterno}"/>
+					</h:link>
+				</h:column>				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Examen"/>
+					</f:facet>
+					<h:link outcome="/procesos/tomaMuestra/view">
+						<f:param name="id" value="#{_item.idTomaMuestra}"/>
+						<h:outputText id="itemIdTomaMuestraExamen" value="#{_item.solicitudDetalle.examen.nombre}"/>
+					</h:link>
+				</h:column>				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Examen Estado"/>
+					</f:facet>
+					<h:link outcome="/procesos/tomaMuestra/view">
+						<f:param name="id" value="#{_item.idTomaMuestra}"/>
+						<h:outputText id="itemIdTomaMuestraExamenEstado" value="#{_item.solicitudDetalle.flagEstado}"/>
+					</h:link>
+				</h:column>	
 			</h:dataTable>
 			<ui:include src="/resources/scaffold/paginator.xhtml">
 				<ui:param name="paginatorBean" value='#{tomaMuestraBean}'/>
