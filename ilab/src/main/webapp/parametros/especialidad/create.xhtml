@@ -22,10 +22,10 @@
 	<ui:define name="subheader">
 		<c:choose>
 			<c:when test='#{!empty especialidadBean.id}'>
-				Edit existing Especialidad
+				Editar Especialidad
 			</c:when>
 			<c:otherwise>
-				Create a new Especialidad
+				Agregar nueva Especialidad
 			</c:otherwise>
 		</c:choose>
 	</ui:define>
@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="especialidadBeanEspecialidadIdEspecialidad" value="Id Especialidad:"/>
 				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadIdEspecialidad" required="true" value="#{especialidadBean.especialidad.idEspecialidad}"/>
+					<h:inputText id="especialidadBeanEspecialidadIdEspecialidad" required="true" value="#{especialidadBean.especialidad.idEspecialidad}" disabled="true"/>
 					<h:message for="especialidadBeanEspecialidadIdEspecialidad" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -48,77 +48,7 @@
 					<h:inputText id="especialidadBeanEspecialidadNombre" maxLength="50" required="true" value="#{especialidadBean.especialidad.nombre}"/>
 					<h:message for="especialidadBeanEspecialidadNombre" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText value="*"/>
-				<h:outputLabel for="especialidadBeanEspecialidadFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadFechaReg" maxLength="29" value="#{especialidadBean.especialidad.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="especialidadBeanEspecialidadFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="especialidadBeanEspecialidadUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadUsuarioReg" maxLength="30" value="#{especialidadBean.especialidad.usuarioReg}"/>
-					<h:message for="especialidadBeanEspecialidadUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="especialidadBeanEspecialidadFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadFechaMod" maxLength="29" value="#{especialidadBean.especialidad.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="especialidadBeanEspecialidadFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="especialidadBeanEspecialidadUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadUsuarioMod" maxLength="30" value="#{especialidadBean.especialidad.usuarioMod}"/>
-					<h:message for="especialidadBeanEspecialidadUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="especialidadBeanEspecialidadFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadFechaBorrado" maxLength="29" value="#{especialidadBean.especialidad.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="especialidadBeanEspecialidadFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="especialidadBeanEspecialidadUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="especialidadBeanEspecialidadUsuarioBorrado" maxLength="30" value="#{especialidadBean.especialidad.usuarioBorrado}"/>
-					<h:message for="especialidadBeanEspecialidadUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="especialidadBeanEspecialidadTrabajadors" value="Trabajadors:"/>
-				<h:panelGroup>
-					<ui:param name="_collection" value="#{especialidadBean.especialidad.trabajadors}"/>
-					<h:dataTable id="especialidadBeanEspecialidadTrabajadors" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id Trabajador"/>
-							</f:facet>
-							<h:link outcome="/parametros/trabajador/view">
-								<f:param name="id" value="#{_item.idTrabajador}"/>
-								<h:outputText id="itemIdTrabajador" value="#{_item.idTrabajador}"/>
-							</h:link>
-							<f:facet name="footer">
-								<h:inputText id="trabajadorBeanAddIdTrabajador" value="#{trabajadorBean.add.idTrabajador}"/>
-								<h:message for="trabajadorBeanAddIdTrabajador" styleClass="error"/>
-							</f:facet>
-						</h:column>
-						<h:column footerClass="remove-column" headerClass="remove-column">
-							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
-							<f:facet name="footer">
-								<h:commandLink action="#{_collection.add(trabajadorBean.added)}" id="especialidadBeanEspecialidadTrabajadorsAdd" styleClass="add-button">
-									<f:setPropertyActionListener target="#{trabajadorBean.add.especialidad}" value="#{especialidadBean.especialidad}"/>
-								</h:commandLink>
-							</f:facet>
-						</h:column>
-					</h:dataTable>
-				</h:panelGroup>
-				<h:outputText/>
+				<h:outputText value="*"/>				
 			</h:panelGrid>
 
 			<div class="buttons">

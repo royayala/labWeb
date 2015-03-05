@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:forgeview="http://jboss.org/forge/view"
+	xmlns:p="http://primefaces.org/ui"
 	template="/resources/scaffold/pageTemplate.xhtml">
 
 	<f:metadata>
@@ -100,32 +101,82 @@
 			<h:outputLabel for="personaBeanPersonaUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="personaBeanPersonaUsuarioBorrado" value="#{personaBean.persona.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="personaBeanPersonaTrabajadors" value="Trabajadors:"/>
+			</h:panelGrid>
+			
+			<h:panelGrid>
+			
+			<p:tabView>
+		    <p:tab title="Trabajador">
+            <h:panelGrid columns="2" cellpadding="10" style=" width : 900px;">			
 			<h:dataTable id="personaBeanPersonaTrabajadors" styleClass="data-table" value="#{forgeview:asList(personaBean.persona.trabajadors)}" var="_item">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Id Trabajador"/>
 					</f:facet>
-					<h:link outcome="/parametros/trabajador/view">
+					<h:link outcome="/generados/trabajador/view">
 						<f:param name="id" value="#{_item.idTrabajador}"/>
 						<h:outputText id="itemIdTrabajador" value="#{_item.idTrabajador}"/>
 					</h:link>
 				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cargo"/>
+					</f:facet>
+					<h:link outcome="/generados/trabajador/view">
+						<f:param name="id" value="#{_item.idTrabajador}"/>
+						<h:outputText id="itemIdTrabajador" value="#{_item.cargo.nombre}"/>
+					</h:link>
+				</h:column>
 			</h:dataTable>
 			<h:outputText/>
-			<h:outputLabel for="personaBeanPersonaSolicituds" value="Solicituds:"/>
+			</h:panelGrid>
+            </p:tab>
+			
+			<p:tab title="Solicitudes">
+            <h:panelGrid columns="2" cellpadding="10" style=" width : 900px;">			
 			<h:dataTable id="personaBeanPersonaSolicituds" styleClass="data-table" value="#{forgeview:asList(personaBean.persona.solicituds)}" var="_item">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Id Solicitud"/>
 					</f:facet>
-					<h:link outcome="/parametros/solicitud/view">
+					<h:link outcome="/procesos/solicitud/view">
 						<f:param name="id" value="#{_item.idSolicitud}"/>
 						<h:outputText id="itemIdSolicitud" value="#{_item.idSolicitud}"/>
 					</h:link>
 				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Forma de Pago"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemIdSolicitud" value="#{_item.formaPago.nombre}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo de Tarifa"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemIdSolicitud" value="#{_item.tipoTarifa.nombre}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value=""/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemIdSolicitud" value="#{_item.fechaSolicitud}"/>
+					</h:link>
+				</h:column>
 			</h:dataTable>
 			<h:outputText/>
+			</h:panelGrid>
+            </p:tab>
+            
+		</p:tabView>
 		</h:panelGrid>
 
 		<div class="buttons">
@@ -133,6 +184,7 @@
 			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
 			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
 		</div>
+
 	</ui:define>
 
 </ui:composition>

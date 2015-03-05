@@ -28,37 +28,13 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="especialidadBeanExampleIdEspecialidad" value="Id Especialidad:"/>
-						<h:panelGroup>
-							<h:inputText id="especialidadBeanExampleIdEspecialidad" value="#{especialidadBean.example.idEspecialidad}"/>
-							<h:message for="especialidadBeanExampleIdEspecialidad" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">						
 						<h:outputLabel for="especialidadBeanExampleNombre" value="Nombre:"/>
 						<h:panelGroup>
 							<h:inputText id="especialidadBeanExampleNombre" maxLength="50" value="#{especialidadBean.example.nombre}"/>
 							<h:message for="especialidadBeanExampleNombre" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="especialidadBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="especialidadBeanExampleUsuarioReg" maxLength="30" value="#{especialidadBean.example.usuarioReg}"/>
-							<h:message for="especialidadBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="especialidadBeanExampleUsuarioMod" value="Usuario Mod:"/>
-						<h:panelGroup>
-							<h:inputText id="especialidadBeanExampleUsuarioMod" maxLength="30" value="#{especialidadBean.example.usuarioMod}"/>
-							<h:message for="especialidadBeanExampleUsuarioMod" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="especialidadBeanExampleUsuarioBorrado" value="Usuario Borrado:"/>
-						<h:panelGroup>
-							<h:inputText id="especialidadBeanExampleUsuarioBorrado" maxLength="30" value="#{especialidadBean.example.usuarioBorrado}"/>
-							<h:message for="especialidadBeanExampleUsuarioBorrado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>						
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{especialidadBean.search}' styleClass="btn btn-primary"/>

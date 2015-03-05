@@ -30,22 +30,22 @@
 			<h:outputText id="solicitudBeanSolicitudIdSolicitud" value="#{solicitudBean.solicitud.idSolicitud}"/>
 			<h:outputText/>
 			<h:outputLabel for="solicitudBeanSolicitudFormaPago" value="Forma Pago:"/>
-			<h:link id="solicitudBeanSolicitudFormaPago" outcome="/formaPago/view" rendered="#{!empty solicitudBean.solicitud.formaPago}" value="#{solicitudBean.solicitud.formaPago}">
+			<h:link id="solicitudBeanSolicitudFormaPago" outcome="/procesos/formaPago/view" rendered="#{!empty solicitudBean.solicitud.formaPago}" value="#{solicitudBean.solicitud.formaPago.nombre}">
 				<f:param name="id" value="#{solicitudBean.solicitud.formaPago.idFormaPago}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="solicitudBeanSolicitudPersona" value="Persona:"/>
-			<h:link id="solicitudBeanSolicitudPersona" outcome="/persona/view" rendered="#{!empty solicitudBean.solicitud.persona}" value="#{solicitudBean.solicitud.persona}">
+			<h:link id="solicitudBeanSolicitudPersona" outcome="/procesos/persona/view" rendered="#{!empty solicitudBean.solicitud.persona}" value="#{solicitudBean.solicitud.persona.nombre}">
 				<f:param name="id" value="#{solicitudBean.solicitud.persona.idPersona}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="solicitudBeanSolicitudTipoTarifa" value="Tipo Tarifa:"/>
-			<h:link id="solicitudBeanSolicitudTipoTarifa" outcome="/tipoTarifa/view" rendered="#{!empty solicitudBean.solicitud.tipoTarifa}" value="#{solicitudBean.solicitud.tipoTarifa}">
+			<h:link id="solicitudBeanSolicitudTipoTarifa" outcome="/procesos/tipoTarifa/view" rendered="#{!empty solicitudBean.solicitud.tipoTarifa}" value="#{solicitudBean.solicitud.tipoTarifa.nombre}">
 				<f:param name="id" value="#{solicitudBean.solicitud.tipoTarifa.idTipoTarifa}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="solicitudBeanSolicitudTrabajador" value="Trabajador:"/>
-			<h:link id="solicitudBeanSolicitudTrabajador" outcome="/trabajador/view" rendered="#{!empty solicitudBean.solicitud.trabajador}" value="#{solicitudBean.solicitud.trabajador}">
+			<h:link id="solicitudBeanSolicitudTrabajador" outcome="/procesos/trabajador/view" rendered="#{!empty solicitudBean.solicitud.trabajador}" value="#{solicitudBean.solicitud.trabajador.persona.nombre}">
 				<f:param name="id" value="#{solicitudBean.solicitud.trabajador.idTrabajador}"/>
 			</h:link>
 			<h:outputText/>
@@ -90,7 +90,7 @@
 					<f:facet name="header">
 						<h:outputText value="Id Solicitud Detalle"/>
 					</f:facet>
-					<h:link outcome="/parametros/solicitudDetalle/view">
+					<h:link outcome="/procesos/solicitudDetalle/view">
 						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
 						<h:outputText id="itemIdSolicitudDetalle" value="#{_item.idSolicitudDetalle}"/>
 					</h:link>
@@ -99,7 +99,7 @@
 					<f:facet name="header">
 						<h:outputText value="Precio Examen"/>
 					</f:facet>
-					<h:link outcome="/parametros/solicitudDetalle/view">
+					<h:link outcome="/procesos/solicitudDetalle/view">
 						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
 						<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}"/>
 					</h:link>

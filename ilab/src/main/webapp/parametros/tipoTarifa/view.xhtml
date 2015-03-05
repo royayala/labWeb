@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:forgeview="http://jboss.org/forge/view"
+	xmlns:p="http://primefaces.org/ui"
 	template="/resources/scaffold/pageTemplate.xhtml">
 
 	<f:metadata>
@@ -65,20 +66,30 @@
 			<h:outputLabel for="tipoTarifaBeanTipoTarifaUsuarioBorrado" value="Usuario Borrado:"/>
 			<h:outputText id="tipoTarifaBeanTipoTarifaUsuarioBorrado" value="#{tipoTarifaBean.tipoTarifa.usuarioBorrado}"/>
 			<h:outputText/>
-			<h:outputLabel for="tipoTarifaBeanTipoTarifaSolicituds" value="Solicituds:"/>
+			</h:panelGrid>
+			
+			<h:panelGrid>
+			
+			<p:tabView>
+		    <p:tab title="Solicitud">
+            <h:panelGrid columns="2" cellpadding="10">
 			<h:dataTable id="tipoTarifaBeanTipoTarifaSolicituds" styleClass="data-table" value="#{forgeview:asList(tipoTarifaBean.tipoTarifa.solicituds)}" var="_item">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Id Solicitud"/>
 					</f:facet>
-					<h:link outcome="/parametros/solicitud/view">
+					<h:link outcome="/procesos/solicitud/view">
 						<f:param name="id" value="#{_item.idSolicitud}"/>
 						<h:outputText id="itemIdSolicitud" value="#{_item.idSolicitud}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>
 			<h:outputText/>
-			<h:outputLabel for="tipoTarifaBeanTipoTarifaListaPrecios" value="Lista Precios:"/>
+			</h:panelGrid>
+            </p:tab>
+            
+            <p:tab title="Precios">
+            <h:panelGrid columns="2" cellpadding="10" style=" width : 900px;">
 			<h:dataTable id="tipoTarifaBeanTipoTarifaListaPrecios" styleClass="data-table" value="#{forgeview:asList(tipoTarifaBean.tipoTarifa.listaPrecios)}" var="_item">
 				<h:column>
 					<f:facet name="header">
@@ -122,6 +133,9 @@
 				</h:column>
 			</h:dataTable>
 			<h:outputText/>
+			</h:panelGrid>
+            </p:tab>
+		</p:tabView>
 		</h:panelGrid>
 
 		<div class="buttons">

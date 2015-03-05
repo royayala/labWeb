@@ -30,17 +30,17 @@
 			<h:outputText id="solicitudDetalleBeanSolicitudDetalleIdSolicitudDetalle" value="#{solicitudDetalleBean.solicitudDetalle.idSolicitudDetalle}"/>
 			<h:outputText/>
 			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleExamen" value="Examen:"/>
-			<h:link id="solicitudDetalleBeanSolicitudDetalleExamen" outcome="/examen/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.examen}" value="#{solicitudDetalleBean.solicitudDetalle.examen}">
+			<h:link id="solicitudDetalleBeanSolicitudDetalleExamen" outcome="/procesos/examen/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.examen}" value="#{solicitudDetalleBean.solicitudDetalle.examen}">
 				<f:param name="id" value="#{solicitudDetalleBean.solicitudDetalle.examen.idExamen}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleListaPrecio" value="Lista Precio:"/>
-			<h:link id="solicitudDetalleBeanSolicitudDetalleListaPrecio" outcome="/listaPrecio/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.listaPrecio}" value="#{solicitudDetalleBean.solicitudDetalle.listaPrecio}">
+			<h:link id="solicitudDetalleBeanSolicitudDetalleListaPrecio" outcome="/procesos/listaPrecio/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.listaPrecio}" value="#{solicitudDetalleBean.solicitudDetalle.listaPrecio}">
 				<f:param name="id" value="#{solicitudDetalleBean.solicitudDetalle.listaPrecio.idListaPrecio}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleSolicitud" value="Solicitud:"/>
-			<h:link id="solicitudDetalleBeanSolicitudDetalleSolicitud" outcome="/solicitud/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.solicitud}" value="#{solicitudDetalleBean.solicitudDetalle.solicitud}">
+			<h:link id="solicitudDetalleBeanSolicitudDetalleSolicitud" outcome="/procesos/solicitud/view" rendered="#{!empty solicitudDetalleBean.solicitudDetalle.solicitud}" value="#{solicitudDetalleBean.solicitudDetalle.solicitud}">
 				<f:param name="id" value="#{solicitudDetalleBean.solicitudDetalle.solicitud.idSolicitud}"/>
 			</h:link>
 			<h:outputText/>

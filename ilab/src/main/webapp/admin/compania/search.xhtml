@@ -28,13 +28,7 @@
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
 
-					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="companiaBeanExampleIdCia" value="Id Cia:"/>
-						<h:panelGroup>
-							<h:inputText id="companiaBeanExampleIdCia" value="#{companiaBean.example.idCia}"/>
-							<h:message for="companiaBeanExampleIdCia" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+					<h:panelGrid columnClasses="label,component,required" columns="3">						
 						<h:outputLabel for="companiaBeanExampleNombreCorto" value="Nombre Corto:"/>
 						<h:panelGroup>
 							<h:inputText id="companiaBeanExampleNombreCorto" maxLength="20" value="#{companiaBean.example.nombreCorto}"/>
@@ -46,19 +40,7 @@
 							<h:inputText id="companiaBeanExampleNombreLargo" maxLength="200" value="#{companiaBean.example.nombreLargo}"/>
 							<h:message for="companiaBeanExampleNombreLargo" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="companiaBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="companiaBeanExampleFlagEstado" maxLength="2" value="#{companiaBean.example.flagEstado}"/>
-							<h:message for="companiaBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="companiaBeanExampleUsuarioReg" value="Usuario Reg:"/>
-						<h:panelGroup>
-							<h:inputText id="companiaBeanExampleUsuarioReg" maxLength="30" value="#{companiaBean.example.usuarioReg}"/>
-							<h:message for="companiaBeanExampleUsuarioReg" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>						
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{companiaBean.search}' styleClass="btn btn-primary"/>
