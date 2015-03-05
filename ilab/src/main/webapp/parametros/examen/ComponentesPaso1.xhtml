@@ -53,9 +53,11 @@
 			
 			
 		</h:panelGrid>
-
-		<h:panelGrid>
 		
+	
+	  <!-- COMPONENTES DEL BEAN  -->	
+		<h:panelGrid>
+
 		<h:form id="form">
    <p:growl id="msgs" showDetail="true"/>
  
@@ -98,6 +100,12 @@
              <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="Ver Detalles">
                 <f:setPropertyActionListener value="#{item}" target="#{componentePasoBean.selectedExaComponente}" />
             </p:commandButton>
+        </p:column>
+        
+        <p:column style="width:32px">
+        <p:commandLink actionListener="#{componentePasoBean.eliminarRegistro(item)}" update=":form:cars1" >
+                  <span class="ui-icon ui-icon-trash"></span>
+               </p:commandLink>
         </p:column>
         
    </p:dataTable>
@@ -147,27 +155,27 @@
             </p:panelGrid>
         </p:outputPanel>
     </p:dialog> 
-    
-    
-    
-   </h:form>
-   
-   
+
+   </h:form>   
 		</h:panelGrid>
+			
+	  <!-- FIN COMPONENTES DEL BEAN  -->	
 		
-		<!-- boton para adicionar un nuevo componente -->
+		
+		<!-- boton para adicionar un nuevo componente2 -->
 			<h:panelGrid columns="1" cellpadding="5">
 			    <p:commandButton value="Adicionar Componente" type="button" onclick="PF('dlg1').show();" />
 			</h:panelGrid>
 			 
-			<p:dialog header="Adicionar Componente" widgetVar="dlg1" minHeight="600">
+			<p:dialog header="Adicionar Componente2" widgetVar="dlg1" minHeight="700">
 			    <h:outputText value="Adicionar componentes al Examen:" />
 			    <h:form>
+			    	<p:growl id="growl" life="2000" />
 				    <h:panelGrid columns="3" cellpadding="5">
 				        <h:outputLabel for="componente" value="Componente:" />
 				        <p:selectCheckboxMenu id="componente" value="#{componentePasoBean.componenteSeleccionado}" label="Componente"
 				                              filter="true" filterMatchMode="startsWith" panelStyle="width:550px">
-				            <f:selectItems value="#{componentePasoBean.listaComponentes}" itemLabel="#{comp.nombre}" var="comp"/>
+				            <f:selectItems value="#{componentePasoBean.listaComponentes}" itemLabel="#{comp.nombre}" var="comp" itemValue="#{comp.idComponente}"/>
 				        </p:selectCheckboxMenu>
 				        <p:commandLink value="Seleccionar" update="display" />
 				    </h:panelGrid>
@@ -176,11 +184,13 @@
 				        <p:dataList value="#{componentePasoBean.componenteSeleccionado}" var="var" emptyMessage="Ningun componente seleccionado">
 				            #{var}
 				        </p:dataList>
-				        
-				         <ui:repeat value="#{componentePasoBean.componenteSeleccionado}" var="var">
-			                <h:outputText value="#{var}" style="display:block"/>
-			            </ui:repeat>
+
 				    </p:outputPanel>
+				    
+				    <p:commandLink id="ajax" update="growl,:form:cars1 " actionListener="#{componentePasoBean.buttonActionAddComponente}">
+				        <h:outputText value="Adicionar componente" />
+				    </p:commandLink>
+				    
 				</h:form>
 			</p:dialog>
 			 

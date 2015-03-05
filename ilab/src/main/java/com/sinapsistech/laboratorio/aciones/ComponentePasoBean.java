@@ -35,10 +35,11 @@ import com.sinapsistech.laboratorio.view.ComponenteBean;
 
 import java.util.Iterator;
 
-import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+
 
 /**
  * Backing bean for Examen entities.
@@ -478,4 +479,77 @@ public List<Componente> getComponenteSeleccionado() {
 public void setComponenteSeleccionado(List<Componente> componenteSeleccionado) {
 	this.componenteSeleccionado = componenteSeleccionado;
 }
+
+/**
+ * @return adicionar el componente seleccionado
+ */
+public void buttonActionAddComponente(ActionEvent actionEvent) {
+	System.out.println("Componente seleccionados "+this.componenteSeleccionado.toString());
+	try {
+		 System.out.println("recorriendo los componentes");
+	     
+     	 
+		 
+    	/*  for(Iterator<Componente> it = componenteSeleccionado.iterator(); it.hasNext();) {
+    		  Componente oComponente = it.next();
+    		  System.out.print("Componente "+oComponente.getIdComponente());
+    		  System.out.println(" Nombre "+oComponente.getNombre());
+
+    	  
+    	  for(Componente comp : componenteSeleccionado){
+    		  System.out.print("Componentezzz: "+comp);
+    	  }
+    	      	  }*/
+    	  
+		 Componente oComponente = new Componente();
+    	  for(int i=0; i< componenteSeleccionado.size(); i++){
+    		  
+    		  Object ob = componenteSeleccionado.get(i);
+    		  System.out.println("componente seleccionado "+ob.toString());
+    		  
+    		  int idComponente = Integer.parseInt(ob.toString());
+    		  System.out.println("ID Componente "+idComponente);
+    		  
+    		  //insertamos en Examen_componente
+    		  
+    		  try {
+    			   oComponente = entityManager.find(Componente.class, idComponente);
+    				ExamenComponente oGrabar = new ExamenComponente();
+    	    		oGrabar.setComponente(oComponente);
+    	    		oGrabar.setExamen(this.getExamen());
+    	    		oGrabar.setPosicion(i);
+    	    		
+    	    		entityManager.persist(oGrabar);
+    	    		entityManager.flush();
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("No se encontro el componente"+ob.toString());
+						e.printStackTrace();
+						return;
+					}
+    		  
+    	
+    		  
+    	  }
+    	  
+    	//limpiar las listas de seleccionados  
+		componenteSeleccionado.clear();
+    	  
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	
+    addMessage("Adicionando exitosamente los componentes al examen ");
+    
+
+}
+
+
+public void addMessage(String summary) {
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+    FacesContext.getCurrentInstance().addMessage(null, message);
+}
+
+
 }
