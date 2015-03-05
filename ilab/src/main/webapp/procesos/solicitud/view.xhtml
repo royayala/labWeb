@@ -4,6 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui"
+	
 	xmlns:forgeview="http://jboss.org/forge/view"
 	template="/resources/scaffold/pageTemplate.xhtml">
 
@@ -97,13 +99,33 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
+						<h:outputText value="Examen"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitudDetalle/view">
+						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+						<h:outputText id="itemPrecioExamenNombre" value="#{_item.examen.nombre}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
 						<h:outputText value="Precio Examen"/>
 					</f:facet>
 					<h:link outcome="/procesos/solicitudDetalle/view">
 						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
-						<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}"/>
+						<h:outputText id="itemPrecioExamen" value="#{_item.precioExamen}" style="display:block; text-align:right">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</h:outputText>
 					</h:link>
 				</h:column>
+				
+			  <f:facet name="footer">
+        <h:panelGroup style="display:block; text-align:right" >
+            <h:outputText value="Total Solicitud : " />
+           
+        </h:panelGroup>
+    </f:facet>
+            
+				
 			</h:dataTable>
 			<h:outputText/>
 		</h:panelGrid>
