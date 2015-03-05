@@ -61,7 +61,7 @@
 		<h:form id="form">
    <p:growl id="msgs" showDetail="true"/>
  
-   <p:dataTable id="cars1" var="item" value="#{forgeview:asList(componentePasoBean.examen.examenComponentes)}" editable="true" style="margin-bottom:20px">
+   <p:dataTable id="cars1" var="item" value="#{forgeview:asList(componentePasoBean.examen.examenComponentes)}" editable="true" style="margin-bottom:20px" rendered="true">
        <f:facet name="header">
            Componentes del Examen
        </f:facet>
@@ -164,7 +164,7 @@
 		
 		<!-- boton para adicionar un nuevo componente2 -->
 			<h:panelGrid columns="1" cellpadding="5">
-			    <p:commandButton value="Adicionar Componente" type="button" onclick="PF('dlg1').show();" />
+			    <p:commandButton value="Adicionar Componente" type="button" onclick="PF('dlg1').show();" update="@form" ajax="true"/>
 			</h:panelGrid>
 			 
 			<p:dialog header="Adicionar Componente2" widgetVar="dlg1" minHeight="700">
@@ -187,7 +187,7 @@
 
 				    </p:outputPanel>
 				    
-				    <p:commandLink id="ajax" update="growl,:form:cars1 " actionListener="#{componentePasoBean.buttonActionAddComponente}">
+				    <p:commandLink id="ajax" update="growl :form:cars1 @form " actionListener="#{componentePasoBean.buttonActionAddComponente}" ajax="true">
 				        <h:outputText value="Adicionar componente" />
 				    </p:commandLink>
 				    
