@@ -37,6 +37,11 @@ import com.sinapsistech.laboratorio.model.TomaMuestra;
 
 import java.util.Iterator;
 
+
+import org.primefaces.event.CellEditEvent;
+
+
+
 /**
  * Backing bean for SolicitudDetalle entities.
  * <p/>
@@ -421,5 +426,19 @@ public class SolicitudDetalleBean implements Serializable
       SolicitudDetalle added = this.add;
       this.add = new SolicitudDetalle();
       return added;
+   }
+   
+   /*
+    * para el manejo de la edicion de los resultados. 
+    */
+   
+   public void onCellEdit(CellEditEvent event) {
+       Object oldValue = event.getOldValue();
+       Object newValue = event.getNewValue();
+        
+       if(newValue != null && !newValue.equals(oldValue)) {
+           FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+           FacesContext.getCurrentInstance().addMessage(null, msg);
+       }
    }
 }

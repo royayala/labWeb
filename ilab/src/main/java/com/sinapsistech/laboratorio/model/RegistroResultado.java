@@ -42,6 +42,10 @@ public class RegistroResultado implements java.io.Serializable
    private Date fechaBorrado;
    private String usuarioBorrado;
 
+   //adicionado por roy ayala
+   private Componente componente;
+   private Examen examen;
+   
    public RegistroResultado()
    {
    }
@@ -98,6 +102,34 @@ public class RegistroResultado implements java.io.Serializable
       this.solicitudDetalle = solicitudDetalle;
    }
 
+   //@Todo: adicionado por roy ayala
+   
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "id_componente")
+   public Componente getComponente()
+   {
+      return this.componente;
+   }
+
+   public void setComponente(Componente componente)
+   {
+      this.componente = componente;
+   }
+
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "id_examen")
+   public Examen getExamen()
+   {
+      return this.examen;
+   }
+
+   public void setExamen(Examen examen)
+   {
+      this.examen = examen;
+   }
+
+   
+   
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "id_trabajador", nullable = false)
    public Trabajador getTrabajador()
