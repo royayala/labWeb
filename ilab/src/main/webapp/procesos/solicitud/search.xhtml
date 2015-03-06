@@ -40,7 +40,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{formaPagoBean.converter}" id="solicitudBeanExampleFormaPago" value="#{solicitudBean.example.formaPago}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{formaPagoBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{formaPagoBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="solicitudBeanExampleFormaPago" styleClass="error"/>
 						</h:panelGroup>
@@ -49,7 +49,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{personaBean.converter}" id="solicitudBeanExamplePersona" value="#{solicitudBean.example.persona}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{personaBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)} #{forgeview:display(_item.apellidoPaterno)}" itemValue="#{_item}" value="#{personaBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="solicitudBeanExamplePersona" styleClass="error"/>
 						</h:panelGroup>
@@ -58,7 +58,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{tipoTarifaBean.converter}" id="solicitudBeanExampleTipoTarifa" value="#{solicitudBean.example.tipoTarifa}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{tipoTarifaBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.nombre)}" itemValue="#{_item}" value="#{tipoTarifaBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="solicitudBeanExampleTipoTarifa" styleClass="error"/>
 						</h:panelGroup>
@@ -67,7 +67,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{trabajadorBean.converter}" id="solicitudBeanExampleTrabajador" value="#{solicitudBean.example.trabajador}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.persona.nombre)} #{forgeview:display(_item.persona.apellidoPaterno)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="solicitudBeanExampleTrabajador" styleClass="error"/>
 						</h:panelGroup>
@@ -90,6 +90,47 @@
 						<h:outputText id="itemIdSolicitud" value="#{_item.idSolicitud}"/>
 					</h:link>
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Persona"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemPersona" value="#{_item.persona.nombre} #{_item.persona.apellidoPaterno} #{_item.persona.apellidoMaterno}"/>
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Forma de Pago"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemFormaPago" value="#{_item.formaPago.nombre}"/>
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Fecha Solicitud"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemFechaSolicitud" value="#{_item.fechaSolicitud}"/>
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Observaciones"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitud/view">
+						<f:param name="id" value="#{_item.idSolicitud}"/>
+						<h:outputText id="itemObservaciones" value="#{_item.observaciones}"/>
+					</h:link>
+				</h:column>
+				
 			</h:dataTable>
 			<ui:include src="/resources/scaffold/paginator.xhtml">
 				<ui:param name="paginatorBean" value='#{solicitudBean}'/>
