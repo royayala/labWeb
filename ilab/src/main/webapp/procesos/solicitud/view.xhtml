@@ -90,13 +90,22 @@
 			<h:dataTable id="solicitudBeanSolicitudSolicitudDetalles" styleClass="data-table" value="#{forgeview:asList(solicitudBean.solicitud.solicitudDetalles)}" var="_item">
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Id Solicitud Detalle"/>
+						<h:outputText value="Nro.Solicitud"/>
 					</f:facet>
 					<h:link outcome="/procesos/solicitudDetalle/view">
 						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
 						<h:outputText id="itemIdSolicitudDetalle" value="#{_item.idSolicitudDetalle}"/>
 					</h:link>
 				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Examen"/>
+					</f:facet>
+					<h:link outcome="/procesos/solicitudDetalle/view">
+						<f:param name="id" value="#{_item.idSolicitudDetalle}"/>
+						<h:outputText id="itemIdSolicitudIDExamen" value="#{_item.examen.idExamen}"/>
+					</h:link>
+				</h:column>				
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Examen"/>

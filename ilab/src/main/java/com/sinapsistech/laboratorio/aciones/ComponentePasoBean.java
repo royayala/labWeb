@@ -2,6 +2,7 @@ package com.sinapsistech.laboratorio.aciones;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
@@ -24,6 +26,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 
 import com.sinapsistech.laboratorio.model.Componente;
 import com.sinapsistech.laboratorio.model.Examen;
@@ -58,6 +61,9 @@ public class ComponentePasoBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
+   FacesContext context = FacesContext.getCurrentInstance();
+   ExternalContext externalContext = context.getExternalContext();
+   HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
    /*
     * Support creating and retrieving Examen entities
@@ -487,7 +493,8 @@ public void buttonActionAddComponente(ActionEvent actionEvent) {
 	System.out.println("Componente seleccionados "+this.componenteSeleccionado.toString());
 	try {
 		 System.out.println("recorriendo los componentes");
-	     
+		 
+		  String nombre = request.getUserPrincipal().getName();
      	 
 		 
     	/*  for(Iterator<Componente> it = componenteSeleccionado.iterator(); it.hasNext();) {
@@ -518,6 +525,10 @@ public void buttonActionAddComponente(ActionEvent actionEvent) {
     	    		oGrabar.setComponente(oComponente);
     	    		oGrabar.setExamen(this.getExamen());
     	    		oGrabar.setPosicion(i);
+    	    		oGrabar.setFechaReg(new Date());
+    	    		oGrabar.setUsuarioReg(nombre);
+    	    		oGrabar.setFlagEstado("AC");
+    	    		
     	    		
     	    		entityManager.persist(oGrabar);
     	    		entityManager.flush();
