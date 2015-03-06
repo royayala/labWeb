@@ -30,12 +30,12 @@
 			<h:outputText id="tomaMuestraBeanTomaMuestraIdTomaMuestra" value="#{tomaMuestraBean.tomaMuestra.idTomaMuestra}"/>
 			<h:outputText/>
 			<h:outputLabel for="tomaMuestraBeanTomaMuestraSolicitudDetalle" value="Solicitud Detalle:"/>
-			<h:link id="tomaMuestraBeanTomaMuestraSolicitudDetalle" outcome="/procesos/solicitudDetalle/view" rendered="#{!empty tomaMuestraBean.tomaMuestra.solicitudDetalle}" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle}">
+			<h:link id="tomaMuestraBeanTomaMuestraSolicitudDetalle" outcome="/procesos/solicitudDetalle/view" rendered="#{!empty tomaMuestraBean.tomaMuestra.solicitudDetalle}" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle.descripcion}">
 				<f:param name="id" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle.idSolicitudDetalle}"/>
 			</h:link>
 			<h:outputText/>
 			<h:outputLabel for="tomaMuestraBeanTomaMuestraTrabajador" value="Trabajador:"/>
-			<h:link id="tomaMuestraBeanTomaMuestraTrabajador" outcome="/procesos/trabajador/view" rendered="#{!empty tomaMuestraBean.tomaMuestra.trabajador}" value="#{tomaMuestraBean.tomaMuestra.trabajador}">
+			<h:link id="tomaMuestraBeanTomaMuestraTrabajador" outcome="/generados/trabajador/view" rendered="#{!empty tomaMuestraBean.tomaMuestra.trabajador}" value="#{tomaMuestraBean.tomaMuestra.trabajador.persona.nombre} #{tomaMuestraBean.tomaMuestra.trabajador.persona.apellidoPaterno} #{tomaMuestraBean.tomaMuestra.trabajador.persona.apellidoMaterno}">
 				<f:param name="id" value="#{tomaMuestraBean.tomaMuestra.trabajador.idTrabajador}"/>
 			</h:link>
 			<h:outputText/>

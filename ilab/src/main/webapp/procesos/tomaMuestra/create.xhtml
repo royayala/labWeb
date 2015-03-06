@@ -22,10 +22,10 @@
 	<ui:define name="subheader">
 		<c:choose>
 			<c:when test='#{!empty tomaMuestraBean.id}'>
-				Edit existing Toma Muestra
+				Editar Toma de Muestra
 			</c:when>
 			<c:otherwise>
-				Create a new Toma Muestra
+				Agregar nueva Toma de Muestra
 			</c:otherwise>
 		</c:choose>
 	</ui:define>
@@ -39,7 +39,7 @@
 			<h:panelGrid columnClasses="label,component,required" columns="3">
 				<h:outputLabel for="tomaMuestraBeanTomaMuestraIdTomaMuestra" value="Id Toma Muestra:"/>
 				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraIdTomaMuestra" required="true" value="#{tomaMuestraBean.tomaMuestra.idTomaMuestra}" disable="true"/>
+					<h:inputText id="tomaMuestraBeanTomaMuestraIdTomaMuestra" required="true" value="#{tomaMuestraBean.tomaMuestra.idTomaMuestra}" disable="true" disabled="true"/>
 					<h:message for="tomaMuestraBeanTomaMuestraIdTomaMuestra" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
@@ -47,7 +47,7 @@
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="tomaMuestraBeanTomaMuestraSolicitudDetalle" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle}">
 						<f:selectItem/>
-						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.allSolicitudesNueva}" var="_item"/>
+						<f:selectItems itemLabel="#{forgeview:display(_item.examen.nombre)}" itemValue="#{_item}" value="#{solicitudDetalleBean.allSolicitudesNueva}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="tomaMuestraBeanTomaMuestraSolicitudDetalle" styleClass="error"/>
 				</h:panelGroup>
@@ -56,7 +56,7 @@
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{trabajadorBean.converter}" id="tomaMuestraBeanTomaMuestraTrabajador" value="#{tomaMuestraBean.tomaMuestra.trabajador}">
 						<f:selectItem/>
-						<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+						<f:selectItems itemLabel="#{forgeview:display(_item.persona.nombre)} #{forgeview:display(_item.persona.apellidoPaterno)} #{forgeview:display(_item.persona.apellidoMaterno)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="tomaMuestraBeanTomaMuestraTrabajador" styleClass="error"/>
 				</h:panelGroup>
@@ -74,55 +74,7 @@
 					</h:inputText>
 					<h:message for="tomaMuestraBeanTomaMuestraFechaTomaMuestra" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraFlagEstado" value="Flag Estado:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraFlagEstado" maxLength="2" value="#{tomaMuestraBean.tomaMuestra.flagEstado}"/>
-					<h:message for="tomaMuestraBeanTomaMuestraFlagEstado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraFechaReg" value="Fecha Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraFechaReg" maxLength="29" value="#{tomaMuestraBean.tomaMuestra.fechaReg}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tomaMuestraBeanTomaMuestraFechaReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraUsuarioReg" value="Usuario Reg:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraUsuarioReg" maxLength="30" value="#{tomaMuestraBean.tomaMuestra.usuarioReg}"/>
-					<h:message for="tomaMuestraBeanTomaMuestraUsuarioReg" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraFechaMod" value="Fecha Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraFechaMod" maxLength="29" value="#{tomaMuestraBean.tomaMuestra.fechaMod}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tomaMuestraBeanTomaMuestraFechaMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraUsuarioMod" value="Usuario Mod:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraUsuarioMod" maxLength="30" value="#{tomaMuestraBean.tomaMuestra.usuarioMod}"/>
-					<h:message for="tomaMuestraBeanTomaMuestraUsuarioMod" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraFechaBorrado" value="Fecha Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraFechaBorrado" maxLength="29" value="#{tomaMuestraBean.tomaMuestra.fechaBorrado}">
-						<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-					</h:inputText>
-					<h:message for="tomaMuestraBeanTomaMuestraFechaBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
-				<h:outputLabel for="tomaMuestraBeanTomaMuestraUsuarioBorrado" value="Usuario Borrado:"/>
-				<h:panelGroup>
-					<h:inputText id="tomaMuestraBeanTomaMuestraUsuarioBorrado" maxLength="30" value="#{tomaMuestraBean.tomaMuestra.usuarioBorrado}"/>
-					<h:message for="tomaMuestraBeanTomaMuestraUsuarioBorrado" styleClass="error"/>
-				</h:panelGroup>
-				<h:outputText/>
+				<h:outputText/>				
 			</h:panelGrid>
 
 			<div class="buttons">

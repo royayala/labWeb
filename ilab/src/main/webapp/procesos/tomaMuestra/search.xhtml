@@ -36,11 +36,11 @@
 							<h:message for="tomaMuestraBeanExampleIdTomaMuestra" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
-						<h:outputLabel for="tomaMuestraBeanExampleSolicitudDetalle" value="Solicitud Detalle:"/>
+						<h:outputLabel for="tomaMuestraBeanExampleSolicitudDetalle" value="Solicitud :"/>
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="tomaMuestraBeanExampleSolicitudDetalle" value="#{tomaMuestraBean.example.solicitudDetalle}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.examen.nombre)}" itemValue="#{_item}" value="#{solicitudDetalleBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="tomaMuestraBeanExampleSolicitudDetalle" styleClass="error"/>
 						</h:panelGroup>
@@ -49,7 +49,7 @@
 						<h:panelGroup>
 							<h:selectOneMenu converter="#{trabajadorBean.converter}" id="tomaMuestraBeanExampleTrabajador" value="#{tomaMuestraBean.example.trabajador}">
 								<f:selectItem/>
-								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
+								<f:selectItems itemLabel="#{forgeview:display(_item.persona.nombre)} #{forgeview:display(_item.persona.apellidoPaterno)} #{forgeview:display(_item.persona.apellidoMaterno)}" itemValue="#{_item}" value="#{trabajadorBean.all}" var="_item"/>
 							</h:selectOneMenu>
 							<h:message for="tomaMuestraBeanExampleTrabajador" styleClass="error"/>
 						</h:panelGroup>
@@ -59,13 +59,7 @@
 							<h:inputText id="tomaMuestraBeanExampleObservaciones" maxLength="300" value="#{tomaMuestraBean.example.observaciones}"/>
 							<h:message for="tomaMuestraBeanExampleObservaciones" styleClass="error"/>
 						</h:panelGroup>
-						<h:outputText/>
-						<h:outputLabel for="tomaMuestraBeanExampleFlagEstado" value="Flag Estado:"/>
-						<h:panelGroup>
-							<h:inputText id="tomaMuestraBeanExampleFlagEstado" maxLength="2" value="#{tomaMuestraBean.example.flagEstado}"/>
-							<h:message for="tomaMuestraBeanExampleFlagEstado" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
+						<h:outputText/>						
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Buscar" action='#{tomaMuestraBean.search}' styleClass="btn btn-primary"/>
