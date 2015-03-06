@@ -18,6 +18,7 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
@@ -28,6 +29,8 @@ import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sinapsistech.laboratorio.model.Componente;
+import com.sinapsistech.laboratorio.model.ExamenComponente;
+import com.sinapsistech.laboratorio.model.RegistroResultado;
 import com.sinapsistech.laboratorio.model.TomaMuestra;
 import com.sinapsistech.laboratorio.model.SolicitudDetalle;
 import com.sinapsistech.laboratorio.model.Trabajador;
@@ -140,11 +143,59 @@ public class TomaMuestraBean implements Serializable
          if (this.id == null)
          {
           	System.out.println("Entro por toma de Muestra nuevo");
-
+          	
+          	// ponemos valores de registro
           	this.tomaMuestra.setFechaReg(new Date());
           	this.tomaMuestra.setUsuarioReg(nombre);
           	this.tomaMuestra.setFlagEstado("AC");
             this.entityManager.persist(this.tomaMuestra);
+            
+            // actualizamos el examen que esta en toma de muestra.
+            
+            this.tomaMuestra.getSolicitudDetalle().setFlagEstado("TM");
+            
+            SolicitudDetalle actualizarSolicitudDetalle = this.tomaMuestra.getSolicitudDetalle() ;
+            actualizarSolicitudDetalle.setFlagEstado("TM");
+            actualizarSolicitudDetalle.setFechaMod(new Date());		
+            actualizarSolicitudDetalle.setUsuarioMod(nombre);
+            System.out.println("Actualizando solicitud detalle "+this.tomaMuestra.getSolicitudDetalle().getIdSolicitudDetalle());
+            this.entityManager.merge(actualizarSolicitudDetalle);
+            
+            
+            // metemos en la tabla registro resultado 
+            
+            // 1. primero sacamos los componentes del examen solicitado.
+            List<ExamenComponente> componentesExamen = entityManager.createQuery("select o from ExamenComponente o where o.flagEstado='AC' and o.examen.idExamen = "+this.tomaMuestra.getSolicitudDetalle().getExamen().getIdExamen()).getResultList();
+            
+            // 2. lo metemos en la tabla registro resultado
+            
+         
+           
+            
+            for(ExamenComponente obComponenteExamen : componentesExamen){
+            	System.out.println("examen "+obComponenteExamen.getExamen().getNombre());
+            	System.out.println("Componente "+obComponenteExamen.getComponente().getIdComponente());
+            	System.out.println("Nombre Componente "+obComponenteExamen.getComponente().getNombre());
+            	
+            	String consulta = "insert into registro_resultado(id_solicitud_detalle, id_trabajador, id_examen, id_componente, fecha_reg, usuario_reg, flag_estado) values (?,?,?,?,?,?,?)";
+            	
+            	entityManager.createNativeQuery(consulta, RegistroResultado.class)
+            		.setParameter(1,this.tomaMuestra.getSolicitudDetalle().getIdSolicitudDetalle() )
+            		.setParameter(2, this.tomaMuestra.getTrabajador().getIdTrabajador())
+            		.setParameter(3, this.tomaMuestra.getSolicitudDetalle().getExamen().getIdExamen())
+            		.setParameter(4, obComponenteExamen.getComponente().getIdComponente())
+            		.setParameter(5, new Date())
+            		.setParameter(6, nombre)
+            		.setParameter(7, "NU").executeUpdate();
+            	
+            	
+            	
+            }
+
+      
+            
+            System.out.println("Insertado a Registro resultado con exito");
+            
             return "search?faces-redirect=true";
          }
          else
