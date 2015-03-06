@@ -62,7 +62,7 @@
 					<f:facet name="header">
 						<h:outputText value="Id Persona"/>
 					</f:facet>
-					<h:link outcome="/parametros/persona/view">
+					<h:link outcome="/procesos/persona/view">
 						<f:param name="id" value="#{_item.idPersona}"/>
 						<h:outputText id="itemIdPersona" value="#{_item.idPersona}"/>
 					</h:link>
@@ -71,36 +71,27 @@
 					<f:facet name="header">
 						<h:outputText value="Nombre"/>
 					</f:facet>
-					<h:link outcome="/parametros/persona/view">
+					<h:link outcome="/procesos/persona/view">
 						<f:param name="id" value="#{_item.idPersona}"/>
-						<h:outputText id="itemNombre" value="#{_item.nombre}"/>
+						<h:outputText id="itemNombre" value="#{_item.nombre} #{_item.apellidoPaterno} #{_item.apellidoMaterno}"/>
 					</h:link>
 				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Apellido Paterno"/>
-					</f:facet>
-					<h:link outcome="/parametros/persona/view">
-						<f:param name="id" value="#{_item.idPersona}"/>
-						<h:outputText id="itemApellidoPaterno" value="#{_item.apellidoPaterno}"/>
-					</h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Apellido Materno"/>
-					</f:facet>
-					<h:link outcome="/parametros/persona/view">
-						<f:param name="id" value="#{_item.idPersona}"/>
-						<h:outputText id="itemApellidoMaterno" value="#{_item.apellidoMaterno}"/>
-					</h:link>
-				</h:column>
-				<h:column>
+				<h:column>						
 					<f:facet name="header">
 						<h:outputText value="Documento Identidad"/>
 					</f:facet>
-					<h:link outcome="/parametros/persona/view">
+					<h:link outcome="/procesos/persona/view">
 						<f:param name="id" value="#{_item.idPersona}"/>
 						<h:outputText id="itemDocumentoIdentidad" value="#{_item.documentoIdentidad}"/>
+					</h:link>
+				</h:column>
+				<h:column>						
+					<f:facet name="header">
+						<h:outputText value="Grupo Sanguineo"/>
+					</f:facet>
+					<h:link outcome="/procesos/persona/view">
+						<f:param name="id" value="#{_item.idPersona}"/>
+						<h:outputText id="itemDocumentoIdentidad" value="#{_item.grupoSanguineo}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

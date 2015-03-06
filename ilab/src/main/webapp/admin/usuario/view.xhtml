@@ -30,7 +30,7 @@
 			<h:outputText id="usuarioBeanUsuarioIdUsuario" value="#{usuarioBean.usuario.idUsuario}"/>
 			<h:outputText/>
 			<h:outputLabel for="usuarioBeanUsuarioCompania" value="Compania:"/>
-			<h:link id="usuarioBeanUsuarioCompania" outcome="/compania/view" rendered="#{!empty usuarioBean.usuario.compania}" value="#{usuarioBean.usuario.compania}">
+			<h:link id="usuarioBeanUsuarioCompania" outcome="/admin/compania/view" rendered="#{!empty usuarioBean.usuario.compania}" value="#{usuarioBean.usuario.compania.nombreLargo}">
 				<f:param name="id" value="#{usuarioBean.usuario.compania.idCia}"/>
 			</h:link>
 			<h:outputText/>
@@ -75,9 +75,19 @@
 					<f:facet name="header">
 						<h:outputText value="Correlativo"/>
 					</f:facet>
-					<h:link outcome="/parametros/usuarioRol/view">
+					<h:link outcome="/admin/usuarioRol/view">
 						<f:param name="id" value="#{_item.correlativo}"/>
 						<h:outputText id="itemCorrelativo" value="#{_item.correlativo}"/>
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rol"/>
+					</f:facet>
+					<h:link outcome="/admin/usuarioRol/view">
+						<f:param name="id" value="#{_item.correlativo}"/>
+						<h:outputText id="itemCorrelativo" value="#{_item.rolAsignado}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>
