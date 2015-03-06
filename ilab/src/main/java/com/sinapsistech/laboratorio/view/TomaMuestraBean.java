@@ -188,12 +188,8 @@ public class TomaMuestraBean implements Serializable
             		.setParameter(6, nombre)
             		.setParameter(7, "NU").executeUpdate();
             	
-            	
-            	
             }
 
-      
-            
             System.out.println("Insertado a Registro resultado con exito");
             
             return "search?faces-redirect=true";
