@@ -169,9 +169,6 @@ public class TomaMuestraBean implements Serializable
             
             // 2. lo metemos en la tabla registro resultado
             
-         
-           
-            
             for(ExamenComponente obComponenteExamen : componentesExamen){
             	System.out.println("examen "+obComponenteExamen.getExamen().getNombre());
             	System.out.println("Componente "+obComponenteExamen.getComponente().getIdComponente());
@@ -190,7 +187,7 @@ public class TomaMuestraBean implements Serializable
             	
             }
 
-            System.out.println("Insertado a Registro resultado con exito");
+            System.out.println("Insertado a Registro resultado con exito............");
             
             return "search?faces-redirect=true";
          }
