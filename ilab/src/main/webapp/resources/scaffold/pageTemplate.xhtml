@@ -51,7 +51,9 @@
             <p:menuitem value="Persona" outcome="/procesos/persona/search"/>                    
             <p:menuitem value="Solicitud" outcome="/procesos/solicitud/search"/>
             <p:menuitem value="Toma de Muestra" outcome="/procesos/tomaMuestra/search"/>
-            <p:menuitem value="Registro Resultado" outcome="/procesos/registroResultado/search"/>            
+            <p:menuitem value="Registro Resultado" outcome="/procesos/tomaMuestra/search"/>
+            <p:menuitem value="Aprobar Resultado" outcome="/procesos/tomaMuestra/search"/>
+            <p:menuitem value="Entrega Resultado" outcome="/procesos/tomaMuestra/search"/>            
         </p:submenu>
         <p:separator />
         <p:submenu label="Consultas" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
