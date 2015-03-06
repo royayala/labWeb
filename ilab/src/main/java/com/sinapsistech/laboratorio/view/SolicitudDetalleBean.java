@@ -437,7 +437,7 @@ public class SolicitudDetalleBean implements Serializable
        Object newValue = event.getNewValue();
         
        if(newValue != null && !newValue.equals(oldValue)) {
-           FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+           FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Celdas cambiadas", "Anterior: " + oldValue + ", Nuevo: " + newValue);
            FacesContext.getCurrentInstance().addMessage(null, msg);
        }
    }

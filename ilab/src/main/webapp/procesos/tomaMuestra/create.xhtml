@@ -46,13 +46,13 @@
 				<h:outputText value="*"/>
 				<h:outputLabel for="tomaMuestraBeanTomaMuestraSolicitudDetalle" value="Solicitud Detalle:"/>
 				<h:panelGroup>
-					<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="tomaMuestraBeanTomaMuestraSolicitudDetalle" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle}">
+					<h:selectOneMenu converter="#{solicitudDetalleBean.converter}" id="tomaMuestraBeanTomaMuestraSolicitudDetalle" value="#{tomaMuestraBean.tomaMuestra.solicitudDetalle}" required="true">
 						<f:selectItem/>
 						<f:selectItems itemLabel="#{forgeview:display(_item.examen.nombre)}" itemValue="#{_item}" value="#{solicitudDetalleBean.allSolicitudesNueva}" var="_item"/>
 					</h:selectOneMenu>
 					<h:message for="tomaMuestraBeanTomaMuestraSolicitudDetalle" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText/>
+				<h:outputText value="*"/>
 				<h:outputLabel for="tomaMuestraBeanTomaMuestraTrabajador" value="Trabajador:"/>
 				<h:panelGroup>
 					<h:selectOneMenu converter="#{trabajadorBean.converter}" id="tomaMuestraBeanTomaMuestraTrabajador" value="#{tomaMuestraBean.tomaMuestra.trabajador}">

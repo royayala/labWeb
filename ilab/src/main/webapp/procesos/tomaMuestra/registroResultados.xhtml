@@ -59,32 +59,7 @@
 			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFlagEstado" value="Flag Estado:"/>
 			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFlagEstado" value="#{solicitudDetalleBean.solicitudDetalle.flagEstado}"/>
 			<h:outputText/>
-			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaReg" value="Fecha Reg:"/>
-			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaReg" value="#{solicitudDetalleBean.solicitudDetalle.fechaReg}">
-				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-			</h:outputText>
-			<h:outputText/>
-			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleUsuarioReg" value="Usuario Reg:"/>
-			<h:outputText id="solicitudDetalleBeanSolicitudDetalleUsuarioReg" value="#{solicitudDetalleBean.solicitudDetalle.usuarioReg}"/>
-			<h:outputText/>
-			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaMod" value="Fecha Mod:"/>
-			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaMod" value="#{solicitudDetalleBean.solicitudDetalle.fechaMod}">
-				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-			</h:outputText>
-			<h:outputText/>
-			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleUsuarioMod" value="Usuario Mod:"/>
-			<h:outputText id="solicitudDetalleBeanSolicitudDetalleUsuarioMod" value="#{solicitudDetalleBean.solicitudDetalle.usuarioMod}"/>
-			<h:outputText/>
-			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleFechaBorrado" value="Fecha Borrado:"/>
-			<h:outputText id="solicitudDetalleBeanSolicitudDetalleFechaBorrado" value="#{solicitudDetalleBean.solicitudDetalle.fechaBorrado}">
-				<f:convertDateTime pattern="MMM d, yyyy hh:mm:ss a" type="both"/>
-			</h:outputText>
-			<h:outputText/>
-			<h:outputLabel for="solicitudDetalleBeanSolicitudDetalleUsuarioBorrado" value="Usuario Borrado:"/>
-			<h:outputText id="solicitudDetalleBeanSolicitudDetalleUsuarioBorrado" value="#{solicitudDetalleBean.solicitudDetalle.usuarioBorrado}"/>
-			<h:outputText/>
-			
-			
+
 		</h:panelGrid>
 		<p:separator />
 		
@@ -105,7 +80,7 @@
 		           Registro de Resultados de los examenes
 		       </f:facet>
 		   
-		    <p:ajax event="cellEdit" listener="#{olicitudDetalleBean.onCellEdit}" update=":form:msgs" />
+		    <p:ajax event="cellEdit" listener="#{solicitudDetalleBean.onCellEdit}" update=":form:msgs" />
 		   
 			    <p:column headerText="Id">
 			        <h:outputText value="#{item.idRegistroResultado}" />
@@ -118,21 +93,21 @@
 			   <p:column headerText="Resultado">
 		           <p:cellEditor>
 		               <f:facet name="output"><h:outputText value="#{item.resultado}" /></f:facet>
-		               <f:facet name="input"><p:inputText value="#{item.resultado}" style="width:100%" label="Year"/></f:facet>
+		               <f:facet name="input"><p:inputText value="#{item.resultado}" style="width:100%" label="Resultado"/></f:facet>
 		           </p:cellEditor>
 		       </p:column>
 
 			   <p:column headerText="Anormales">
 		           <p:cellEditor>
 		               <f:facet name="output"><h:outputText value="#{item.registrosAnormales}" /></f:facet>
-		               <f:facet name="input"><p:inputText value="#{item.registrosAnormales}" style="width:100%" label="Year"/></f:facet>
+		               <f:facet name="input"><p:inputText value="#{item.registrosAnormales}" style="width:100%" label="Anormales"/></f:facet>
 		           </p:cellEditor>
 		       </p:column>
 		       
 			   <p:column headerText="Normales">
 		           <p:cellEditor>
 		               <f:facet name="output"><h:outputText value="#{item.registrosNormales}" /></f:facet>
-		               <f:facet name="input"><p:inputText value="#{item.registrosNormales}" style="width:100%" label="Year"/></f:facet>
+		               <f:facet name="input"><p:inputText value="#{item.registrosNormales}" style="width:100%" label="Normales"/></f:facet>
 		           </p:cellEditor>
 		       </p:column>
 
@@ -153,8 +128,10 @@
 		
 		<div class="buttons">
 			<h:link value="Volver" outcome="search" styleClass="btn btn-primary"/> 
+		<!-- 
 			<h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
-			<h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+			 <h:link value="Crear Nuevo" outcome="create" styleClass="btn btn-primary"/>
+		 -->
 		</div>
 	</ui:define>
 
