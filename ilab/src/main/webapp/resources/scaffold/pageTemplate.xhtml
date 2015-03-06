@@ -39,17 +39,18 @@
             <p:menuitem value="Clase Paciente" outcome="/parametros/clasePaciente/search"/>
             <p:menuitem value="Tipo Tarifa" outcome="/parametros/tipoTarifa/search"/>
             <p:menuitem value="Formas de Pago" outcome="/parametros/formaPago/search"/>
-            <p:menuitem value="Componentes" outcome="/parametros/componente/search"/>
-            <p:menuitem value="Examen" outcome="/parametros/examen/search"/>
             <p:menuitem value="Tipo de Examen" outcome="/parametros/tipoExamen/search"/>
             <p:menuitem value="Sub Tipo de Examen" outcome="/parametros/subTipoExamen/search"/>
+            <p:menuitem value="Componentes" outcome="/parametros/componente/search"/>
+            <p:menuitem value="Examen" outcome="/parametros/examen/search"/>
+            
         </p:submenu>
 		<p:separator />
         <p:submenu label="Procesos" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO1')}">
 
             <p:menuitem value="Persona" outcome="/procesos/persona/search"/>                    
             <p:menuitem value="Solicitud" outcome="/procesos/solicitud/search"/>
-            <p:menuitem value="Toma de Muestra" outcome="/procesos/tomaMuestra/search"/> 
+            <p:menuitem value="Toma de Muestra" outcome="/procesos/tomaMuestra/search"/>
             <p:menuitem value="Registro Resultado" outcome="/procesos/registroResultado/search"/>            
         </p:submenu>
         <p:separator />
