@@ -57,7 +57,7 @@
         </p:submenu>
         <p:separator />
         <p:submenu label="Consultas" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
-           	
+           	<p:menuitem value="Genero de Clientes" outcome="/consultas/consultaGenero"/>    
         </p:submenu>
         <p:separator />
         <p:submenu label="Reportes" rendered="#{request.isUserInRole('SUPER') or request.isUserInRole('ADMIN') or request.isUserInRole('USUARIO2')}">
